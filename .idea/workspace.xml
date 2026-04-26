@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 2.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,8 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-mcp.client.wrong.port.detected": "检测到端口与当前 IDE 不匹配的 MCP 客户端",
+    "Notification.DoNotAsk-mcp.client.wrong.port.detected": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -69,7 +71,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\yang\\Desktop\\p4\\final-project\\Visual Flowchart Editor\\node_modules\\prettier",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\yang\\Desktop\\p4\\final-project\\frontend\\node_modules\\prettier",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "C:\\Users\\yang\\Desktop\\p4\\final-project\\backend\\node_modules\\typescript\\lib",
@@ -99,7 +101,7 @@
       <workItem from="1777009753090" duration="3433000" />
       <workItem from="1777112959244" duration="219000" />
       <workItem from="1777113203009" duration="4996000" />
-      <workItem from="1777175829390" duration="5188000" />
+      <workItem from="1777175829390" duration="5492000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />

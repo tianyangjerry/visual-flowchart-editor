@@ -1,0 +1,596 @@
+<template>
+  <section class="feedback-tile">
+    <div class="feedback-panel" :class="{ 'is-submitted': submitted }">
+      <!-- 左侧内容区 -->
+      <div class="feedback-panel__content">
+        <p class="feedback-panel__eyebrow">Feedback</p>
+        <h2>Have a workflow in mind?</h2>
+        <p class="feedback-panel__copy">
+          Tell us what you want to build next, and we’ll keep shaping the editor around real project
+          needs.
+        </p>
+
+        <div class="feedback-panel__meta">
+          <span class="meta-pill">Workflow ideas</span>
+          <span class="meta-pill">UI suggestions</span>
+          <span class="meta-pill">Template requests</span>
+        </div>
+      </div>
+
+      <!-- 右侧交互区 -->
+      <div class="feedback-panel__side" :class="{ 'is-expanded': isExpanded }">
+        <div class="feedback-panel__cta" :class="{ 'is-hidden': isExpanded }">
+          <button class="primary-btn" type="button" @click="expandPanel">Share feedback</button>
+          <p class="feedback-panel__hint">Open a compact feedback form without leaving the page.</p>
+        </div>
+      </div>
+
+      <div class="feedback-panel__overlay" :class="{ 'is-visible': isExpanded }">
+        <button class="feedback-panel__overlay-mask" type="button" aria-label="Close feedback drawer" @click="collapsePanel">
+          <span class="sr-only">Close feedback drawer</span>
+        </button>
+        <div class="feedback-panel__overlay-surface">
+          <div class="feedback-panel__form-head">
+            <div>
+              <p class="form-eyebrow">Suggestion form</p>
+              <h3>Send us a quick note</h3>
+            </div>
+
+            <button class="ghost-btn" type="button" @click="collapsePanel">Cancel</button>
+          </div>
+
+          <form class="feedback-form" @submit.prevent="submitForm">
+            <label class="form-field">
+              <span>Email address</span>
+              <input
+                ref="emailInputRef"
+                v-model="email"
+                type="email"
+                placeholder="name@example.com"
+                autocomplete="email"
+              />
+            </label>
+
+            <label class="form-field">
+              <span>Your suggestion</span>
+              <textarea
+                v-model="message"
+                rows="4"
+                placeholder="Tell us what workflow, review experience, or editor feature you want to see next."
+              />
+            </label>
+
+            <div class="form-actions">
+              <button class="secondary-btn" type="button" @click="collapsePanel">Back</button>
+              <button class="primary-btn" type="submit">Submit feedback</button>
+            </div>
+
+            <p v-if="submitted" class="success-text">Thanks — your suggestion has been captured.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="feedback-panel__glow"></div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { nextTick, ref } from 'vue'
+
+const isExpanded = ref(false)
+const submitted = ref(false)
+
+const email = ref('')
+const message = ref('')
+const emailInputRef = ref(null)
+
+async function expandPanel() {
+  if (isExpanded.value) return
+
+  isExpanded.value = true
+  submitted.value = false
+  await nextTick()
+  emailInputRef.value?.focus({ preventScroll: true })
+}
+
+function collapsePanel() {
+  if (!isExpanded.value) return
+
+  isExpanded.value = false
+}
+
+function submitForm() {
+  submitted.value = true
+
+
+  console.log('feedback submitted:', {
+    email: email.value,
+    message: message.value,
+  })
+}
+</script>
+
+<style scoped>
+.feedback-tile {
+  width: 100%;
+  margin-top: 56px;
+}
+
+.feedback-panel {
+  --side-width: 280px;
+  --drawer-width: min(100%, 480px);
+  position: relative;
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side-width);
+  gap: 0;
+  min-height: 320px;
+  border-radius: 32px;
+  overflow: visible;
+  border: 1px solid rgba(105, 141, 214, 0.14);
+  background:
+    radial-gradient(circle at 72% 50%, rgba(92, 164, 255, 0.12), transparent 20%),
+    radial-gradient(circle at top center, rgba(79, 139, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(15, 22, 36, 0.98), rgba(8, 13, 23, 0.985));
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.feedback-panel.is-expanded {
+  border-color: rgba(117, 164, 255, 0.2);
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(87, 154, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.feedback-panel__content,
+.feedback-panel__side {
+  position: relative;
+  z-index: 1;
+}
+
+.feedback-panel__content {
+  padding: 42px 42px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feedback-panel__eyebrow,
+.form-eyebrow {
+  margin: 0 0 12px;
+  color: #7fc7ff;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feedback-panel h2 {
+  margin: 0;
+  color: #f5f8ff;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  max-width: 12ch;
+}
+
+.feedback-panel__copy {
+  max-width: 700px;
+  margin: 18px 0 0;
+  color: rgba(227, 234, 244, 0.76);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.feedback-panel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(233, 240, 249, 0.82);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.feedback-panel__side {
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.008));
+  transition:
+    background 240ms ease,
+    border-color 240ms ease;
+  overflow: hidden;
+  display: grid;
+}
+
+.feedback-panel__side.is-expanded {
+  border-left-color: rgba(121, 171, 255, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0.01));
+}
+
+.feedback-panel__cta {
+  grid-area: 1 / 1;
+  height: 100%;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.feedback-panel__cta.is-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+.feedback-panel__hint {
+  margin: 16px 0 0;
+  color: rgba(212, 222, 236, 0.56);
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 220px;
+}
+
+.feedback-panel__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--drawer-width);
+  max-width: calc(100% - 56px);
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(24px) scale(0.98);
+  transform-origin: right center;
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 220ms;
+  z-index: 3;
+}
+
+.feedback-panel__overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s;
+}
+
+.feedback-panel__overlay-mask {
+  position: absolute;
+  inset: 0 26px 0 -34px;
+  border: 0;
+  padding: 0;
+  border-radius: 30px 0 0 30px;
+  background: linear-gradient(90deg, rgba(10, 15, 26, 0.02), rgba(99, 162, 255, 0.1) 58%, rgba(99, 162, 255, 0.16));
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: auto;
+}
+
+.feedback-panel__overlay.is-visible .feedback-panel__overlay-mask {
+  opacity: 1;
+}
+
+.feedback-panel__overlay-surface {
+  position: relative;
+  height: 100%;
+  margin-left: auto;
+  padding: 26px 24px 24px;
+  border-left: 1px solid rgba(121, 171, 255, 0.1);
+  border-radius: 28px 0 0 28px;
+  background: linear-gradient(180deg, rgba(18, 25, 40, 0.985), rgba(10, 15, 26, 0.998));
+  box-shadow:
+    -34px 0 70px rgba(0, 0, 0, 0.36),
+    -1px 0 0 rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+/* 展开态表单 */
+
+.feedback-panel__form-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.feedback-panel__form-head h3 {
+  margin: 0;
+  color: #f5f8ff;
+  font-size: 26px;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+}
+
+.feedback-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field span {
+  color: rgba(228, 235, 245, 0.84);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid rgba(118, 142, 186, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f4f8ff;
+  padding: 14px 16px;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(206, 216, 232, 0.34);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: rgba(120, 179, 255, 0.42);
+  box-shadow: 0 0 0 4px rgba(85, 152, 255, 0.08);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 116px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.success-text {
+  margin: 2px 0 0;
+  color: #8ed7a4;
+  font-size: 14px;
+}
+
+/* 按钮 */
+.primary-btn,
+.secondary-btn,
+.ghost-btn {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 182px;
+  height: 56px;
+  padding: 0 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #66b5ff, #7b8dff);
+  color: #09111e;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow:
+    0 14px 32px rgba(75, 151, 255, 0.22),
+    0 0 18px rgba(75, 151, 255, 0.12);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 36px rgba(75, 151, 255, 0.28),
+    0 0 22px rgba(75, 151, 255, 0.16);
+}
+
+.secondary-btn {
+  min-width: 110px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(236, 242, 250, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.secondary-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ghost-btn {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: transparent;
+  color: rgba(221, 230, 243, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ghost-btn:hover {
+  color: rgba(243, 247, 255, 0.94);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* 背景光 */
+.feedback-panel__glow {
+  position: absolute;
+  right: 160px;
+  top: 50%;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(92, 165, 255, 0.18) 0%,
+    rgba(92, 165, 255, 0.05) 44%,
+    transparent 72%
+  );
+  filter: blur(26px);
+  pointer-events: none;
+}
+
+/* 平板 */
+@media (max-width: 1080px) {
+  .feedback-panel {
+    --side-width: 240px;
+  }
+
+  .feedback-panel.is-expanded {
+    --side-width: 420px;
+  }
+
+  .feedback-panel__content {
+    padding: 36px 30px 34px;
+  }
+
+  .feedback-panel h2 {
+    font-size: 48px;
+  }
+
+  .feedback-panel__copy {
+    font-size: 17px;
+  }
+}
+
+/* 手机 */
+@media (max-width: 820px) {
+  .feedback-panel {
+    display: block;
+    min-height: auto;
+  }
+
+  .feedback-panel__content {
+    padding: 32px 24px 24px;
+  }
+
+  .feedback-panel__side {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .feedback-panel__cta {
+    padding: 22px 24px 24px;
+  }
+
+  .feedback-panel__overlay {
+    position: static;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  .feedback-panel__overlay.is-visible {
+    transform: translateY(0) scale(1);
+  }
+
+  .feedback-panel__overlay-mask {
+    display: none;
+  }
+
+  .feedback-panel__overlay-surface {
+    margin-left: 0;
+    border-left: 0;
+    border-top: 1px solid rgba(121, 171, 255, 0.1);
+    border-radius: 24px 24px 0 0;
+    height: auto;
+    min-height: 260px;
+  }
+
+  .feedback-panel h2 {
+    font-size: 40px;
+  }
+
+  .feedback-panel__copy {
+    font-size: 16px;
+  }
+
+  .feedback-panel__glow {
+    width: 180px;
+    height: 180px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .feedback-panel h2 {
+    font-size: 34px;
+  }
+
+  .feedback-panel__copy {
+    font-size: 15px;
+  }
+
+  .feedback-panel__meta {
+    gap: 8px;
+  }
+
+  .meta-pill {
+    font-size: 12px;
+    height: 32px;
+  }
+
+  .primary-btn {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .secondary-btn,
+  .primary-btn {
+    width: 100%;
+  }
+}
+</style>
