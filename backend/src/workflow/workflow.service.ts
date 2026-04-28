@@ -12,16 +12,15 @@ function asArray<T>(value: unknown): T[] {
   return Array.isArray(value) ? (value as T[]) : []
 }
 
-function buildTriggerMap(definition: Record<string, unknown>) {
+function buildTriggerMap(workflowId: string, definition: Record<string, unknown>) {
   const nodes = asArray<Record<string, unknown>>(definition.nodes)
-  const projectId = String(definition.id ?? '')
   const triggerMap: Record<string, string> = {}
 
   for (const node of nodes) {
     const nodeId = String(node.id ?? '')
     const moduleCode = String(node.code ?? nodeId)
     if (!nodeId || !moduleCode) continue
-    triggerMap[moduleCode] = `/workflow/${projectId}/module/${moduleCode}/trigger`
+    triggerMap[moduleCode] = `/workflow/${workflowId}/module/${moduleCode}/trigger`
   }
 
   return triggerMap
@@ -51,7 +50,17 @@ export class WorkflowService {
 
   async listDefinitions() {
     try {
-      return await this.db.workflowDefinition.findMany({ orderBy: { updatedAt: 'desc' } })
+      const definitions = await this.db.workflowDefinition.findMany({ orderBy: { updatedAt: 'desc' } })
+      const workflowIds = definitions.map((item: { id: string }) => item.id)
+      const runtimes = workflowIds.length
+        ? await this.db.workflowRuntime.findMany({ where: { workflowId: { in: workflowIds } } })
+        : []
+      const runtimeMap = new Map(runtimes.map((runtime: any) => [runtime.workflowId, runtime]))
+
+      return definitions.map((definition: any) => ({
+        ...definition,
+        runtime: runtimeMap.get(definition.id) ?? null,
+      }))
     } catch {
       return []
     }
@@ -60,48 +69,71 @@ export class WorkflowService {
   async getDefinition(id: string) {
     const definition = await this.db.workflowDefinition.findUnique({ where: { id } })
     if (!definition) throw new NotFoundException('Workflow definition not found')
-    return definition
+
+    const runtime = await this.db.workflowRuntime.findFirst({ where: { workflowId: id } })
+    return {
+      ...definition,
+      runtime: runtime ?? null,
+    }
   }
 
   async upsertDefinition(dto: UpsertWorkflowDefinitionDto) {
-    const id = dto.id?.trim()
-    const definition = {
-      id: id ?? undefined,
+    const incomingId = dto.id?.trim()
+    const baseDefinition = {
+      id: incomingId ?? undefined,
       name: dto.name?.trim() || 'Untitled Workflow',
       description: dto.description?.trim() || '',
       nodes: dto.nodes ?? [],
       edges: dto.edges ?? [],
       ...(dto.definition ?? {}),
     }
-    const triggerMap = buildTriggerMap(definition)
 
-    if (!id) {
-      return this.db.workflowDefinition.create({
+    let saved
+
+    if (!incomingId) {
+      saved = await this.db.workflowDefinition.create({
         data: {
-          name: definition.name,
-          description: definition.description,
-          definition: asJson(definition),
-          triggerMap: asJson(triggerMap),
+          name: baseDefinition.name,
+          description: baseDefinition.description,
+          definition: asJson(baseDefinition),
+          triggerMap: asJson({}),
+        },
+      })
+    } else {
+      saved = await this.db.workflowDefinition.upsert({
+        where: { id: incomingId },
+        create: {
+          id: incomingId,
+          name: baseDefinition.name,
+          description: baseDefinition.description,
+          definition: asJson(baseDefinition),
+          triggerMap: asJson({}),
+        },
+        update: {
+          name: baseDefinition.name,
+          description: baseDefinition.description,
+          definition: asJson(baseDefinition),
         },
       })
     }
 
-    return this.db.workflowDefinition.upsert({
-      where: { id },
-      create: {
-        id,
-        name: definition.name,
-        description: definition.description,
-        definition: asJson(definition),
-        triggerMap: asJson(triggerMap),
-      },
-      update: {
-        name: definition.name,
-        description: definition.description,
-        definition: asJson(definition),
+    const workflowId = saved.id
+    const finalDefinition = {
+      ...baseDefinition,
+      id: workflowId,
+    }
+    const triggerMap = buildTriggerMap(workflowId, finalDefinition)
+
+    await this.db.workflowDefinition.update({
+      where: { id: workflowId },
+      data: {
+        definition: asJson(finalDefinition),
         triggerMap: asJson(triggerMap),
       },
     })
+
+    await this.ensureRuntime(workflowId)
+    return this.getDefinition(workflowId)
   }
 
   async getRuntime(workflowId: string) {
@@ -131,6 +163,15 @@ export class WorkflowService {
         runtimeState: asJson({ currentNodeId: firstNodeId, completedNodeIds: [], events: [] }),
       },
     })
+  }
+
+  async removeDefinition(id: string) {
+    const definition = await this.db.workflowDefinition.findUnique({ where: { id } })
+    if (!definition) {
+      throw new NotFoundException('Workflow definition not found')
+    }
+    await this.db.workflowDefinition.delete({ where: { id } })
+    return { ok: true }
   }
 
   async triggerModule(workflowId: string, moduleCode: string, dto: TriggerWorkflowModuleDto) {

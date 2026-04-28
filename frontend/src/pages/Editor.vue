@@ -177,6 +177,12 @@ function handleKeydown(event) {
 }
 
 async function handleProjectSave(payload) {
+  const validation = diagramStore.validateWorkflowDefinition()
+  if (!validation.valid) {
+    saveStatus.value = validation.issues[0] || 'Workflow is incomplete'
+    return
+  }
+
   const diagram = payload ?? diagramStore.exportDiagram()
   await persistToBackend(diagram)
 }

@@ -203,6 +203,48 @@ function buildNodeMap(nodes) {
   return new Map(nodes.map((node) => [node.id, node]))
 }
 
+function getIncomingEdgeCount(nodes, edges, nodeId) {
+  return edges.filter((edge) => edge.target === nodeId && nodes.some((node) => node.id === edge.source)).length
+}
+
+function getOutgoingEdgeCount(nodes, edges, nodeId) {
+  return edges.filter((edge) => edge.source === nodeId && nodes.some((node) => node.id === edge.target)).length
+}
+
+function getConnectivityIssues(nodes, edges) {
+  const nodeMap = buildNodeMap(nodes)
+  const issues = []
+
+  for (const node of nodes) {
+    const incomingCount = getIncomingEdgeCount(nodes, edges, node.id)
+    const outgoingCount = getOutgoingEdgeCount(nodes, edges, node.id)
+
+    if (node.type === 'start') {
+      if (incomingCount > 0) issues.push(`${node.title || node.id} cannot have incoming connections.`)
+      if (outgoingCount < 1) issues.push(`${node.title || node.id} must connect to the next step.`)
+    }
+
+    if (node.type === 'end') {
+      if (outgoingCount > 0) issues.push(`${node.title || node.id} cannot have outgoing connections.`)
+      if (incomingCount < 1) issues.push(`${node.title || node.id} must receive at least one connection.`)
+    }
+
+    if (node.type === 'task' && outgoingCount < 1) {
+      issues.push(`${node.title || node.id} must have at least one outgoing connection.`)
+    }
+
+    if (node.type === 'decision' && outgoingCount < 2) {
+      issues.push(`${node.title || node.id} must branch into at least two connections.`)
+    }
+
+    if (!nodeMap.has(node.id)) {
+      issues.push(`Node ${node.id} is invalid.`)
+    }
+  }
+
+  return issues
+}
+
 function computeLayers(nodes, edges) {
   const nodeMap = buildNodeMap(nodes)
   const indegreeMap = new Map()
@@ -379,6 +421,14 @@ export const useDiagramStore = defineStore('diagram', {
         schemaVersion: this.schemaVersion,
         ...cloneDiagramData(this),
       }
+    },
+
+    validateWorkflowDefinition() {
+      const issues = getConnectivityIssues(this.nodes, this.edges)
+      if (issues.length > 0) {
+        return { valid: false, issues }
+      }
+      return { valid: true, issues: [] }
     },
 
     setMode(mode) {

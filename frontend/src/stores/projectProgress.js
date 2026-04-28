@@ -1,105 +1,59 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import {
-  deleteWorkflowDefinition,
-  listWorkflowDefinitions,
-  saveWorkflowDefinition,
-} from '../services/api'
-
-const STATUS_ORDER = ['locked', 'doing', 'done']
+import { deleteWorkflowDefinition, getWorkflowRuntime, listWorkflowDefinitions, saveWorkflowDefinition } from '../services/api'
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value))
 }
 
-function normalizeStatus(status) {
-  return STATUS_ORDER.includes(status) ? status : 'locked'
+function normalizeRuntimeStatus(status) {
+  return ['not_started', 'active', 'completed', 'blocked'].includes(status) ? status : 'not_started'
 }
 
-function calcProgress(steps) {
-  const list = Array.isArray(steps) ? steps : []
-  if (list.length === 0) return 0
-  const finishedCount = list.filter((step) => normalizeStatus(step.status) === 'done').length
-  return Math.round((finishedCount / list.length) * 100)
-}
+function buildStepsFromDefinitionAndRuntime(definition = {}, runtime = null) {
+  const nodes = Array.isArray(definition?.nodes) ? definition.nodes : []
+  const runtimeState = runtime?.runtimeState ?? {}
+  const completedNodeIds = Array.isArray(runtimeState.completedNodeIds) ? runtimeState.completedNodeIds : []
+  const currentNodeId = runtime?.currentNodeId ?? runtimeState.currentNodeId ?? null
 
-function deriveProjectStatus(steps) {
-  const statuses = Array.isArray(steps) ? steps.map((step) => normalizeStatus(step.status)) : []
-  if (statuses.length > 0 && statuses.every((status) => status === 'done')) return 'done'
-  return statuses.includes('doing') ? 'doing' : 'locked'
-}
+  return nodes.map((node, index) => {
+    const nodeId = node.id ?? `node_${index + 1}`
+    const isCompleted = completedNodeIds.includes(nodeId)
+    const isActive = currentNodeId && currentNodeId === nodeId
+    const status = isCompleted ? 'completed' : isActive ? 'active' : 'not_started'
 
-function createStepListFromDiagram(diagram, meta = {}) {
-  const nodeTitles = Array.isArray(diagram?.nodes)
-    ? diagram.nodes.map((node) => node.title || node.label || node.id).filter(Boolean)
-    : []
-
-  const fallbackSteps = ['Environment Setup', 'API Integration', 'Review & Finish']
-  const labels = nodeTitles.length > 0 ? nodeTitles : fallbackSteps
-  const now = new Date().toLocaleDateString()
-
-  return labels.map((label, index) => ({
-    key: meta.stepKeys?.[index] ?? `step_${index + 1}`,
-    label,
-    status: index === 0 ? 'doing' : 'locked',
-    description:
-      index === 0 ? 'Current active step.' : 'Locked until the previous step is approved.',
-    updatedAt: now,
-    approvedAt: null,
-    locked: index !== 0,
-  }))
-}
-
-function createProjectRecord(flow, index = 0) {
-  const now = new Date().toLocaleDateString()
-  const diagram = flow?.diagram
-    ? clone(flow.diagram)
-    : flow?.definition
-      ? clone(flow.definition)
-      : null
-  const providedSteps = Array.isArray(flow?.steps) ? flow.steps : []
-  const steps = providedSteps.length > 0 ? providedSteps : createStepListFromDiagram(diagram, flow)
-  const normalizedSteps = steps.map((step, stepIndex) => ({
-    key: step.key ?? `step_${stepIndex + 1}`,
-    label: step.label ?? step.key ?? `Step ${stepIndex + 1}`,
-    status: normalizeStatus(step.status),
-    description: step.description ?? '',
-    updatedAt: step.updatedAt ?? now,
-    approvedAt: step.approvedAt ?? null,
-    locked: stepIndex > 0 ? (step.locked ?? step.status !== 'doing') : false,
-  }))
-
-  if (normalizedSteps.length > 0) {
-    normalizedSteps[0].locked = false
-    for (let i = 1; i < normalizedSteps.length; i += 1) {
-      normalizedSteps[i].status = normalizedSteps[i].status === 'done' ? 'done' : 'locked'
-      normalizedSteps[i].locked =
-        normalizedSteps[i].status !== 'doing' && normalizedSteps[i].status !== 'done'
+    return {
+      key: node.code ?? node.id ?? `step_${index + 1}`,
+      nodeId,
+      label: node.title ?? node.label ?? node.id ?? `Step ${index + 1}`,
+      status,
+      updatedAt: runtime?.updatedAt ?? definition?.updatedAt ?? new Date().toLocaleDateString(),
+      completedAt: isCompleted ? runtime?.updatedAt ?? null : null,
     }
-  }
+  })
+}
 
-  const progress = calcProgress(normalizedSteps)
-  const activeStepIndex = normalizedSteps.findIndex((step) => step.status === 'doing')
-  const activeStepKey = normalizedSteps[activeStepIndex]?.key ?? normalizedSteps[0]?.key ?? null
+function createProjectRecord(record, index = 0) {
+  const definition = record?.definition ? clone(record.definition) : { nodes: [], edges: [] }
+  const runtime = record?.runtime ?? null
+  const steps = buildStepsFromDefinitionAndRuntime(definition, runtime)
+  const completedCount = steps.filter((s) => s.status === 'completed').length
+  const progress = steps.length ? Math.round((completedCount / steps.length) * 100) : 0
 
   return {
-    id: flow?.id ?? `project_${index + 1}`,
-    name: flow?.name ?? `Working Flow ${index + 1}`,
-    description: flow?.description ?? 'A frozen project snapshot from the editor.',
-    status:
-      flow?.status === 'done' || progress === 100 ? 'done' : activeStepKey ? 'doing' : 'locked',
+    id: record?.id ?? `project_${index + 1}`,
+    name: record?.name ?? `Workflow ${index + 1}`,
+    description: record?.description ?? 'Workflow definition from backend.',
+    status: normalizeRuntimeStatus(runtime?.status),
     progress,
-    createdAt: flow?.createdAt ?? now,
-    updatedAt: flow?.updatedAt ?? now,
-    flowInfo: flow?.flowInfo ?? {
-      source: 'editor',
-      nodeCount: Array.isArray(diagram?.nodes) ? diagram.nodes.length : normalizedSteps.length,
-      edgeCount: Array.isArray(diagram?.edges) ? diagram.edges.length : 0,
-    },
-    diagram,
-    steps: normalizedSteps,
-    activeStepKey,
+    createdAt: record?.createdAt ?? new Date().toLocaleDateString(),
+    updatedAt: runtime?.updatedAt ?? record?.updatedAt ?? new Date().toLocaleDateString(),
+    diagram: definition,
+    triggerMap: record?.triggerMap ?? {},
+    runtime,
+    steps,
+    activeStepKey: steps.find((s) => s.status === 'active')?.key ?? null,
   }
 }
 
@@ -111,23 +65,7 @@ export const useProjectProgressStore = defineStore('projectProgress', () => {
   async function syncProjects() {
     try {
       const records = await listWorkflowDefinitions()
-      projects.value = Array.isArray(records)
-        ? records.map((record, index) =>
-            createProjectRecord(
-              {
-                id: record.id,
-                name: record.name,
-                description: record.description,
-                status: record.status,
-                createdAt: record.createdAt,
-                updatedAt: record.updatedAt,
-                diagram: record.diagram,
-                meta: record.meta,
-              },
-              index,
-            ),
-          )
-        : []
+      projects.value = Array.isArray(records) ? records.map((record, index) => createProjectRecord(record, index)) : []
       isLoaded.value = true
       loadError.value = null
     } catch (error) {
@@ -136,23 +74,8 @@ export const useProjectProgressStore = defineStore('projectProgress', () => {
     }
   }
 
-  const doneProjects = computed(() => projects.value.filter((project) => project.status === 'done'))
-  const doingProjects = computed(() =>
-    projects.value.filter((project) => project.status === 'doing'),
-  )
-  const pendingProjects = computed(() =>
-    projects.value.filter((project) => project.status === 'locked'),
-  )
-  const blockedProjects = computed(() => [])
-  const completedCount = computed(() => doneProjects.value.length)
-  const overallProgress = computed(() =>
-    projects.value.length === 0
-      ? 0
-      : Math.round((completedCount.value / projects.value.length) * 100),
-  )
-
-  function registerProject(flow) {
-    const project = createProjectRecord(flow, projects.value.length)
+  function registerProject(record) {
+    const project = createProjectRecord(record, projects.value.length)
     const index = projects.value.findIndex((item) => item.id === project.id)
     if (index === -1) projects.value.unshift(project)
     else projects.value[index] = project
@@ -168,134 +91,29 @@ export const useProjectProgressStore = defineStore('projectProgress', () => {
   }
 
   async function upsertProjectFromDiagram(diagram, meta = {}) {
-    const projectName = meta.name ?? diagram?.meta?.name ?? 'Untitled Flow'
+    const projectName = meta.name ?? diagram?.meta?.name ?? 'Untitled Workflow'
     const saved = await saveWorkflowDefinition({
       id: meta.projectId,
       name: projectName,
-      description: meta.description ?? 'Saved from the flowchart editor.',
+      description: meta.description ?? 'Saved from the workflow editor.',
       definition: diagram,
       nodes: diagram?.nodes ?? [],
       edges: diagram?.edges ?? [],
-      meta: {
-        ...meta,
-        projectName,
-      },
     })
-
-    const project = registerProject({
-      id: saved.id,
-      name: saved.name,
-      description: saved.description,
-      diagram: saved.definition ?? diagram,
-      status: 'doing',
-      createdAt: saved.createdAt,
-      updatedAt: saved.updatedAt,
-    })
-    return project
+    return registerProject(saved)
   }
 
   async function loadRuntime(workflowId) {
-    const runtime = await getWorkflowRuntime(workflowId)
-    if (!runtime) return null
-    return runtime
+    return getWorkflowRuntime(workflowId)
   }
 
-  function getProject(projectId) {
-    return projects.value.find((project) => project.id === projectId) ?? null
-  }
-
-  function getActiveStep(projectId) {
-    const project = getProject(projectId)
-    if (!project) return null
-    return project.steps.find((step) => step.status === 'doing') ?? null
-  }
-
-  function canCallStep(projectId, stepKey) {
-    const project = getProject(projectId)
-    if (!project) return false
-    const activeStep = getActiveStep(projectId)
-    return Boolean(activeStep && activeStep.key === stepKey && !activeStep.locked)
-  }
-
-  async function updateProjectStep({
-    projectId,
-    stepKey,
-    status,
-    stepLabel,
-    description,
-    approvedAt,
-  }) {
-    const project = getProject(projectId)
-    if (!project) return null
-
-    const currentStep = project.steps.find((item) => item.key === stepKey)
-    if (!currentStep) return null
-
-    const currentIndex = project.steps.findIndex((item) => item.key === stepKey)
-    const now = new Date().toLocaleDateString()
-    const normalizedStatus = normalizeStatus(status)
-
-    if (normalizedStatus === 'done') {
-      currentStep.status = 'done'
-      currentStep.approvedAt = approvedAt ?? now
-      currentStep.updatedAt = now
-      currentStep.locked = false
-
-      const nextStep = project.steps[currentIndex + 1]
-      if (nextStep) {
-        nextStep.status = 'doing'
-        nextStep.locked = false
-        nextStep.updatedAt = now
-        project.activeStepKey = nextStep.key
-        project.status = 'doing'
-      } else {
-        project.activeStepKey = null
-        project.status = 'done'
-      }
-    } else if (normalizedStatus === 'doing') {
-      currentStep.status = 'doing'
-      currentStep.updatedAt = now
-      currentStep.locked = false
-      project.activeStepKey = currentStep.key
-      project.status = 'doing'
-    } else {
-      currentStep.status = 'locked'
-      currentStep.updatedAt = now
-      currentStep.locked = true
-      project.status = deriveProjectStatus(project.steps)
-    }
-
-    if (stepLabel) currentStep.label = stepLabel
-    if (description) currentStep.description = description
-
-    project.progress = calcProgress(project.steps)
-    project.updatedAt = now
-    return project
-  }
-
-  async function approveActiveStep(projectId, stepKey, extra = {}) {
-    const project = getProject(projectId)
-    if (!project) return null
-    const activeStep = getActiveStep(projectId)
-    if (!activeStep || activeStep.key !== stepKey) return null
-    return updateProjectStep({
-      projectId,
-      stepKey,
-      status: 'done',
-      stepLabel: extra.stepLabel,
-      description: extra.description,
-      approvedAt: extra.approvedAt,
-    })
-  }
+  const completedCount = computed(() => projects.value.filter((p) => p.status === 'completed').length)
+  const overallProgress = computed(() => (projects.value.length ? Math.round((completedCount.value / projects.value.length) * 100) : 0))
 
   return {
     projects,
     isLoaded,
     loadError,
-    doneProjects,
-    doingProjects,
-    pendingProjects,
-    blockedProjects,
     completedCount,
     overallProgress,
     syncProjects,
@@ -303,10 +121,5 @@ export const useProjectProgressStore = defineStore('projectProgress', () => {
     deleteProject,
     upsertProjectFromDiagram,
     loadRuntime,
-    getProject,
-    getActiveStep,
-    canCallStep,
-    updateProjectStep,
-    approveActiveStep,
   }
 })

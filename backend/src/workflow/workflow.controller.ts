@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
 import { TriggerWorkflowModuleDto } from './dto/trigger-workflow-module.dto'
 import { UpsertWorkflowDefinitionDto } from './dto/upsert-workflow-definition.dto'
 import { WorkflowService } from './workflow.service'
@@ -25,6 +25,11 @@ export class WorkflowController {
   @Get(':workflowId/runtime')
   getRuntime(@Param('workflowId') workflowId: string) {
     return this.workflowService.getRuntime(workflowId)
+  }
+
+  @Delete('definitions/:id')
+  removeDefinition(@Param('id') id: string) {
+    return this.workflowService.removeDefinition(id)
   }
 
   @Post(':workflowId/module/:moduleCode/trigger')

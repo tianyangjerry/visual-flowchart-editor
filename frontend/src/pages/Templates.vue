@@ -117,7 +117,9 @@
                   <p class="api-card__label">Module name</p>
                   <strong>{{ module.label }}</strong>
                 </div>
-                <button class="api-copy-btn" type="button" @click="copyApiUrl(module.triggerUrl)">Copy</button>
+                <button class="api-copy-btn" type="button" @click="copyApiUrl(module.triggerUrl)">
+                  {{ copiedApiUrl === module.triggerUrl ? 'Copied' : 'Copy' }}
+                </button>
               </div>
               <div class="api-card__row">
                 <span class="api-card__label">Module code</span>
@@ -125,14 +127,17 @@
               </div>
               <div class="api-card__row">
                 <span class="api-card__label">Status</span>
-                <span class="status-pill" :class="module.status === 'active' ? 'status-doing' : module.status === 'completed' ? 'status-done' : 'status-locked'">
+                <span class="status-pill" :class="module.status === 'active' ? 'status-active' : module.status === 'completed' ? 'status-completed' : 'status-not-started'">
                   {{ module.status }}
                 </span>
               </div>
               <div class="api-card__row api-card__row--stacked">
                 <span class="api-card__label">Trigger URL</span>
                 <code class="api-card__url">{{ module.triggerUrl }}</code>
-                <code class="api-card__example">Example API: POST {{ module.triggerUrl }}</code>
+                <div class="api-card__example">
+                  <span>Example API</span>
+                  <code>POST {{ module.triggerUrl }}</code>
+                </div>
               </div>
               <div class="api-card__row">
                 <span class="api-card__label">Required fields</span>
@@ -174,7 +179,7 @@
                 <div class="step-card__main">
                   <div class="step-card__topline">
                     <strong class="step-card__title">{{ step.label }}</strong>
-                    <span class="status-pill" :class="`status-pill--${step.status}`">
+                    <span class="status-pill" :class="step.status === 'active' ? 'status-active' : step.status === 'completed' ? 'status-completed' : 'status-not-started'">
                       {{ step.status === 'active' ? 'Active' : step.status === 'completed' ? 'Completed' : 'Not started' }}
                     </span>
                   </div>
@@ -186,7 +191,6 @@
                   <div class="step-card__meta">
                     <span>Key: {{ step.key }}</span>
                     <span>Updated: {{ step.updatedAt }}</span>
-                    <span v-if="step.approvedAt">Completed: {{ step.approvedAt }}</span>
                   </div>
                 </div>
 
@@ -196,7 +200,6 @@
                     <span class="approved-mark__icon">✓</span>
                     <div>
                       <strong>Completed</strong>
-                      <p v-if="step.approvedAt">Completed at: {{ step.approvedAt }}</p>
                     </div>
                   </div>
                 </div>
@@ -216,14 +219,11 @@ import { RouterLink } from 'vue-router'
 import { Trash2 } from 'lucide-vue-next'
 
 import ProjectFlowSnapshot from '../components/ProjectFlowSnapshot.vue'
-import ConfirmDialog from '../components/ConfirmDialog.vue'
 import { useProjectProgressStore } from '../stores/projectProgress'
 
 const progressStore = useProjectProgressStore()
 const { projects } = storeToRefs(progressStore)
 const selectedProjectId = ref(null)
-const showConfirm = ref(false)
-const pendingStep = ref(null)
 
 const selectedProject = computed(
   () =>
@@ -232,54 +232,94 @@ const selectedProject = computed(
     null,
 )
 
-function copyApiUrl(text) {
-  navigator.clipboard?.writeText(text).catch(() => {})
+const copiedApiUrl = ref('')
+let copiedTimer = null
+
+async function copyApiUrl(text) {
+  try {
+    await navigator.clipboard?.writeText(text)
+    copiedApiUrl.value = text
+    window.clearTimeout(copiedTimer)
+    copiedTimer = window.setTimeout(() => {
+      copiedApiUrl.value = ''
+    }, 1400)
+  } catch {
+    copiedApiUrl.value = ''
+  }
 }
 
-const projectSteps = computed(() => selectedProject.value?.steps ?? [])
+const runtimeState = computed(() => {
+  const runtime = selectedProject.value?.runtime
+  const state = runtime?.runtimeState ?? {}
+  const completedNodeIds = Array.isArray(state?.completedNodeIds) ? state.completedNodeIds : []
+  const currentNodeId = runtime?.currentNodeId ?? state?.currentNodeId ?? null
+  return {
+    completedNodeIds,
+    currentNodeId,
+    status: runtime?.status ?? 'not_started',
+    updatedAt: runtime?.updatedAt ?? selectedProject.value?.updatedAt ?? '—',
+  }
+})
+
+const projectSteps = computed(() => {
+  const nodes = Array.isArray(selectedProject.value?.diagram?.nodes) ? selectedProject.value.diagram.nodes : []
+  const completedNodeIds = new Set(runtimeState.value.completedNodeIds)
+  const currentNodeId = runtimeState.value.currentNodeId
+
+  return nodes.map((node) => {
+    const nodeId = node.id
+    const status = completedNodeIds.has(nodeId)
+      ? 'completed'
+      : currentNodeId === nodeId
+        ? 'active'
+        : 'not_started'
+
+    return {
+      key: node.code ?? node.id,
+      nodeId,
+      label: node.title ?? node.label ?? node.id,
+      status,
+      updatedAt: runtimeState.value.updatedAt,
+    }
+  })
+})
+
 const selectedProjectApiModules = computed(() => {
-  if (!selectedProject.value?.diagram?.nodes) return []
-  const workflowId = selectedProject.value.id
-  return selectedProject.value.diagram.nodes.map((node) => ({
-    code: node.code ?? node.id,
-    label: node.title ?? node.label ?? node.id,
-    status: node.runtime?.status ?? selectedProject.value.status ?? 'not_started',
-    requiredFieldsText: (node.workflow?.requiredFields ?? []).join(', ') || '—',
-    triggerUrl: `/workflow/${workflowId}/module/${node.code ?? node.id}/trigger`,
-  }))
+  const definition = selectedProject.value?.definition ?? selectedProject.value?.diagram ?? {}
+  const nodes = Array.isArray(definition?.nodes) ? definition.nodes : []
+  const triggerMap = selectedProject.value?.triggerMap ?? {}
+  const workflowId = selectedProject.value?.id
+  const completedNodeIds = new Set(runtimeState.value.completedNodeIds)
+  const currentNodeId = runtimeState.value.currentNodeId
+
+  return nodes
+    .map((node) => {
+      const code = node.code ?? node.id
+      const fallbackUrl = `/workflow/${workflowId}/module/${code}/trigger`
+      const triggerUrl = triggerMap?.[code] ?? fallbackUrl
+      const nodeId = node.id
+      const status = completedNodeIds.has(nodeId)
+        ? 'completed'
+        : currentNodeId === nodeId
+          ? 'active'
+          : 'not_started'
+
+      return {
+        code,
+        label: node.title ?? node.label ?? node.id,
+        status,
+        requiredFieldsText: (node.workflow?.requiredFields ?? []).join(', ') || '—',
+        triggerUrl,
+      }
+    })
+    .filter((module) => Boolean(module.code))
 })
+
 const approvedStepCount = computed(() => projectSteps.value.filter((step) => step.status === 'completed').length)
-const isWorkflowComplete = computed(() => Boolean(selectedProject.value) && projectSteps.value.length > 0 && approvedStepCount.value === projectSteps.value.length)
-const workflowCompletedAt = computed(() => {
-  const approvedDates = projectSteps.value.map((step) => step.approvedAt).filter(Boolean)
-  return approvedDates.at(-1) ?? selectedProject.value?.updatedAt ?? '—'
-})
+const isWorkflowComplete = computed(() => projectSteps.value.length > 0 && approvedStepCount.value === projectSteps.value.length)
+const workflowCompletedAt = computed(() => (isWorkflowComplete.value ? runtimeState.value.updatedAt : '—'))
 
-const activeStep = computed(
-  () =>
-    projectSteps.value.find((step) => step.key === selectedProject.value?.activeStepKey) ??
-    projectSteps.value.find((step) => step.status === 'active') ??
-    null,
-)
-
-function requestApproval(step) {
-  if (step.status !== 'active') return
-  pendingStep.value = step
-  showConfirm.value = true
-}
-
-function confirmApproval() {
-  const step = pendingStep.value
-  if (!step || !selectedProject.value) return
-
-  showConfirm.value = false
-  pendingStep.value = null
-}
-
-function cancelApproval() {
-  showConfirm.value = false
-  pendingStep.value = null
-}
+const activeStep = computed(() => projectSteps.value.find((step) => step.status === 'active') ?? null)
 
 function handleDeleteProject(project) {
   const ok = window.confirm(`Delete "${project.name}"? This cannot be undone.`)
@@ -324,11 +364,15 @@ defineOptions({
 
 .hero-shell,
 .project-list-shell,
-.detail-shell {
+.detail-shell,
+.api-shell,
+.snapshot-shell,
+.step-list-shell {
   background: rgb(23 27 36 / 88%);
   border: 1px solid rgb(126 162 255 / 16%);
   border-radius: 20px;
   box-shadow: 0 20px 60px rgb(0 0 0 / 24%);
+  backdrop-filter: blur(14px);
 }
 
 .hero-shell {
@@ -374,7 +418,10 @@ defineOptions({
 }
 
 .project-list-shell,
-.detail-shell {
+.detail-shell,
+.api-shell,
+.snapshot-shell,
+.step-list-shell {
   padding: 24px;
 }
 
@@ -390,8 +437,42 @@ defineOptions({
   margin-bottom: 12px;
 }
 
+.completion-banner,
+.api-card,
+.detail-card,
+.step-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.completion-banner:hover,
+.api-card:hover,
+.detail-card:hover,
+.step-card:hover {
+  transform: translateY(-2px);
+}
+
 .count-chip,
 .detail-label {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.completion-banner {
+  margin-bottom: 18px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgb(62 208 142 / 12%), rgb(88 229 255 / 8%));
+  border: 1px solid rgb(88 229 255 / 16%);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.completion-banner__meta {
+  display: flex;
+  gap: 12px 18px;
+  flex-wrap: wrap;
   color: var(--color-text-muted);
   font-size: 13px;
 }
@@ -399,6 +480,83 @@ defineOptions({
 .project-list {
   display: grid;
   gap: 12px;
+}
+
+.api-list {
+  display: grid;
+  gap: 12px;
+}
+
+.api-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 4%), rgb(255 255 255 / 2%));
+  border: 1px solid rgb(255 255 255 / 7%);
+}
+
+.api-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.api-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+}
+
+.api-card__row:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.api-card__row--stacked {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.api-card__label {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.api-card__url,
+.api-card__example code,
+.api-card__code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: #dbeafe;
+  word-break: break-all;
+}
+
+.api-card__example {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--color-text-muted);
+}
+
+.api-copy-btn {
+  border: 1px solid rgb(88 229 255 / 18%);
+  background: rgb(88 229 255 / 10%);
+  color: #bff7ff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.api-copy-btn:hover {
+  background: rgb(88 229 255 / 16%);
 }
 
 .project-card {
@@ -473,19 +631,19 @@ defineOptions({
   font-weight: 700;
 }
 
-.status-pill--doing {
+.status-active {
   background: rgb(88 229 255 / 14%);
   color: #8fefff;
   border: 1px solid rgb(88 229 255 / 18%);
 }
 
-.status-pill--locked {
+.status-not-started {
   background: rgb(148 163 184 / 14%);
   color: #cbd5e1;
   border: 1px solid rgb(148 163 184 / 18%);
 }
 
-.status-pill--done {
+.status-completed {
   background: rgb(62 208 142 / 16%);
   color: #8ef0bc;
   border: 1px solid rgb(62 208 142 / 18%);
@@ -532,16 +690,16 @@ defineOptions({
   box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
 }
 
-.step-card--doing {
+.step-card--active {
   border-color: rgb(88 229 255 / 20%);
   box-shadow: inset 0 0 0 1px rgb(88 229 255 / 10%), 0 12px 30px rgb(0 0 0 / 14%);
 }
 
-.step-card--done {
+.step-card--completed {
   border-color: rgb(62 208 142 / 18%);
 }
 
-.step-card--locked {
+.step-card--not_started {
   opacity: 0.82;
 }
 
