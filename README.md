@@ -8,6 +8,7 @@ This project is a full-stack workflow / flowchart editor:
 
 ## Before You Start
 
+
 You must prepare the following environment before trying to run the project:
 
 - Node.js `22.12+` (Node 22 LTS is recommended)
