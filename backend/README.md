@@ -22,6 +22,14 @@ pnpm prisma:db:push
 pnpm run start:dev
 ```
 
+Example `.env`:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/flowchat?schema=public"
+PORT=3000
+CORS_ORIGIN="http://localhost:5173,http://127.0.0.1:5173"
+```
+
 ## Health check
 
 - `GET /`

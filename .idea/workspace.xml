@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 2.0">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.0">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/workflow/workflow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/workflow/workflow.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Templates.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Templates.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/projectProgress.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/projectProgress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="68" />
+    <option name="cachedIndexableFilesCount" value="69" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -111,7 +105,8 @@
       <workItem from="1777113203009" duration="4996000" />
       <workItem from="1777175829390" duration="6386000" />
       <workItem from="1777262724623" duration="878000" />
-      <workItem from="1777358162858" duration="1183000" />
+      <workItem from="1777358162858" duration="2808000" />
+      <workItem from="1777361114834" duration="881000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -121,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777184559298</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="version 3.0">
+      <option name="closed" value="true" />
+      <created>1777359619000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777359619000</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +146,7 @@
       <path value="$PROJECT_DIR$/frontend" />
     </ignored-roots>
     <MESSAGE value="version 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 2.0" />
+    <MESSAGE value="version 3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.0" />
   </component>
 </project>
