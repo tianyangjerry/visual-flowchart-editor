@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.0">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="69" />
+    <option name="cachedIndexableFilesCount" value="70" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -106,7 +104,8 @@
       <workItem from="1777175829390" duration="6386000" />
       <workItem from="1777262724623" duration="878000" />
       <workItem from="1777358162858" duration="2808000" />
-      <workItem from="1777361114834" duration="881000" />
+      <workItem from="1777361114834" duration="921000" />
+      <workItem from="1777367270742" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -124,7 +123,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777359619000</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="version 3.0">
+      <option name="closed" value="true" />
+      <created>1777363310610</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777363310610</updated>
+    </task>
+    <task id="LOCAL-00004" summary="version 3.1">
+      <option name="closed" value="true" />
+      <created>1777363331227</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777363331227</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +162,7 @@
     </ignored-roots>
     <MESSAGE value="version 2.0" />
     <MESSAGE value="version 3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.0" />
+    <MESSAGE value="version 3.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.1" />
   </component>
 </project>
