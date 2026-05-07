@@ -4,7 +4,7 @@
       class="flow-edge__halo"
       :d="pathValue"
       fill="none"
-:stroke="edgeColor"
+      :stroke="edgeColor"
       :stroke-width="edgeWidth + 5"
     />
 

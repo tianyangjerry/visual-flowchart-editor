@@ -82,8 +82,8 @@ import { FileInput, FileOutput, FilePlus2, Info, Save, Sparkles, Trash2 } from '
 
 import { NButton, NInput, NModal, NSpace, useMessage } from 'naive-ui'
 
-import { useDiagramStore } from '../stores/diagramStore'
-import { useProjectProgressStore } from '../stores/projectProgress'
+import { useDiagramStore } from '../../stores/diagramStore.js'
+import { useProjectProgressStore } from '../../stores/projectProgress.js'
 
 defineOptions({
   name: 'EditorToolbar',

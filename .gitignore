@@ -10,3 +10,4 @@ backend/dist
 backend/.env!/.idea/
 !/frontend/node_modules/
 /frontend/node_modules/
+!/frontend/PROJECT_REQUIREMENTS.md

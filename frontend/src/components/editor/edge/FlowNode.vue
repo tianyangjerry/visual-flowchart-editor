@@ -19,7 +19,9 @@
       class="flow-node__body"
       :d="decisionPath"
       :fill="styleData.fill || 'var(--color-node-fill)'"
-      :stroke="isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'"
+      :stroke="
+        isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'
+      "
       :stroke-width="isSelected ? 2.8 : 1.8"
       :filter="isSelected ? 'url(#node-glow)' : null"
     />
@@ -31,12 +33,20 @@
       :rx="RADIUS_NODE"
       :ry="RADIUS_NODE"
       :fill="styleData.fill || 'var(--color-node-fill)'"
-      :stroke="isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'"
+      :stroke="
+        isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'
+      "
       :stroke-width="isSelected ? 2.8 : 1.8"
       :filter="isSelected ? 'url(#node-glow)' : null"
     />
 
-    <path v-if="isDecisionNode" class="flow-node__overlay" :d="decisionPath" fill="url(#node-fill-gradient)" pointer-events="none" />
+    <path
+      v-if="isDecisionNode"
+      class="flow-node__overlay"
+      :d="decisionPath"
+      fill="url(#node-fill-gradient)"
+      pointer-events="none"
+    />
     <rect
       v-else
       class="flow-node__overlay"
@@ -59,28 +69,60 @@
       pointer-events="none"
     />
 
-    <g v-if="isDecisionNode" class="flow-node__decision-content" :transform="`translate(${layoutData.width / 2}, ${layoutData.height / 2})`">
+    <g
+      v-if="isDecisionNode"
+      class="flow-node__decision-content"
+      :transform="`translate(${layoutData.width / 2}, ${layoutData.height / 2})`"
+    >
       <g class="flow-node__badges" transform="translate(-58, -20)">
         <rect class="flow-node__badge" x="0" y="0" width="54" height="20" rx="10" />
-        <text class="flow-node__badge-text" x="27" y="13" text-anchor="middle">{{ triggerModeLabel }}</text>
-        <rect class="flow-node__badge flow-node__badge--status" x="60" y="0" width="54" height="20" rx="10" />
-        <text class="flow-node__badge-text" x="87" y="13" text-anchor="middle">{{ statusLabel }}</text>
+        <text class="flow-node__badge-text" x="27" y="13" text-anchor="middle">{{
+          triggerModeLabel
+        }}</text>
+        <rect
+          class="flow-node__badge flow-node__badge--status"
+          x="60"
+          y="0"
+          width="54"
+          height="20"
+          rx="10"
+        />
+        <text class="flow-node__badge-text" x="87" y="13" text-anchor="middle">{{
+          statusLabel
+        }}</text>
       </g>
 
-      <text class="flow-node__title flow-node__title--centered" y="6" text-anchor="middle">{{ node.title }}</text>
-      <text class="flow-node__subtitle flow-node__subtitle--centered" y="26" text-anchor="middle">{{ requiredFieldsText }}</text>
+      <text class="flow-node__title flow-node__title--centered" y="6" text-anchor="middle">{{
+        node.title
+      }}</text>
+      <text class="flow-node__subtitle flow-node__subtitle--centered" y="26" text-anchor="middle">{{
+        requiredFieldsText
+      }}</text>
     </g>
 
     <g v-else>
       <g class="flow-node__badges" :transform="`translate(12, 14)`">
         <rect class="flow-node__badge" x="0" y="0" width="54" height="20" rx="10" />
-        <text class="flow-node__badge-text" x="27" y="13" text-anchor="middle">{{ triggerModeLabel }}</text>
-        <rect class="flow-node__badge flow-node__badge--status" x="60" y="0" width="54" height="20" rx="10" />
-        <text class="flow-node__badge-text" x="87" y="13" text-anchor="middle">{{ statusLabel }}</text>
+        <text class="flow-node__badge-text" x="27" y="13" text-anchor="middle">{{
+          triggerModeLabel
+        }}</text>
+        <rect
+          class="flow-node__badge flow-node__badge--status"
+          x="60"
+          y="0"
+          width="54"
+          height="20"
+          rx="10"
+        />
+        <text class="flow-node__badge-text" x="87" y="13" text-anchor="middle">{{
+          statusLabel
+        }}</text>
       </g>
 
       <text class="flow-node__title" :x="12" :y="48" text-anchor="start">{{ node.title }}</text>
-      <text class="flow-node__subtitle" :x="12" :y="66" text-anchor="start">{{ requiredFieldsText }}</text>
+      <text class="flow-node__subtitle" :x="12" :y="66" text-anchor="start">{{
+        requiredFieldsText
+      }}</text>
     </g>
   </g>
 </template>
@@ -163,11 +205,13 @@ const layoutData = computed(() => {
 })
 
 const styleData = computed(() => {
-  return props.node.style ?? {
-    variant: props.node.type ?? 'process',
-    fill: props.node.fill,
-    stroke: props.node.stroke,
-  }
+  return (
+    props.node.style ?? {
+      variant: props.node.type ?? 'process',
+      fill: props.node.fill,
+      stroke: props.node.stroke,
+    }
+  )
 })
 
 const nodeTheme = computed(() => NODE_THEME_MAP[styleData.value.variant] ?? NODE_THEME_MAP.process)
@@ -178,10 +222,16 @@ const nodeStyleVars = computed(() => ({
 }))
 
 const isDecisionNode = computed(() => props.node.type === 'decision')
-const triggerModeLabel = computed(() => (props.node.workflow?.triggerMode ?? 'manual').toUpperCase())
-const statusLabel = computed(() => (props.node.workflow?.status ?? props.node.status ?? 'active').toUpperCase())
+const triggerModeLabel = computed(() =>
+  (props.node.workflow?.triggerMode ?? 'manual').toUpperCase(),
+)
+const statusLabel = computed(() =>
+  (props.node.workflow?.status ?? props.node.status ?? 'active').toUpperCase(),
+)
 const requiredFieldsCount = computed(() =>
-  Array.isArray(props.node.workflow?.requiredFields) ? props.node.workflow.requiredFields.length : 0,
+  Array.isArray(props.node.workflow?.requiredFields)
+    ? props.node.workflow.requiredFields.length
+    : 0,
 )
 const requiredFieldsText = computed(() => `${requiredFieldsCount.value} required fields`)
 
@@ -192,65 +242,6 @@ const decisionPath = computed(() => {
   const halfW = width / 2
   const halfH = height / 2
   return `M ${halfW} 0 L ${width} ${halfH} L ${halfW} ${height} L 0 ${halfH} Z`
-})
-
-const visibleMetrics = computed(() => {
-  const metrics = Array.isArray(props.node.metrics) ? props.node.metrics : []
-  return metrics.slice(0, 4)
-})
-
-const deadlineStatus = computed(() => {
-  const rawDeadline = props.node.deadlineAt
-  if (!rawDeadline) {
-    return { kind: 'none', diffMs: null }
-  }
-
-  const deadlineTime = new Date(rawDeadline).getTime()
-  if (Number.isNaN(deadlineTime)) {
-    return { kind: 'invalid', diffMs: null }
-  }
-
-  const diffMs = deadlineTime - Date.now()
-  if (diffMs <= 0) {
-    return { kind: 'overdue', diffMs }
-  }
-
-  return { kind: 'future', diffMs }
-})
-
-const deadlineUrgency = computed(() => {
-  if (deadlineStatus.value.kind === 'overdue') {
-    return 'overdue'
-  }
-
-  if (deadlineStatus.value.kind === 'future' && deadlineStatus.value.diffMs < 24 * 60 * 60 * 1000) {
-    return 'within-24h'
-  }
-
-  return 'normal'
-})
-
-const deadlineLabel = computed(() => {
-  if (deadlineStatus.value.kind === 'none') {
-    return 'No due'
-  }
-
-  if (deadlineStatus.value.kind === 'invalid') {
-    return 'Invalid'
-  }
-
-  if (deadlineStatus.value.kind === 'overdue') {
-    return 'Overdue'
-  }
-
-  const hours = Math.floor(deadlineStatus.value.diffMs / (1000 * 60 * 60))
-  const days = Math.floor(hours / 24)
-
-  if (days >= 1) {
-    return `${days}d left`
-  }
-
-  return `${Math.max(1, hours)}h left`
 })
 
 function handleClick() {

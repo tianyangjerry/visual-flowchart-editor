@@ -103,7 +103,7 @@ import {
   PlaySquare,
 } from 'lucide-vue-next'
 
-import { useDiagramStore } from '../stores/diagramStore'
+import { useDiagramStore } from '../../stores/diagramStore.js'
 
 defineOptions({
   name: 'SidebarPanel',

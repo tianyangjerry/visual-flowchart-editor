@@ -25,9 +25,9 @@
 
 <script setup>
 import { computed } from 'vue'
-import FlowNode from './FlowNode.vue'
-import FlowEdge from './FlowEdge.vue'
-import GlowDefs from './GlowDefs.vue'
+import FlowNode from '../editor/edge/FlowNode.vue'
+import FlowEdge from '../editor/edge/FlowEdge.vue'
+import GlowDefs from '../editor/edge/GlowDefs.vue'
 
 defineOptions({ name: 'ProjectFlowSnapshot' })
 

@@ -65,11 +65,11 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 
-import { useDiagramStore } from '../stores/diagramStore'
-import FlowNode from './FlowNode.vue'
-import FlowEdge from './FlowEdge.vue'
-import GlowDefs from './GlowDefs.vue'
-import ConfirmDialog from './ConfirmDialog.vue'
+import { useDiagramStore } from '@/stores/diagramStore.js'
+import FlowNode from './edge/FlowNode.vue'
+import FlowEdge from './edge/FlowEdge.vue'
+import GlowDefs from './edge/GlowDefs.vue'
+import ConfirmDialog from './edge/ConfirmDialog.vue'
 
 defineOptions({
   name: 'DiagramCanvas',

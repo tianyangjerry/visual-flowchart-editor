@@ -167,8 +167,8 @@
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import ConfirmDialog from './ConfirmDialog.vue'
-import { useDiagramStore } from '../stores/diagramStore'
+import ConfirmDialog from './edge/ConfirmDialog.vue'
+import { useDiagramStore } from '../../stores/diagramStore.js'
 
 defineOptions({
   name: 'PropertyPanel',

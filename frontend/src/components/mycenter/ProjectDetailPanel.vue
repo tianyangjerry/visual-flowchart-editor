@@ -1,0 +1,83 @@
+<template>
+  <article class="detail-shell">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Project detail</p>
+        <h2>{{ selectedProject.name }}</h2>
+      </div>
+      <span class="status-pill status-active">{{ selectedProject.status }}</span>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <span class="detail-label">Last updated</span>
+        <strong>{{ selectedProject.updatedAt }}</strong>
+      </div>
+      <div class="detail-card">
+        <span class="detail-label">Active step</span>
+        <strong>{{ activeStep?.label ?? 'Completed' }}</strong>
+      </div>
+      <div class="detail-card">
+        <span class="detail-label">Progress</span>
+        <strong>{{ selectedProject.progress }}%</strong>
+      </div>
+      <div class="detail-card">
+        <span class="detail-label">Flow source</span>
+        <strong>{{ selectedProject.flowInfo?.source ?? 'editor' }}</strong>
+      </div>
+    </div>
+
+    <ApiModulesPanel
+      :modules="apiModules"
+      :copied-api-url="copiedApiUrl"
+      @copy-api-url="$emit('copyApiUrl', $event)"
+    />
+
+    <div class="snapshot-shell">
+      <div class="section-head compact">
+        <div>
+          <p class="eyebrow">Frozen flow snapshot</p>
+          <h3>Editor scale preview</h3>
+        </div>
+      </div>
+      <ProjectFlowSnapshot :project="selectedProject" />
+    </div>
+
+    <RuntimeStepList :steps="projectSteps" :active-step="activeStep" />
+  </article>
+</template>
+
+<script setup>
+import ApiModulesPanel from './ApiModulesPanel.vue'
+import ProjectFlowSnapshot from './ProjectFlowSnapshot.vue'
+import RuntimeStepList from './RuntimeStepList.vue'
+
+defineProps({
+  activeStep: {
+    type: Object,
+    default: null,
+  },
+  apiModules: {
+    type: Array,
+    required: true,
+  },
+  copiedApiUrl: {
+    type: String,
+    required: true,
+  },
+  projectSteps: {
+    type: Array,
+    required: true,
+  },
+  selectedProject: {
+    type: Object,
+    required: true,
+  },
+})
+
+defineEmits(['copyApiUrl'])
+
+defineOptions({
+  name: 'ProjectDetailPanel',
+})
+</script>

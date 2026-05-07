@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.1">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.1.1: update .env.example with new">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagramCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlowEdge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlowNode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlowDefs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProjectFlowSnapshot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Templates.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +25,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="70" />
+    <option name="cachedIndexableFilesCount" value="76" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -38,6 +50,9 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1,
@@ -83,6 +98,16 @@
     ]
   }
 }</component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\mycenter" />
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\editor\edge" />
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\editor" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -106,6 +131,13 @@
       <workItem from="1777358162858" duration="2808000" />
       <workItem from="1777361114834" duration="921000" />
       <workItem from="1777367270742" duration="22000" />
+      <workItem from="1777443304802" duration="1497000" />
+      <workItem from="1777453575499" duration="7000" />
+      <workItem from="1777460471005" duration="92000" />
+      <workItem from="1778130938024" duration="371000" />
+      <workItem from="1778132770939" duration="1042000" />
+      <workItem from="1778134019475" duration="204000" />
+      <workItem from="1778134253382" duration="3302000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -139,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777363331227</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="version 3.1.1: update .env.example with new">
+      <option name="closed" value="true" />
+      <created>1777443344623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777443344623</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +203,7 @@
     <MESSAGE value="version 2.0" />
     <MESSAGE value="version 3.0" />
     <MESSAGE value="version 3.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.1" />
+    <MESSAGE value="version 3.1.1: update .env.example with new" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.1.1: update .env.example with new" />
   </component>
 </project>
