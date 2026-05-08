@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
-import { createDefaultEdge, createDefaultNode, createDefaultViewport } from '@/tools/diagramDefaults'
+import {
+  createDefaultEdge,
+  createDefaultNode,
+  createDefaultViewport,
+} from '@/tools/diagramDefaults'
 import { computeLayers } from '@/tools/diagramLayout'
 import { isEdgeSelection, isNodeSelection } from '@/tools/diagramSelection'
 import { cloneDiagramData, clonePlain, createSnapshot } from '@/tools/diagramSnapshot'
@@ -19,6 +23,7 @@ export const useDiagramStore = defineStore('diagram', {
     viewport: createDefaultViewport(),
     mode: 'select',
     pendingSourceNodeId: null,
+    // Runtime mirrors backend execution state; it is separate from editable diagram data.
     runtime: {
       workflowId: null,
       status: 'not_started',
@@ -30,6 +35,7 @@ export const useDiagramStore = defineStore('diagram', {
     ui: {
       showRulesDialog: false,
     },
+    // History stores diagram snapshots before each edit for undo/redo.
     history: {
       undoStack: [],
       redoStack: [],
@@ -52,6 +58,7 @@ export const useDiagramStore = defineStore('diagram', {
   },
 
   actions: {
+    // Capture the current editable diagram before applying a user-visible change.
     pushHistory() {
       this.history.undoStack.push(createSnapshot(this))
       if (this.history.undoStack.length > HISTORY_LIMIT) {
@@ -60,6 +67,7 @@ export const useDiagramStore = defineStore('diagram', {
       this.history.redoStack = []
     },
 
+    // Restoring a snapshot should leave transient UI state clean.
     restoreSnapshot(snapshot) {
       this.nodes = clonePlain(snapshot.nodes)
       this.edges = clonePlain(snapshot.edges)
@@ -68,6 +76,7 @@ export const useDiagramStore = defineStore('diagram', {
       this.pendingSourceNodeId = null
     },
 
+    // Replace runtime state from execution results without touching the diagram definition.
     setRuntime(runtime = {}) {
       this.runtime = {
         workflowId: runtime.workflowId ?? this.runtime.workflowId ?? null,
@@ -97,6 +106,7 @@ export const useDiagramStore = defineStore('diagram', {
       this.restoreSnapshot(next)
     },
 
+    // Load persisted diagram data as-is; defaults only cover missing top-level collections.
     loadDiagram(payload) {
       const nodes = Array.isArray(payload?.nodes) ? payload.nodes : []
       const edges = Array.isArray(payload?.edges) ? payload.edges : []
@@ -105,9 +115,11 @@ export const useDiagramStore = defineStore('diagram', {
       this.viewport = payload?.viewport ?? createDefaultViewport()
       this.clearSelection()
       this.pendingSourceNodeId = null
-      this.runtime.workflowId = payload?.workflowId ?? payload?.id ?? this.runtime.workflowId ?? null
+      this.runtime.workflowId =
+        payload?.workflowId ?? payload?.id ?? this.runtime.workflowId ?? null
     },
 
+    // Export only serializable diagram definition data.
     exportDiagram() {
       return {
         schemaVersion: this.schemaVersion,
@@ -115,6 +127,7 @@ export const useDiagramStore = defineStore('diagram', {
       }
     },
 
+    // Validate the saved workflow shape, not temporary editor UI state.
     validateWorkflowDefinition() {
       const issues = getConnectivityIssues(this.nodes, this.edges)
       if (issues.length > 0) {
@@ -123,6 +136,7 @@ export const useDiagramStore = defineStore('diagram', {
       return { valid: true, issues: [] }
     },
 
+    // Leaving connect mode cancels any half-finished connection gesture.
     setMode(mode) {
       this.mode = mode
       if (mode !== 'connect') {
@@ -163,6 +177,7 @@ export const useDiagramStore = defineStore('diagram', {
       }
     },
 
+    // Dragging records history once at drag start; positions can then update continuously.
     beginNodeDrag() {
       this.pushHistory()
     },
@@ -176,6 +191,7 @@ export const useDiagramStore = defineStore('diagram', {
       targetNode.layout.y = y
     },
 
+    // Removing a node also removes all attached edges to keep the graph valid.
     removeNode(nodeId) {
       this.pushHistory()
       this.nodes = this.nodes.filter((node) => node.id !== nodeId)
@@ -188,6 +204,7 @@ export const useDiagramStore = defineStore('diagram', {
       }
     },
 
+    // Returns null for invalid connections so canvas interactions can fail quietly.
     addEdge(sourceNodeId, targetNodeId) {
       if (!sourceNodeId || !targetNodeId || sourceNodeId === targetNodeId) {
         return null
@@ -218,6 +235,7 @@ export const useDiagramStore = defineStore('diagram', {
       return edge
     },
 
+    // Same rules as addEdge, but returns a message for hover/tooltips.
     getEdgeValidationMessage(sourceNodeId, targetNodeId) {
       if (!sourceNodeId || !targetNodeId || sourceNodeId === targetNodeId) {
         return 'Cannot connect a node to itself.'
@@ -269,6 +287,7 @@ export const useDiagramStore = defineStore('diagram', {
       this.selection = { type: null, id: null }
     },
 
+    // Keyboard delete delegates to the concrete remove action for the selected item.
     deleteSelection() {
       if (isNodeSelection(this.selection)) {
         this.removeNode(this.selection.id)
@@ -295,17 +314,13 @@ export const useDiagramStore = defineStore('diagram', {
       this.ui.showRulesDialog = false
     },
 
+    // Layout nodes by graph depth from left to right, then center each layer vertically.
     autoLayout(options = {}) {
       if (this.nodes.length === 0) {
         return
       }
 
-      const {
-        startX = 120,
-        startY = 480,
-        layerGap = 330,
-        nodeGap = 42,
-      } = options
+      const { startX = 120, startY = 480, layerGap = 330, nodeGap = 42 } = options
 
       this.pushHistory()
 

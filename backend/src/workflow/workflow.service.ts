@@ -12,6 +12,102 @@ function asArray<T>(value: unknown): T[] {
   return Array.isArray(value) ? (value as T[]) : []
 }
 
+function getNodeId(node: Record<string, unknown>) {
+  return String(node.id ?? '')
+}
+
+function isStartNode(node: Record<string, unknown>) {
+  return node.type === 'start' || node.terminalKind === 'start'
+}
+
+function getNodePosition(node: Record<string, unknown>, field: 'x' | 'y') {
+  const layout = (node.layout as Record<string, unknown> | undefined) ?? {}
+  const value = Number(layout[field] ?? 0)
+  return Number.isFinite(value) ? value : 0
+}
+
+function compareNodesByPosition(aNode: Record<string, unknown>, bNode: Record<string, unknown>) {
+  const yDelta = getNodePosition(aNode, 'y') - getNodePosition(bNode, 'y')
+  if (yDelta !== 0) return yDelta
+
+  const xDelta = getNodePosition(aNode, 'x') - getNodePosition(bNode, 'x')
+  if (xDelta !== 0) return xDelta
+
+  return getNodeId(aNode).localeCompare(getNodeId(bNode))
+}
+
+function buildWorkflowGraph(definition: Record<string, unknown>) {
+  const nodes = asArray<Record<string, unknown>>(definition.nodes)
+  const edges = asArray<Record<string, unknown>>(definition.edges)
+  const nodeMap = new Map<string, Record<string, unknown>>()
+  const incomingMap = new Map<string, string[]>()
+  const outgoingMap = new Map<string, string[]>()
+
+  for (const node of nodes) {
+    const nodeId = getNodeId(node)
+    if (nodeId) nodeMap.set(nodeId, node)
+  }
+
+  for (const nodeId of nodeMap.keys()) {
+    incomingMap.set(nodeId, [])
+    outgoingMap.set(nodeId, [])
+  }
+
+  for (const edge of edges) {
+    const sourceId = String(edge.source ?? '')
+    const targetId = String(edge.target ?? '')
+    if (!nodeMap.has(sourceId) || !nodeMap.has(targetId)) continue
+
+    outgoingMap.get(sourceId)?.push(targetId)
+    incomingMap.get(targetId)?.push(sourceId)
+  }
+
+  for (const [sourceId, targetIds] of outgoingMap) {
+    const sortedTargets = [...new Set(targetIds)].sort((aId, bId) =>
+      compareNodesByPosition(nodeMap.get(aId) ?? {}, nodeMap.get(bId) ?? {}),
+    )
+    outgoingMap.set(sourceId, sortedTargets)
+  }
+
+  return { incomingMap, nodeMap, nodes, outgoingMap }
+}
+
+function getInitialNodeIds(definition: Record<string, unknown>) {
+  const graph = buildWorkflowGraph(definition)
+  const startNodes = graph.nodes.filter(isStartNode).sort(compareNodesByPosition)
+  if (startNodes.length > 0) return startNodes.map(getNodeId).filter(Boolean)
+
+  const rootNodes = graph.nodes
+    .filter((node) => (graph.incomingMap.get(getNodeId(node)) ?? []).length === 0)
+    .sort(compareNodesByPosition)
+  if (rootNodes.length > 0) return rootNodes.map(getNodeId).filter(Boolean)
+
+  const firstNodeId = graph.nodes[0] ? getNodeId(graph.nodes[0]) : ''
+  return firstNodeId ? [firstNodeId] : []
+}
+
+function getActiveNodeIds(runtime: Record<string, unknown>, runtimeState: Record<string, unknown>) {
+  const stateCurrentNodeIds = asArray<string>(runtimeState.currentNodeIds)
+  const currentNodeId = String(runtime.currentNodeId ?? runtimeState.currentNodeId ?? '')
+  return [...new Set([...stateCurrentNodeIds, currentNodeId].filter(Boolean))]
+}
+
+function getReadyNextNodeIds(
+  definition: Record<string, unknown>,
+  completedNodeIds: Set<string>,
+  completedSourceNodeId: string,
+) {
+  const graph = buildWorkflowGraph(definition)
+  const targetIds = graph.outgoingMap.get(completedSourceNodeId) ?? []
+
+  return targetIds.filter((targetId) => {
+    if (completedNodeIds.has(targetId)) return false
+
+    const incomingSourceIds = graph.incomingMap.get(targetId) ?? []
+    return incomingSourceIds.every((sourceId) => completedNodeIds.has(sourceId))
+  })
+}
+
 function buildTriggerMap(workflowId: string, definition: Record<string, unknown>) {
   const nodes = asArray<Record<string, unknown>>(definition.nodes)
   const triggerMap: Record<string, string> = {}
@@ -147,20 +243,49 @@ export class WorkflowService {
 
   async ensureRuntime(workflowId: string) {
     const existing = await this.db.workflowRuntime.findFirst({ where: { workflowId } })
-    if (existing) return existing
-
     const definition = await this.getDefinition(workflowId)
     const definitionJson = definition.definition as Record<string, unknown>
-    const nodes = asArray<Record<string, unknown>>(definitionJson.nodes)
-    const firstNode = nodes[0]
-    const firstNodeId = firstNode ? String(firstNode.id ?? '') : null
+    const initialNodeIds = getInitialNodeIds(definitionJson)
+    const firstNodeId = initialNodeIds[0] ?? null
+
+    if (existing) {
+      const runtimeState = (existing.runtimeState as Record<string, unknown>) ?? {}
+      const completedNodeIds = asArray<string>(runtimeState.completedNodeIds)
+      const activeNodeIds = getActiveNodeIds(existing, runtimeState)
+      const hasCurrentNodeIds = asArray<string>(runtimeState.currentNodeIds).length > 0
+      const shouldRefreshInitialState =
+        completedNodeIds.length === 0 &&
+        firstNodeId &&
+        (!hasCurrentNodeIds || activeNodeIds.length === 0 || activeNodeIds.some((nodeId) => !initialNodeIds.includes(nodeId)))
+
+      if (!shouldRefreshInitialState) return existing
+
+      return this.db.workflowRuntime.update({
+        where: { id: existing.id },
+        data: {
+          status: 'active',
+          currentNodeId: firstNodeId,
+          runtimeState: asJson({
+            ...(runtimeState as Record<string, unknown>),
+            currentNodeId: firstNodeId,
+            currentNodeIds: initialNodeIds,
+            completedNodeIds,
+          }),
+        },
+      })
+    }
 
     return this.db.workflowRuntime.create({
       data: {
         workflowId,
-        status: 'not_started',
+        status: firstNodeId ? 'active' : 'not_started',
         currentNodeId: firstNodeId,
-        runtimeState: asJson({ currentNodeId: firstNodeId, completedNodeIds: [], events: [] }),
+        runtimeState: asJson({
+          currentNodeId: firstNodeId,
+          currentNodeIds: initialNodeIds,
+          completedNodeIds: [],
+          events: [],
+        }),
       },
     })
   }
@@ -193,14 +318,14 @@ export class WorkflowService {
 
     const runtimeState = (runtime.runtimeState as Record<string, unknown>) ?? {}
     const completedNodeIds = asArray<string>(runtimeState.completedNodeIds)
-    const currentNodeId = String(runtime.currentNodeId ?? runtimeState.currentNodeId ?? '')
-    const expectedCurrentNode = nodes.find((item) => String(item.id ?? '') === currentNodeId)
+    const activeNodeIds = getActiveNodeIds(runtime, runtimeState)
+    const nodeId = getNodeId(node)
 
-    if (expectedCurrentNode && getNodeCode(expectedCurrentNode) !== moduleCode) {
+    if (activeNodeIds.length > 0 && !activeNodeIds.includes(nodeId)) {
       throw new BadRequestException('This module is not currently active')
     }
 
-    if (completedNodeIds.includes(String(node.id ?? ''))) {
+    if (completedNodeIds.includes(nodeId)) {
       throw new BadRequestException('This module has already been completed')
     }
 
@@ -212,11 +337,13 @@ export class WorkflowService {
       throw new BadRequestException(`Missing required fields: ${missingFields.join(', ')}`)
     }
 
-    const nodeIndex = nodes.findIndex((item) => getNodeCode(item) === moduleCode)
-    const nextNode = nodes[nodeIndex + 1] ?? null
-    const nextNodeId = nextNode ? String(nextNode.id ?? '') : null
-    const nextCompleted = [...new Set([...completedNodeIds, String(node.id ?? '')])]
-    const nextStatus = nextNode ? 'not_started' : 'completed'
+    const nextCompleted = [...new Set([...completedNodeIds, nodeId])]
+    const completedNodeIdSet = new Set(nextCompleted)
+    const remainingActiveNodeIds = activeNodeIds.filter((activeNodeId) => activeNodeId !== nodeId && !completedNodeIdSet.has(activeNodeId))
+    const readyNextNodeIds = getReadyNextNodeIds(definitionJson, completedNodeIdSet, nodeId)
+    const nextActiveNodeIds = [...new Set([...remainingActiveNodeIds, ...readyNextNodeIds])]
+    const nextNodeId = nextActiveNodeIds[0] ?? null
+    const nextStatus = nextActiveNodeIds.length > 0 ? 'active' : 'completed'
 
     const result = {
       workflowId,
@@ -226,19 +353,22 @@ export class WorkflowService {
       payload,
       completedNodeIds: nextCompleted,
       currentNodeId: nextNodeId,
+      currentNodeIds: nextActiveNodeIds,
       status: nextStatus,
-      currentNodeStatus: nextNode ? 'active' : 'completed',
+      currentNodeStatus: nextActiveNodeIds.length > 0 ? 'active' : 'completed',
       nextNodeId,
+      nextNodeIds: nextActiveNodeIds,
     }
 
     await this.db.workflowRuntime.update({
       where: { id: runtime.id },
       data: {
-        status: nextNode ? 'active' : 'completed',
+        status: nextStatus,
         currentNodeId: nextNodeId,
         runtimeState: asJson({
           ...(runtimeState as Record<string, unknown>),
           currentNodeId: nextNodeId,
+          currentNodeIds: nextActiveNodeIds,
           completedNodeIds: nextCompleted,
           lastTriggeredModule: moduleCode,
           lastEventType: dto.eventType ?? 'trigger',

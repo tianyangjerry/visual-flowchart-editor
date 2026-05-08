@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.2: update project structure">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.3: update project structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/projectProgress.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/projectProgress.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="76" />
+    <option name="cachedIndexableFilesCount" value="82" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -129,7 +132,9 @@
       <workItem from="1778132770939" duration="1042000" />
       <workItem from="1778134019475" duration="204000" />
       <workItem from="1778134253382" duration="5504000" />
-      <workItem from="1778218506737" duration="2481000" />
+      <workItem from="1778218506737" duration="3419000" />
+      <workItem from="1778223825474" duration="129000" />
+      <workItem from="1778224003430" duration="1145000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -179,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778138153610</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="version 3.3: update project structure">
+      <option name="closed" value="true" />
+      <created>1778222097618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778222097619</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +218,7 @@
     <MESSAGE value="version 3.1" />
     <MESSAGE value="version 3.1.1: update .env.example with new" />
     <MESSAGE value="version 3.2: update project structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.2: update project structure" />
+    <MESSAGE value="version 3.3: update project structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.3: update project structure" />
   </component>
 </project>

@@ -2,6 +2,7 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { deleteWorkflowDefinition, getWorkflowRuntime, listWorkflowDefinitions, saveWorkflowDefinition } from '../services/api'
+import { getActiveNodeIds, orderWorkflowNodes } from '../tools/workflowOrder'
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value))
@@ -12,15 +13,15 @@ function normalizeRuntimeStatus(status) {
 }
 
 function buildStepsFromDefinitionAndRuntime(definition = {}, runtime = null) {
-  const nodes = Array.isArray(definition?.nodes) ? definition.nodes : []
+  const nodes = orderWorkflowNodes(definition)
   const runtimeState = runtime?.runtimeState ?? {}
   const completedNodeIds = Array.isArray(runtimeState.completedNodeIds) ? runtimeState.completedNodeIds : []
-  const currentNodeId = runtime?.currentNodeId ?? runtimeState.currentNodeId ?? null
+  const activeNodeIds = getActiveNodeIds(runtime)
 
   return nodes.map((node, index) => {
     const nodeId = node.id ?? `node_${index + 1}`
     const isCompleted = completedNodeIds.includes(nodeId)
-    const isActive = currentNodeId && currentNodeId === nodeId
+    const isActive = activeNodeIds.has(String(nodeId))
     const status = isCompleted ? 'completed' : isActive ? 'active' : 'not_started'
 
     return {

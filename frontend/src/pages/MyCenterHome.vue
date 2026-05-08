@@ -35,6 +35,7 @@ import ProjectDetailPanel from '../components/mycenter/ProjectDetailPanel.vue'
 import ProjectListPanel from '../components/mycenter/ProjectListPanel.vue'
 import '../components/mycenter/myCenter.css'
 import { useProjectProgressStore } from '../stores/projectProgress'
+import { getActiveNodeIds, orderWorkflowNodes } from '../tools/workflowOrder'
 
 const progressStore = useProjectProgressStore()
 const { projects } = storeToRefs(progressStore)
@@ -67,10 +68,12 @@ const runtimeState = computed(() => {
   const runtime = selectedProject.value?.runtime
   const state = runtime?.runtimeState ?? {}
   const completedNodeIds = Array.isArray(state?.completedNodeIds) ? state.completedNodeIds : []
+  const currentNodeIds = Array.isArray(state?.currentNodeIds) ? state.currentNodeIds : []
   const currentNodeId = runtime?.currentNodeId ?? state?.currentNodeId ?? null
 
   return {
     completedNodeIds,
+    currentNodeIds,
     currentNodeId,
     status: runtime?.status ?? 'not_started',
     updatedAt: runtime?.updatedAt ?? selectedProject.value?.updatedAt ?? '-',
@@ -78,17 +81,15 @@ const runtimeState = computed(() => {
 })
 
 const projectSteps = computed(() => {
-  const nodes = Array.isArray(selectedProject.value?.diagram?.nodes)
-    ? selectedProject.value.diagram.nodes
-    : []
+  const nodes = orderWorkflowNodes(selectedProject.value?.diagram ?? {})
   const completedNodeIds = new Set(runtimeState.value.completedNodeIds)
-  const currentNodeId = runtimeState.value.currentNodeId
+  const activeNodeIds = getActiveNodeIds(runtimeState.value)
 
   return nodes.map((node) => {
     const nodeId = node.id
     const status = completedNodeIds.has(nodeId)
       ? 'completed'
-      : currentNodeId === nodeId
+      : activeNodeIds.has(String(nodeId))
         ? 'active'
         : 'not_started'
 
@@ -104,11 +105,11 @@ const projectSteps = computed(() => {
 
 const selectedProjectApiModules = computed(() => {
   const definition = selectedProject.value?.definition ?? selectedProject.value?.diagram ?? {}
-  const nodes = Array.isArray(definition?.nodes) ? definition.nodes : []
+  const nodes = orderWorkflowNodes(definition)
   const triggerMap = selectedProject.value?.triggerMap ?? {}
   const workflowId = selectedProject.value?.id
   const completedNodeIds = new Set(runtimeState.value.completedNodeIds)
-  const currentNodeId = runtimeState.value.currentNodeId
+  const activeNodeIds = getActiveNodeIds(runtimeState.value)
 
   return nodes
     .map((node) => {
@@ -118,7 +119,7 @@ const selectedProjectApiModules = computed(() => {
       const nodeId = node.id
       const status = completedNodeIds.has(nodeId)
         ? 'completed'
-        : currentNodeId === nodeId
+        : activeNodeIds.has(String(nodeId))
           ? 'active'
           : 'not_started'
 
