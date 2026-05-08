@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.1.1: update .env.example with new">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.2: update project structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagramCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlowEdge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlowNode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlowDefs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProjectFlowSnapshot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Templates.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +87,10 @@
     ]
   }
 }</component>
-  <component name="QodanaIsSelectedPersistenceService">
-    <option name="selectedOrLoading" value="true" />
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\yang\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="f30eb870-b6bc-4739-8e85-1c608b503362" reportId="final-project/qodana/2026-05-07" />
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -137,7 +128,8 @@
       <workItem from="1778130938024" duration="371000" />
       <workItem from="1778132770939" duration="1042000" />
       <workItem from="1778134019475" duration="204000" />
-      <workItem from="1778134253382" duration="3302000" />
+      <workItem from="1778134253382" duration="5504000" />
+      <workItem from="1778218506737" duration="2481000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -179,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777443344623</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="version 3.2: update project structure">
+      <option name="closed" value="true" />
+      <created>1778138153610</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778138153610</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +204,7 @@
     <MESSAGE value="version 3.0" />
     <MESSAGE value="version 3.1" />
     <MESSAGE value="version 3.1.1: update .env.example with new" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.1.1: update .env.example with new" />
+    <MESSAGE value="version 3.2: update project structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.2: update project structure" />
   </component>
 </project>
