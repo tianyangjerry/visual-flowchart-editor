@@ -97,9 +97,9 @@ const renderableNodes = computed(() =>
     const isActive = node.id === activeNodeId.value
     const locked = step?.locked ?? index > 0
     const palette = {
-      done: { fill: 'rgb(62 208 142 / 26%)', stroke: '#b7ffd4' },
-      doing: { fill: 'rgb(88 229 255 / 28%)', stroke: '#ffffff' },
-      pending: { fill: 'rgb(148 163 184 / 10%)', stroke: '#475569' },
+      done: { fill: 'rgb(159 179 154 / 24%)', stroke: '#9fb39a' },
+      doing: { fill: 'rgb(239 236 224 / 18%)', stroke: '#efece0' },
+      pending: { fill: 'rgb(168 163 154 / 8%)', stroke: '#6f685e' },
       blocked: { fill: 'rgb(255 116 116 / 18%)', stroke: '#ff9d9d' },
     }
     const theme = palette[status] ?? palette.pending
@@ -115,8 +115,8 @@ const renderableNodes = computed(() =>
           : step?.description ?? node.subtitle ?? '',
       style: {
         ...(node.style ?? {}),
-        fill: locked && status === 'pending' && !isActive ? 'rgb(255 255 255 / 3%)' : theme.fill,
-        stroke: isActive ? '#ffffff' : theme.stroke,
+        fill: locked && status === 'pending' && !isActive ? 'rgb(241 240 232 / 4%)' : theme.fill,
+        stroke: isActive ? '#efece0' : theme.stroke,
       },
       ui: {
         ...(node.ui ?? {}),
@@ -136,7 +136,7 @@ const renderableEdges = computed(() =>
       ...edge,
       style: {
         ...(edge.style ?? {}),
-        color: isUnlocked ? 'rgb(136 245 255)' : 'rgb(71 85 105)',
+        color: isUnlocked ? 'rgb(239 236 224)' : 'rgb(111 104 94)',
         animated: isUnlocked,
       },
     }
@@ -147,15 +147,20 @@ const renderableEdges = computed(() =>
 <style scoped>
 .snapshot-shell {
   width: 100%;
-  border-radius: 18px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgb(126 162 255 / 18%);
-  background: linear-gradient(180deg, rgb(37 41 52 / 92%), rgb(26 30 40 / 92%));
+  border: 1px solid rgb(241 240 232 / 10%);
+  background:
+    radial-gradient(circle, rgb(241 240 232 / 10%) 1px, transparent 1.5px),
+    linear-gradient(180deg, rgb(22 21 19 / 94%), rgb(17 16 15 / 96%));
+  background-size:
+    18px 18px,
+    100% 100%;
 }
 
 .snapshot-svg {
   width: 100%;
-  height: 520px;
+  height: 260px;
   display: block;
   overflow: visible;
 }

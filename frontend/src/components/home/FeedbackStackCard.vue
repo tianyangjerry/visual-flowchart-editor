@@ -127,27 +127,25 @@ function submitForm() {
   grid-template-columns: minmax(0, 1fr) var(--side-width);
   gap: 0;
   min-height: 320px;
-  border-radius: 32px;
+  border-radius: 8px;
   overflow: visible;
-  border: 1px solid rgba(105, 141, 214, 0.14);
+  border: 1px solid rgb(241 240 232 / 12%);
   background:
-    radial-gradient(circle at 72% 50%, rgba(92, 164, 255, 0.12), transparent 20%),
-    radial-gradient(circle at top center, rgba(79, 139, 255, 0.08), transparent 34%),
-    linear-gradient(180deg, rgba(15, 22, 36, 0.98), rgba(8, 13, 23, 0.985));
+    linear-gradient(118deg, rgb(32 31 28 / 98%), rgb(17 16 15 / 99%) 62%, rgb(43 24 20 / 98%));
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    inset 0 1px 0 rgb(241 240 232 / 3%);
   transition:
     border-color 240ms ease,
     box-shadow 240ms ease;
 }
 
 .feedback-panel.is-expanded {
-  border-color: rgba(117, 164, 255, 0.2);
+  border-color: rgb(239 236 224 / 18%);
   box-shadow:
     0 28px 72px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgba(87, 154, 255, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 0 0 1px rgb(239 236 224 / 5%),
+    inset 0 1px 0 rgb(241 240 232 / 3%);
 }
 
 .feedback-panel__content,
@@ -166,25 +164,25 @@ function submitForm() {
 .feedback-panel__eyebrow,
 .form-eyebrow {
   margin: 0 0 12px;
-  color: #7fc7ff;
+  color: var(--color-accent-muted);
   font-size: 13px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .feedback-panel h2 {
   margin: 0;
-  color: #f5f8ff;
+  color: var(--color-text);
   font-size: clamp(38px, 5vw, 60px);
   line-height: 1.04;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   max-width: 12ch;
 }
 
 .feedback-panel__copy {
   max-width: 700px;
   margin: 18px 0 0;
-  color: rgba(227, 234, 244, 0.76);
+  color: var(--color-text-muted);
   font-size: 18px;
   line-height: 1.7;
 }
@@ -202,16 +200,16 @@ function submitForm() {
   height: 34px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(233, 240, 249, 0.82);
+  border: 1px solid rgb(241 240 232 / 10%);
+  background: rgb(241 240 232 / 4%);
+  color: rgb(241 240 232 / 82%);
   font-size: 13px;
   font-weight: 600;
 }
 
 .feedback-panel__side {
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.008));
+  border-left: 1px solid rgb(241 240 232 / 8%);
+  background: linear-gradient(180deg, rgb(241 240 232 / 2%), rgb(241 240 232 / 1%));
   transition:
     background 240ms ease,
     border-color 240ms ease;
@@ -220,8 +218,8 @@ function submitForm() {
 }
 
 .feedback-panel__side.is-expanded {
-  border-left-color: rgba(121, 171, 255, 0.1);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0.01));
+  border-left-color: rgb(239 236 224 / 12%);
+  background: linear-gradient(180deg, rgb(241 240 232 / 3%), rgb(241 240 232 / 1%));
 }
 
 .feedback-panel__cta {
@@ -248,7 +246,7 @@ function submitForm() {
 
 .feedback-panel__hint {
   margin: 16px 0 0;
-  color: rgba(212, 222, 236, 0.56);
+  color: rgb(168 163 154 / 72%);
   font-size: 13px;
   line-height: 1.6;
   max-width: 220px;
@@ -289,8 +287,8 @@ function submitForm() {
   inset: 0 26px 0 -34px;
   border: 0;
   padding: 0;
-  border-radius: 30px 0 0 30px;
-  background: linear-gradient(90deg, rgba(10, 15, 26, 0.02), rgba(99, 162, 255, 0.1) 58%, rgba(99, 162, 255, 0.16));
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(90deg, rgb(17 16 15 / 2%), rgb(74 36 29 / 12%) 58%, rgb(74 36 29 / 18%));
   opacity: 0;
   transition: opacity 180ms ease;
   pointer-events: auto;
@@ -305,9 +303,9 @@ function submitForm() {
   height: 100%;
   margin-left: auto;
   padding: 26px 24px 24px;
-  border-left: 1px solid rgba(121, 171, 255, 0.1);
-  border-radius: 28px 0 0 28px;
-  background: linear-gradient(180deg, rgba(18, 25, 40, 0.985), rgba(10, 15, 26, 0.998));
+  border-left: 1px solid rgb(239 236 224 / 12%);
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(180deg, rgb(30 29 26 / 98%), rgb(17 16 15 / 100%));
   box-shadow:
     -34px 0 70px rgba(0, 0, 0, 0.36),
     -1px 0 0 rgba(255, 255, 255, 0.03);
@@ -326,10 +324,10 @@ function submitForm() {
 
 .feedback-panel__form-head h3 {
   margin: 0;
-  color: #f5f8ff;
+  color: var(--color-text);
   font-size: 26px;
   line-height: 1.16;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .feedback-form {
@@ -343,7 +341,7 @@ function submitForm() {
 }
 
 .form-field span {
-  color: rgba(228, 235, 245, 0.84);
+  color: rgb(241 240 232 / 84%);
   font-size: 14px;
   font-weight: 600;
 }
@@ -351,10 +349,10 @@ function submitForm() {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  border: 1px solid rgba(118, 142, 186, 0.16);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  color: #f4f8ff;
+  border: 1px solid rgb(241 240 232 / 14%);
+  border-radius: 8px;
+  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
   padding: 14px 16px;
   font: inherit;
   outline: none;
@@ -366,14 +364,14 @@ function submitForm() {
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: rgba(206, 216, 232, 0.34);
+  color: rgb(168 163 154 / 56%);
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
-  border-color: rgba(120, 179, 255, 0.42);
-  box-shadow: 0 0 0 4px rgba(85, 152, 255, 0.08);
-  background: rgba(255, 255, 255, 0.045);
+  border-color: rgb(239 236 224 / 34%);
+  box-shadow: 0 0 0 4px rgb(239 236 224 / 8%);
+  background: rgb(241 240 232 / 6%);
 }
 
 .form-field textarea {
@@ -389,7 +387,7 @@ function submitForm() {
 
 .success-text {
   margin: 2px 0 0;
-  color: #8ed7a4;
+  color: #9fb39a;
   font-size: 14px;
 }
 
@@ -415,49 +413,47 @@ function submitForm() {
   min-width: 182px;
   height: 56px;
   padding: 0 22px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #66b5ff, #7b8dff);
-  color: #09111e;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #151410;
   font-size: 16px;
   font-weight: 700;
   box-shadow:
-    0 14px 32px rgba(75, 151, 255, 0.22),
-    0 0 18px rgba(75, 151, 255, 0.12);
+    0 14px 32px rgb(0 0 0 / 26%);
 }
 
 .primary-btn:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 18px 36px rgba(75, 151, 255, 0.28),
-    0 0 22px rgba(75, 151, 255, 0.16);
+    0 18px 36px rgb(0 0 0 / 30%);
 }
 
 .secondary-btn {
   min-width: 110px;
   height: 48px;
   padding: 0 18px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(236, 242, 250, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgb(241 240 232 / 4%);
+  color: rgb(241 240 232 / 92%);
+  border: 1px solid rgb(241 240 232 / 10%);
 }
 
 .secondary-btn:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(241 240 232 / 7%);
 }
 
 .ghost-btn {
   padding: 10px 14px;
-  border-radius: 14px;
+  border-radius: 8px;
   background: transparent;
-  color: rgba(221, 230, 243, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgb(241 240 232 / 68%);
+  border: 1px solid rgb(241 240 232 / 8%);
 }
 
 .ghost-btn:hover {
-  color: rgba(243, 247, 255, 0.94);
-  background: rgba(255, 255, 255, 0.03);
+  color: rgb(241 240 232 / 94%);
+  background: rgb(241 240 232 / 4%);
 }
 
 /* 背景光 */
@@ -467,15 +463,10 @@ function submitForm() {
   top: 50%;
   width: 260px;
   height: 260px;
-  border-radius: 999px;
+  border-radius: 8px;
   transform: translateY(-50%);
-  background: radial-gradient(
-    circle,
-    rgba(92, 165, 255, 0.18) 0%,
-    rgba(92, 165, 255, 0.05) 44%,
-    transparent 72%
-  );
-  filter: blur(26px);
+  background: transparent;
+  filter: none;
   pointer-events: none;
 }
 
@@ -515,7 +506,7 @@ function submitForm() {
 
   .feedback-panel__side {
     border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgb(241 240 232 / 8%);
   }
 
   .feedback-panel__cta {
@@ -541,8 +532,8 @@ function submitForm() {
   .feedback-panel__overlay-surface {
     margin-left: 0;
     border-left: 0;
-    border-top: 1px solid rgba(121, 171, 255, 0.1);
-    border-radius: 24px 24px 0 0;
+    border-top: 1px solid rgb(239 236 224 / 12%);
+    border-radius: 8px 8px 0 0;
     height: auto;
     min-height: 260px;
   }

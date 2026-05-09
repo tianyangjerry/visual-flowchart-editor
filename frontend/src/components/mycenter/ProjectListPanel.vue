@@ -1,5 +1,24 @@
 <template>
   <article class="project-list-shell">
+    <div class="section-head">
+      <div>
+        <h2>Projects</h2>
+      </div>
+      <span class="count-chip">{{ projects.length }} projects</span>
+    </div>
+
+    <div class="project-list-actions">
+      <RouterLink class="new-project-btn" to="/editor">
+        <Plus :size="16" />
+        <span>New Project</span>
+      </RouterLink>
+    </div>
+
+    <label class="project-search">
+      <Search :size="17" />
+      <input type="search" placeholder="Search projects" />
+    </label>
+
     <div v-if="isWorkflowComplete" class="completion-banner">
       <div>
         <p class="eyebrow eyebrow--success">Workflow completed</p>
@@ -9,14 +28,6 @@
         <span>Completed on: {{ workflowCompletedAt }}</span>
         <span>Total steps completed: {{ approvedStepCount }}</span>
       </div>
-    </div>
-
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Projects</p>
-        <h2>Project cards</h2>
-      </div>
-      <span class="count-chip">{{ projects.length }} projects</span>
     </div>
 
     <div v-if="projects.length" class="project-list">
@@ -48,8 +59,8 @@
         </div>
         <p>{{ project.description }}</p>
         <div class="project-card__meta">
-          <span>Progress {{ project.progress }}%</span>
-          <span>{{ project.updatedAt }}</span>
+          <span>Progress <strong>{{ project.progress }}%</strong></span>
+          <span>Updated <strong>{{ project.updatedAt }}</strong></span>
         </div>
       </article>
     </div>
@@ -62,7 +73,8 @@
 </template>
 
 <script setup>
-import { Trash2 } from 'lucide-vue-next'
+import { RouterLink } from 'vue-router'
+import { Plus, Search, Trash2 } from 'lucide-vue-next'
 
 defineProps({
   approvedStepCount: {

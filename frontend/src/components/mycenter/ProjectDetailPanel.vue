@@ -1,50 +1,50 @@
 <template>
-  <article class="detail-shell">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Project detail</p>
-        <h2>{{ selectedProject.name }}</h2>
-      </div>
-      <span class="status-pill status-active">{{ selectedProject.status }}</span>
-    </div>
+  <section class="detail-stack">
+    <article class="detail-shell">
+      <div class="detail-overview">
+        <div class="detail-overview__title">
+          <h2>{{ selectedProject.name }}</h2>
+          <span class="status-pill status-active">{{ selectedProject.status }}</span>
+        </div>
 
-    <div class="detail-grid">
-      <div class="detail-card">
-        <span class="detail-label">Last updated</span>
-        <strong>{{ selectedProject.updatedAt }}</strong>
+        <div class="detail-grid">
+          <div class="detail-card">
+            <span class="detail-label">Last updated</span>
+            <strong>{{ selectedProject.updatedAt }}</strong>
+          </div>
+          <div class="detail-card">
+            <span class="detail-label">Active step</span>
+            <strong>{{ activeStep?.label ?? 'Completed' }}</strong>
+          </div>
+          <div class="detail-card">
+            <span class="detail-label">Progress</span>
+            <strong>{{ selectedProject.progress }}%</strong>
+          </div>
+          <div class="detail-card">
+            <span class="detail-label">Flow source</span>
+            <strong>{{ selectedProject.flowInfo?.source ?? 'editor' }}</strong>
+          </div>
+        </div>
       </div>
-      <div class="detail-card">
-        <span class="detail-label">Active step</span>
-        <strong>{{ activeStep?.label ?? 'Completed' }}</strong>
-      </div>
-      <div class="detail-card">
-        <span class="detail-label">Progress</span>
-        <strong>{{ selectedProject.progress }}%</strong>
-      </div>
-      <div class="detail-card">
-        <span class="detail-label">Flow source</span>
-        <strong>{{ selectedProject.flowInfo?.source ?? 'editor' }}</strong>
-      </div>
-    </div>
 
-    <ApiModulesPanel
-      :modules="apiModules"
-      :copied-api-url="copiedApiUrl"
-      @copy-api-url="$emit('copyApiUrl', $event)"
-    />
+      <ApiModulesPanel
+        :modules="apiModules"
+        :copied-api-url="copiedApiUrl"
+        @copy-api-url="$emit('copyApiUrl', $event)"
+      />
+    </article>
 
-    <div class="snapshot-shell">
+    <article class="flow-overview-shell">
       <div class="section-head compact">
         <div>
-          <p class="eyebrow">Frozen flow snapshot</p>
-          <h3>Editor scale preview</h3>
+          <h3>Flow overview</h3>
         </div>
       </div>
       <ProjectFlowSnapshot :project="selectedProject" />
-    </div>
+    </article>
 
     <RuntimeStepList :steps="projectSteps" :active-step="activeStep" />
-  </article>
+  </section>
 </template>
 
 <script setup>

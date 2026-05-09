@@ -72,9 +72,8 @@ defineOptions({
   min-height: 100vh;
   padding: 32px clamp(16px, 4vw, 56px) 72px;
   background:
-    radial-gradient(circle at top left, rgb(126 162 255 / 18%), transparent 34%),
-    radial-gradient(circle at 70% 10%, rgb(56 189 248 / 10%), transparent 26%),
-    linear-gradient(180deg, #181a20 0%, #12151b 100%);
+    linear-gradient(122deg, #111110 0%, #141312 52%, #2b1814 100%),
+    linear-gradient(180deg, #12110f 0%, #0f0f0e 100%);
   color: var(--color-text);
 }
 
@@ -95,17 +94,17 @@ defineOptions({
 .feedback-form label {
   display: grid;
   gap: 8px;
-  color: #e7eefc;
+  color: var(--color-text);
   font-size: 14px;
 }
 
 .feedback-form input,
 .feedback-form textarea {
   width: 100%;
-  border: 1px solid rgb(126 162 255 / 14%);
-  border-radius: 16px;
-  background: rgb(255 255 255 / 3%);
-  color: #f4f8ff;
+  border: 1px solid rgb(241 240 232 / 12%);
+  border-radius: 8px;
+  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
   padding: 14px 16px;
   font: inherit;
   outline: none;
@@ -114,8 +113,8 @@ defineOptions({
 
 .feedback-form input:focus,
 .feedback-form textarea:focus {
-  border-color: rgb(126 162 255 / 30%);
-  box-shadow: 0 0 0 3px rgb(88 229 255 / 10%);
+  border-color: rgb(239 236 224 / 30%);
+  box-shadow: 0 0 0 3px rgb(239 236 224 / 8%);
 }
 
 @media (max-width: 640px) {
@@ -125,7 +124,7 @@ defineOptions({
 
   .section-shell {
     padding: 18px;
-    border-radius: 20px;
+    border-radius: 8px;
   }
 }
 </style>

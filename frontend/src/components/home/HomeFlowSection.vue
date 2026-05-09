@@ -147,8 +147,8 @@ const bottomFlowCards = [
 
 .section-eyebrow {
   margin: 0;
-  color: var(--neon-cyan);
-  letter-spacing: 0.1em;
+  color: var(--color-accent-muted);
+  letter-spacing: 0;
   font-size: 15px;
   text-transform: uppercase;
 }
@@ -208,10 +208,10 @@ const bottomFlowCards = [
 .flow-row--top .flow-card {
   width: clamp(280px, 36vw, 420px);
   padding: 22px;
-  border-radius: 26px;
+  border-radius: 8px;
   background:
-    linear-gradient(180deg, rgb(34 40 56 / 90%), rgb(18 22 33 / 92%)),
-    radial-gradient(circle at top right, rgb(120 171 255 / 7%), transparent 42%);
+    linear-gradient(180deg, rgb(36 34 31 / 92%), rgb(22 20 18 / 94%)),
+    linear-gradient(135deg, rgb(114 74 55 / 10%), transparent 52%);
 }
 
 .flow-row--top .flow-card:nth-child(odd) {
@@ -229,10 +229,10 @@ const bottomFlowCards = [
 .flow-row--bottom .flow-card {
   width: clamp(300px, 38vw, 460px);
   padding: 22px;
-  border-radius: 26px;
+  border-radius: 8px;
   background:
-    linear-gradient(180deg, rgb(18 24 37 / 90%), rgb(13 17 28 / 94%)),
-    radial-gradient(circle at bottom left, rgb(94 234 212 / 5%), transparent 36%);
+    linear-gradient(180deg, rgb(26 25 23 / 92%), rgb(17 16 15 / 96%)),
+    linear-gradient(315deg, rgb(159 179 154 / 8%), transparent 44%);
 }
 
 .flow-row--bottom .flow-card:nth-child(odd) {
@@ -245,8 +245,8 @@ const bottomFlowCards = [
 
 .flow-card {
   flex: 0 0 auto;
-  border: 1px solid rgb(126 162 255 / 8%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 2%);
+  border: 1px solid rgb(241 240 232 / 10%);
+  box-shadow: inset 0 1px 0 rgb(241 240 232 / 3%);
   transition:
     transform 220ms ease,
     box-shadow 220ms ease,
@@ -258,7 +258,7 @@ const bottomFlowCards = [
 }
 
 .flow-card:hover {
-  border-color: rgb(126 162 255 / 16%);
+  border-color: rgb(239 236 224 / 18%);
   box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
 }
 
@@ -281,7 +281,7 @@ const bottomFlowCards = [
 .flow-card--quote span {
   display: inline-block;
   margin-top: 12px;
-  color: #cbd5e1;
+  color: var(--color-accent-muted);
   font-size: 13px;
 }
 
@@ -340,7 +340,7 @@ const bottomFlowCards = [
 @media (max-width: 640px) {
   .section-shell {
     padding: 18px;
-    border-radius: 20px;
+    border-radius: 8px;
   }
 
   .flow-row__track {

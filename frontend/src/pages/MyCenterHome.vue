@@ -1,27 +1,56 @@
 <template>
   <main class="my-center-page">
-    <MyCenterHero />
+    <aside class="my-center-sidebar">
+      <RouterLink class="sidebar-brand" to="/">
+        <Boxes :size="24" />
+        <span>My Center</span>
+      </RouterLink>
 
-    <section class="projects-grid">
-      <ProjectListPanel
-        :projects="projects"
-        :selected-project-id="selectedProjectId"
-        :is-workflow-complete="isWorkflowComplete"
-        :workflow-completed-at="workflowCompletedAt"
-        :approved-step-count="approvedStepCount"
-        @select-project="selectedProjectId = $event"
-        @delete-project="handleDeleteProject"
-      />
+      <nav class="sidebar-nav" aria-label="My Center navigation">
+        <a class="sidebar-nav__item is-active" href="#saved-flows">
+          <FolderKanban :size="18" />
+          <span>Saved flows</span>
+        </a>
+        <a class="sidebar-nav__item" href="#settings">
+          <Settings :size="18" />
+          <span>Settings</span>
+        </a>
+      </nav>
 
-      <ProjectDetailPanel
-        v-if="selectedProject"
-        :selected-project="selectedProject"
-        :active-step="activeStep"
-        :project-steps="projectSteps"
-        :api-modules="selectedProjectApiModules"
-        :copied-api-url="copiedApiUrl"
-        @copy-api-url="copyApiUrl"
-      />
+      <div class="sidebar-user">
+        <span class="sidebar-user__avatar">U</span>
+        <div>
+          <strong>Username</strong>
+          <span>user@example.com</span>
+        </div>
+        <ChevronDown :size="16" />
+      </div>
+    </aside>
+
+    <section id="saved-flows" class="my-center-workspace">
+      <MyCenterHero />
+
+      <section class="projects-grid">
+        <ProjectListPanel
+          :projects="projects"
+          :selected-project-id="selectedProjectId"
+          :is-workflow-complete="isWorkflowComplete"
+          :workflow-completed-at="workflowCompletedAt"
+          :approved-step-count="approvedStepCount"
+          @select-project="selectedProjectId = $event"
+          @delete-project="handleDeleteProject"
+        />
+
+        <ProjectDetailPanel
+          v-if="selectedProject"
+          :selected-project="selectedProject"
+          :active-step="activeStep"
+          :project-steps="projectSteps"
+          :api-modules="selectedProjectApiModules"
+          :copied-api-url="copiedApiUrl"
+          @copy-api-url="copyApiUrl"
+        />
+      </section>
     </section>
 
     <Teleport to="body">
@@ -51,12 +80,14 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
+import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { Boxes, ChevronDown, FolderKanban, Settings } from 'lucide-vue-next'
 
 import MyCenterHero from '../components/mycenter/MyCenterHero.vue'
 import ProjectDetailPanel from '../components/mycenter/ProjectDetailPanel.vue'
 import ProjectListPanel from '../components/mycenter/ProjectListPanel.vue'
-import '../components/mycenter/myCenter.css'
+import '../styles/myCenter.css'
 import { useProjectProgressStore } from '../stores/projectProgress'
 import { getActiveNodeIds, orderWorkflowNodes } from '../tools/workflowOrder'
 

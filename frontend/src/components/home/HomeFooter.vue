@@ -45,7 +45,7 @@ defineOptions({ name: 'HomeFooter' })
   width: min(100%, 1560px);
   margin: 18px auto 0;
   padding: 28px clamp(16px, 3vw, 36px) 0;
-  border-top: 1px solid rgb(126 162 255 / 16%);
+  border-top: 1px solid rgb(241 240 232 / 14%);
   display: grid;
   gap: 18px;
 }
@@ -59,7 +59,7 @@ defineOptions({ name: 'HomeFooter' })
 .footer-column h4 {
   margin: 0 0 12px;
   font-size: 16px;
-  color: #f3f6ff;
+  color: var(--color-text);
 }
 
 .footer-column nav,
@@ -70,7 +70,7 @@ defineOptions({ name: 'HomeFooter' })
 
 .footer-column a,
 .footer-contact a {
-  color: #cfe0ff;
+  color: var(--color-accent-muted);
   text-decoration: none;
   font-size: 15px;
 }

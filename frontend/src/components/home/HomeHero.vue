@@ -61,8 +61,8 @@ defineProps({
 
 .hero-kicker {
   margin: 0;
-  color: var(--neon-cyan);
-  letter-spacing: 0.1em;
+  color: var(--color-accent-muted);
+  letter-spacing: 0;
   font-size: 15px;
   text-transform: uppercase;
 }
@@ -71,14 +71,14 @@ defineProps({
   margin: 0;
   max-width: 1320px;
   font-size: clamp(44px, 7vw, 86px);
-  line-height: 0.96;
-  letter-spacing: -0.065em;
+  line-height: 1;
+  letter-spacing: 0;
   animation: fade-rise 700ms ease both;
 }
 
 .hero-title__char {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgb(241 240 232 / 82%);
   animation: title-sweep-char 4.4s linear infinite;
   animation-delay: calc(var(--i) * 0.08s);
 }
@@ -105,8 +105,8 @@ defineProps({
   content: '';
   position: absolute;
   inset: -18px -24px;
-  background: radial-gradient(circle, rgb(88 229 255 / 10%), transparent 60%);
-  filter: blur(18px);
+  background: transparent;
+  filter: none;
   z-index: 0;
 }
 
@@ -121,7 +121,7 @@ defineProps({
   justify-content: center;
   min-height: 60px;
   padding: 0 30px;
-  border-radius: 18px;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
   font-size: 18px;
@@ -137,15 +137,15 @@ defineProps({
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #5fb6ff, #7c8cff);
-  color: #07111c;
-  box-shadow: 0 16px 28px rgb(88 229 255 / 12%);
+  background: var(--color-accent);
+  color: #151410;
+  box-shadow: 0 16px 28px rgb(0 0 0 / 24%);
 }
 
 .btn-secondary {
-  background: rgb(255 255 255 / 3%);
-  color: #dbeafe;
-  border: 1px solid rgb(126 162 255 / 18%);
+  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
+  border: 1px solid rgb(241 240 232 / 18%);
 }
 
 @keyframes fade-rise {
@@ -163,21 +163,18 @@ defineProps({
 @keyframes title-sweep-char {
   0%,
   18% {
-    color: rgb(231 233 238 / 26%);
+    color: rgb(241 240 232 / 62%);
     text-shadow: none;
   }
 
   28% {
-    color: #fff;
-    text-shadow:
-      0 0 10px rgb(255 255 255 / 90%),
-      0 0 22px rgb(255 255 255 / 60%),
-      0 0 38px rgb(136 199 255 / 45%);
+    color: var(--color-accent);
+    text-shadow: 0 0 18px rgb(239 236 224 / 18%);
   }
 
   42%,
   100% {
-    color: rgb(231 233 238 / 28%);
+    color: rgb(241 240 232 / 74%);
     text-shadow: none;
   }
 }
@@ -185,7 +182,7 @@ defineProps({
 @media (max-width: 640px) {
   .hero {
     padding: 18px;
-    border-radius: 20px;
+    border-radius: 8px;
   }
 
   .hero {

@@ -1,61 +1,48 @@
 <template>
-  <details class="api-shell" open>
-    <summary class="api-shell__summary">
-      <div class="section-head compact">
-        <div>
-          <p class="eyebrow">External API</p>
-          <h3>Modules should be triggered by external systems through these endpoints</h3>
-        </div>
+  <section class="api-shell">
+    <div class="section-head compact">
+      <div>
+        <h3>Modules</h3>
       </div>
-    </summary>
+    </div>
 
-    <div v-if="modules.length" class="api-list">
-      <article v-for="module in modules" :key="module.code" class="api-card">
-        <div class="api-card__header">
-          <div>
-            <p class="api-card__label">Module name</p>
-            <strong>{{ module.label }}</strong>
-          </div>
-        </div>
-        <div class="api-card__row">
-          <span class="api-card__label">Module code</span>
-          <strong>{{ module.code }}</strong>
-        </div>
-        <div class="api-card__row">
-          <span class="api-card__label">Status</span>
+    <div v-if="modules.length" class="api-table" role="table" aria-label="Workflow modules">
+      <div class="api-table__row api-table__row--head" role="row">
+        <span role="columnheader">Module name</span>
+        <span role="columnheader">Status</span>
+        <span role="columnheader">Trigger</span>
+        <span role="columnheader">Actions</span>
+      </div>
+
+      <div v-for="module in modules" :key="module.code" class="api-table__row" role="row">
+        <strong role="cell">{{ module.label }}</strong>
+        <span role="cell">
           <span class="status-pill" :class="getStatusClass(module.status)">
-            {{ module.status }}
+            {{ getStatusLabel(module.status) }}
           </span>
-        </div>
-        <div class="api-card__row api-card__row--stacked">
-          <div class="api-card__url-head">
-            <span class="api-card__label">Trigger URL</span>
-            <button
-              class="api-copy-btn api-copy-btn--inline"
-              type="button"
-              @click="$emit('copyApiUrl', module.triggerUrl)"
-            >
-              {{ copiedApiUrl === module.triggerUrl ? 'Copied' : 'Copy' }}
-            </button>
-          </div>
-          <code class="api-card__url">{{ module.triggerUrl }}</code>
-          <div class="api-card__example">
-            <span>Example API</span>
-            <code>POST {{ module.triggerUrl }}</code>
-          </div>
-        </div>
-        <div class="api-card__row">
-          <span class="api-card__label">Required fields</span>
-          <span>{{ module.requiredFieldsText }}</span>
-        </div>
-      </article>
+        </span>
+        <span class="api-table__trigger" role="cell">
+          <span>{{ module.requiredFieldsText === '-' ? '-' : module.requiredFieldsText }}</span>
+        </span>
+        <span class="api-table__actions" role="cell">
+          <button class="icon-action" type="button" :title="module.triggerUrl">
+            <Eye :size="16" />
+          </button>
+          <button class="icon-action" type="button" @click="$emit('copyApiUrl', module.triggerUrl)">
+            <Check v-if="copiedApiUrl === module.triggerUrl" :size="16" />
+            <Copy v-else :size="16" />
+          </button>
+        </span>
+      </div>
     </div>
 
     <p v-else class="empty-inline">No API modules configured yet.</p>
-  </details>
+  </section>
 </template>
 
 <script setup>
+import { Check, Copy, Eye } from 'lucide-vue-next'
+
 defineProps({
   copiedApiUrl: {
     type: String,
@@ -73,6 +60,12 @@ function getStatusClass(status) {
   if (status === 'active') return 'status-active'
   if (status === 'completed') return 'status-completed'
   return 'status-not-started'
+}
+
+function getStatusLabel(status) {
+  if (status === 'active') return 'Active'
+  if (status === 'completed') return 'Completed'
+  return 'Not started'
 }
 
 defineOptions({

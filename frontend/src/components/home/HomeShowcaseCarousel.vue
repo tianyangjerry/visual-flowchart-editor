@@ -192,24 +192,24 @@ onBeforeUnmount(() => {
 
 .showcase-carousel__eyebrow {
   margin: 0 0 8px;
-  color: #7fc7ff;
+  color: var(--color-accent-muted);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .showcase-carousel h2 {
   margin: 0;
-  color: #f4f8ff;
+  color: var(--color-text);
   font-size: clamp(34px, 4.8vw, 60px);
   line-height: 1.02;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
 }
 
 .showcase-carousel__copy {
   max-width: 760px;
   margin: 12px 0 0;
-  color: rgb(225 233 247 / 72%);
+  color: var(--color-text-muted);
   font-size: 16px;
   line-height: 1.7;
 }
@@ -226,10 +226,10 @@ onBeforeUnmount(() => {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgb(255 255 255 / 8%);
+  border: 1px solid rgb(241 240 232 / 12%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 2%);
-  color: #d6e3ff;
+  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
   font-size: 18px;
   cursor: pointer;
   transition:
@@ -241,8 +241,8 @@ onBeforeUnmount(() => {
 
 .carousel-button:hover {
   transform: translateY(-1px);
-  border-color: rgb(126 162 255 / 24%);
-  background: rgb(255 255 255 / 4%);
+  border-color: rgb(239 236 224 / 24%);
+  background: rgb(241 240 232 / 7%);
   box-shadow: 0 10px 24px rgb(0 0 0 / 22%);
 }
 
@@ -259,20 +259,19 @@ onBeforeUnmount(() => {
   width: min(74vw, 920px);
   height: 120px;
   transform: translateX(-50%);
-  border-radius: 999px;
-  background: radial-gradient(circle, rgb(59 130 246 / 18%), transparent 70%);
-  filter: blur(32px);
-  opacity: 0.68;
+  background: transparent;
+  filter: none;
+  opacity: 0;
   pointer-events: none;
 }
 
 .showcase-card {
   position: absolute;
   top: 30px;
-  border-radius: 28px;
+  border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgb(18 24 37 / 96%), rgb(11 15 24 / 98%));
-  border: 1px solid rgb(108 139 211 / 18%);
+  background: linear-gradient(180deg, rgb(32 31 28 / 96%), rgb(17 16 15 / 98%));
+  border: 1px solid rgb(241 240 232 / 12%);
   transition:
     transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 520ms ease,
@@ -290,8 +289,7 @@ onBeforeUnmount(() => {
   opacity: 1;
   box-shadow:
     0 36px 72px rgb(0 0 0 / 36%),
-    0 0 0 1px rgb(91 154 255 / 14%),
-    0 0 28px rgb(59 130 246 / 12%);
+    0 0 0 1px rgb(239 236 224 / 8%);
 }
 
 .showcase-card--center::before {
@@ -300,7 +298,7 @@ onBeforeUnmount(() => {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(180deg, rgb(126 203 255 / 40%), rgb(89 123 255 / 12%));
+  background: linear-gradient(180deg, rgb(239 236 224 / 22%), rgb(114 74 55 / 16%));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -354,9 +352,9 @@ onBeforeUnmount(() => {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgb(8 11 18 / 6%),
-    rgb(8 11 18 / 0%) 35%,
-    rgb(8 11 18 / 76%) 100%
+    rgb(17 16 15 / 8%),
+    rgb(17 16 15 / 0%) 35%,
+    rgb(17 16 15 / 78%) 100%
   );
 }
 
@@ -365,7 +363,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: auto 0 0;
   height: 34%;
-  background: linear-gradient(180deg, rgb(8 11 18 / 0%), rgb(8 11 18 / 82%));
+  background: linear-gradient(180deg, rgb(17 16 15 / 0%), rgb(17 16 15 / 84%));
 }
 
 .showcase-card__tag {
@@ -378,11 +376,11 @@ onBeforeUnmount(() => {
   gap: 8px;
   padding: 9px 14px;
   border-radius: 999px;
-  background: rgb(18 24 37 / 84%);
-  color: #f6fbff;
+  background: rgb(24 23 21 / 86%);
+  color: var(--color-text);
   font-size: 12px;
   font-weight: 600;
-  border: 1px solid rgb(255 255 255 / 8%);
+  border: 1px solid rgb(241 240 232 / 10%);
   backdrop-filter: blur(10px);
 }
 
@@ -390,8 +388,8 @@ onBeforeUnmount(() => {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #7bc7ff, #6a74ff);
-  box-shadow: 0 0 10px rgb(123 199 255 / 40%);
+  background: linear-gradient(180deg, var(--color-accent), #9b7c6b);
+  box-shadow: 0 0 10px rgb(239 236 224 / 18%);
 }
 
 .showcase-card__content {
@@ -414,26 +412,26 @@ onBeforeUnmount(() => {
 .showcase-card__kicker,
 .showcase-card__index,
 .showcase-card__preview-kicker {
-  color: #79a8ff;
+  color: var(--color-accent-muted);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .showcase-card__content--full h3 {
   margin: 0;
   max-width: 18ch;
-  color: #f4f8ff;
+  color: var(--color-text);
   font-size: clamp(34px, 3vw, 46px);
   line-height: 1.08;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .showcase-card__description {
   margin: 16px 0 0;
   max-width: 46ch;
-  color: rgb(226 234 245 / 78%);
+  color: var(--color-text-muted);
   font-size: 16px;
   line-height: 1.75;
 }
@@ -446,7 +444,7 @@ onBeforeUnmount(() => {
   padding: 0;
   border: 0;
   background: transparent;
-  color: #f2f7ff;
+  color: var(--color-text);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -459,8 +457,8 @@ onBeforeUnmount(() => {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 12%);
-  background: rgb(255 255 255 / 3%);
+  border: 1px solid rgb(241 240 232 / 14%);
+  background: rgb(241 240 232 / 4%);
 }
 
 .showcase-card__content--preview {
@@ -474,11 +472,11 @@ onBeforeUnmount(() => {
 .showcase-card__content--preview h3 {
   margin: 0;
   max-width: 12ch;
-  color: rgb(245 249 255 / 82%);
+  color: rgb(241 240 232 / 82%);
   font-size: 18px;
   line-height: 1.3;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .showcase-carousel__dots {
@@ -493,7 +491,7 @@ onBeforeUnmount(() => {
   height: 8px;
   border: 0;
   border-radius: 999px;
-  background: rgb(255 255 255 / 18%);
+  background: rgb(241 240 232 / 18%);
   cursor: pointer;
   transition:
     width 220ms ease,
@@ -508,8 +506,8 @@ onBeforeUnmount(() => {
 
 .carousel-dot.is-active {
   width: 28px;
-  background: linear-gradient(90deg, #7bc7ff, #6990ff);
-  box-shadow: 0 0 16px rgb(123 199 255 / 30%);
+  background: var(--color-accent);
+  box-shadow: 0 0 16px rgb(239 236 224 / 14%);
 }
 
 @media (max-width: 1100px) {
