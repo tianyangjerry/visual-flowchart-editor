@@ -270,7 +270,7 @@ onBeforeUnmount(() => {
   top: 30px;
   border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgb(32 31 28 / 96%), rgb(17 16 15 / 98%));
+  background: linear-gradient(180deg, rgb(36 25 23 / 96%), rgb(20 12 11 / 98%));
   border: 1px solid rgb(241 240 232 / 12%);
   transition:
     transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -298,7 +298,7 @@ onBeforeUnmount(() => {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(180deg, rgb(239 236 224 / 22%), rgb(114 74 55 / 16%));
+  background: linear-gradient(180deg, rgb(241 231 220 / 22%), rgb(146 58 46 / 18%));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -352,9 +352,9 @@ onBeforeUnmount(() => {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgb(17 16 15 / 8%),
-    rgb(17 16 15 / 0%) 35%,
-    rgb(17 16 15 / 78%) 100%
+    rgb(20 12 11 / 8%),
+    rgb(20 12 11 / 0%) 35%,
+    rgb(20 12 11 / 78%) 100%
   );
 }
 
@@ -363,7 +363,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: auto 0 0;
   height: 34%;
-  background: linear-gradient(180deg, rgb(17 16 15 / 0%), rgb(17 16 15 / 84%));
+  background: linear-gradient(180deg, rgb(20 12 11 / 0%), rgb(20 12 11 / 84%));
 }
 
 .showcase-card__tag {
@@ -388,7 +388,7 @@ onBeforeUnmount(() => {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--color-accent), #9b7c6b);
+  background: linear-gradient(180deg, var(--color-accent), #b17465);
   box-shadow: 0 0 10px rgb(239 236 224 / 18%);
 }
 

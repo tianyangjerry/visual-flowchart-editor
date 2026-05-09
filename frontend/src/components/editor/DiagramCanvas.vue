@@ -344,27 +344,27 @@ function handleCanvasClick() {
   width: 100%;
   height: 100%;
   display: block;
-  border: 1px solid rgb(255 255 255 / 18%);
-  border-radius: 14px;
+  border: 1px solid rgb(241 240 232 / 16%);
+  border-radius: 8px;
   box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 6%),
+    inset 0 0 0 1px rgb(241 240 232 / 5%),
     0 8px 28px rgb(0 0 0 / 30%);
   background:
-    linear-gradient(180deg, rgb(40 43 52 / 96%), rgb(34 37 46 / 98%)),
-    radial-gradient(circle, var(--color-canvas-grid) 1px, transparent 1.8px),
-    radial-gradient(circle, var(--color-canvas-grid-strong) 1.2px, transparent 2.1px);
+    radial-gradient(circle, rgb(241 240 232 / 20%) 1px, transparent 1.7px),
+    radial-gradient(circle, rgb(241 240 232 / 28%) 1.25px, transparent 2.2px),
+    linear-gradient(180deg, rgb(39 26 24 / 96%), rgb(24 14 13 / 98%));
   background-size:
-    100% 100%,
     18px 18px,
-    96px 96px;
+    96px 96px,
+    100% 100%;
   background-position:
     0 0,
-    0 0,
-    9px 9px;
+    9px 9px,
+    0 0;
 }
 
 .diagram-canvas__snap-guide {
-  stroke: rgb(255 255 255 / 72%);
+  stroke: rgb(239 236 224 / 72%);
   stroke-width: 1.5;
   stroke-dasharray: 8 6;
   pointer-events: none;

@@ -134,7 +134,7 @@ defineOptions({
   name: 'FlowNode',
 })
 
-const RADIUS_NODE = 14
+const RADIUS_NODE = 10
 
 const props = defineProps({
   node: {
@@ -163,34 +163,34 @@ const emit = defineEmits(['node-clicked', 'node-drag-start', 'node-hover'])
 
 const NODE_THEME_MAP = {
   process: {
-    border: '#58a6ff',
-    glow: '#58a6ff',
-    headerStart: 'rgb(88 166 255 / 34%)',
+    border: '#c8bdab',
+    glow: '#efece0',
+    headerStart: 'rgb(239 236 224 / 16%)',
   },
   task: {
-    border: '#58a6ff',
-    glow: '#58a6ff',
-    headerStart: 'rgb(88 166 255 / 34%)',
+    border: '#c8bdab',
+    glow: '#efece0',
+    headerStart: 'rgb(239 236 224 / 16%)',
   },
   startEnd: {
-    border: '#73ffd1',
-    glow: '#73ffd1',
-    headerStart: 'rgb(115 255 209 / 35%)',
+    border: '#9fb39a',
+    glow: '#b8c8b3',
+    headerStart: 'rgb(159 179 154 / 18%)',
   },
   terminal: {
-    border: '#73ffd1',
-    glow: '#73ffd1',
-    headerStart: 'rgb(115 255 209 / 35%)',
+    border: '#9fb39a',
+    glow: '#b8c8b3',
+    headerStart: 'rgb(159 179 154 / 18%)',
   },
   data: {
-    border: '#b38cff',
-    glow: '#b38cff',
-    headerStart: 'rgb(179 140 255 / 34%)',
+    border: '#b9aa90',
+    glow: '#d8cfbd',
+    headerStart: 'rgb(185 170 144 / 18%)',
   },
   decision: {
-    border: '#facc15',
-    glow: '#facc15',
-    headerStart: 'rgb(250 204 21 / 30%)',
+    border: '#c36855',
+    glow: '#da8a73',
+    headerStart: 'rgb(195 104 85 / 18%)',
   },
 }
 
@@ -292,20 +292,20 @@ function handlePointerLeave() {
 }
 
 .flow-node__badge {
-  fill: rgb(15 23 42 / 78%);
-  stroke: rgb(255 255 255 / 16%);
+  fill: rgb(20 12 11 / 78%);
+  stroke: rgb(241 240 232 / 16%);
   stroke-width: 1;
 }
 
 .flow-node__badge--status {
-  fill: rgb(16 185 129 / 18%);
+  fill: rgb(159 179 154 / 18%);
 }
 
 .flow-node__badge-text {
-  fill: rgb(245 247 252 / 96%);
+  fill: rgb(241 240 232 / 96%);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0;
   user-select: none;
   pointer-events: none;
 }
@@ -354,9 +354,9 @@ function handlePointerLeave() {
 }
 
 .is-connect-valid .flow-node__body {
-  stroke: #4ade80;
+  stroke: #9fb39a;
   stroke-width: 2.8;
-  filter: drop-shadow(0 0 10px rgb(74 222 128 / 45%));
+  filter: drop-shadow(0 0 10px rgb(159 179 154 / 42%));
 }
 
 .is-connect-invalid .flow-node__body {

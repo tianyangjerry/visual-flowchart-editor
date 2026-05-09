@@ -666,4 +666,114 @@ function cancelConfirmAction() {
   color: #94a3b8;
   font-size: 13px;
 }
+
+.property-panel {
+  color: var(--color-text);
+}
+
+.property-panel__about,
+.property-panel__section {
+  border-color: rgb(241 240 232 / 12%);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgb(36 25 23 / 92%), rgb(20 12 11 / 96%));
+}
+
+.property-panel__about-subtitle,
+.property-panel__connections-title,
+.property-panel__empty {
+  color: var(--color-text-muted);
+}
+
+.property-panel__about-pill {
+  color: var(--color-accent);
+  background: rgb(239 236 224 / 8%);
+  border-color: rgb(239 236 224 / 16%);
+}
+
+.property-panel__guide-step {
+  border-color: rgb(241 240 232 / 12%);
+  border-radius: 8px;
+  background: rgb(20 12 11 / 70%);
+}
+
+.property-panel__guide-icon.is-auto,
+.property-panel__guide-icon.is-manual-api,
+.property-panel__guide-icon.is-decision {
+  color: #151410;
+}
+
+.property-panel__guide-icon.is-auto {
+  background: linear-gradient(135deg, #9fb39a, #b8c8b3);
+}
+
+.property-panel__guide-icon.is-manual-api {
+  background: linear-gradient(135deg, #c8bdab, #efece0);
+}
+
+.property-panel__guide-icon.is-decision {
+  background: linear-gradient(135deg, #c36855, #da8a73);
+}
+
+.property-panel__guide-tag {
+  color: var(--color-text);
+  background: rgb(168 163 154 / 12%);
+  border-color: rgb(168 163 154 / 18%);
+}
+
+.property-panel__guide-tag.is-auto,
+.property-panel__locked-note.is-auto,
+.property-panel__mode-badge.is-auto {
+  color: #c7d9c1;
+  background: rgb(159 179 154 / 12%);
+  border-color: rgb(159 179 154 / 20%);
+}
+
+.property-panel__guide-tag.is-manual-api {
+  background: rgb(239 236 224 / 9%);
+  border-color: rgb(239 236 224 / 16%);
+}
+
+.property-panel__guide-tag.is-decision {
+  background: rgb(195 104 85 / 12%);
+  border-color: rgb(195 104 85 / 22%);
+}
+
+.property-panel__guide-arrow {
+  color: var(--color-accent-muted);
+}
+
+.property-panel__guide-notes {
+  color: var(--color-text-muted);
+}
+
+.property-panel__field input,
+.property-panel__field select,
+.property-panel__field textarea,
+.property-panel__stepper {
+  border-color: rgb(241 240 232 / 14%);
+  background: rgb(20 12 11 / 86%);
+  color: var(--color-text);
+}
+
+.property-panel__stepper-btn {
+  background: rgb(241 240 232 / 6%);
+  color: var(--color-text);
+}
+
+.property-panel__stepper-btn:hover {
+  background: rgb(241 240 232 / 10%);
+}
+
+.property-panel__connections {
+  border-top-color: rgb(241 240 232 / 10%);
+}
+
+.property-panel__connection-item {
+  border-color: rgb(241 240 232 / 12%);
+  background: rgb(241 240 232 / 4%);
+}
+
+.property-panel__connection-name {
+  color: var(--color-text);
+}
 </style>

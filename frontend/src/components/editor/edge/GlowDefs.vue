@@ -7,19 +7,19 @@
     </linearGradient>
 
     <linearGradient id="node-outline-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgb(138 186 255 / 90%)" />
-      <stop offset="100%" stop-color="rgb(100 246 255 / 78%)" />
+      <stop offset="0%" stop-color="rgb(239 236 224 / 90%)" />
+      <stop offset="100%" stop-color="rgb(195 104 85 / 78%)" />
     </linearGradient>
 
     <linearGradient id="node-fill-gradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgb(255 255 255 / 16%)" />
-      <stop offset="52%" stop-color="rgb(255 255 255 / 4%)" />
+      <stop offset="0%" stop-color="rgb(241 240 232 / 14%)" />
+      <stop offset="52%" stop-color="rgb(241 240 232 / 4%)" />
       <stop offset="100%" stop-color="rgb(0 0 0 / 30%)" />
     </linearGradient>
 
     <linearGradient id="node-header-gradient" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="rgb(107 244 255 / 22%)" />
-      <stop offset="100%" stop-color="rgb(179 140 255 / 20%)" />
+      <stop offset="0%" stop-color="rgb(239 236 224 / 18%)" />
+      <stop offset="100%" stop-color="rgb(195 104 85 / 16%)" />
     </linearGradient>
 
     <marker
@@ -53,7 +53,7 @@
       <feColorMatrix
         in="blur"
         type="matrix"
-        values="0 0 0 0 0.42  0 0 0 0 0.86  0 0 0 0 1  0 0 0 0.78 0"
+        values="0 0 0 0 0.88  0 0 0 0 0.75  0 0 0 0 0.56  0 0 0 0.58 0"
         result="colorBlur"
       />
       <feMerge>
@@ -67,7 +67,7 @@
       <feColorMatrix
         in="blur"
         type="matrix"
-        values="0 0 0 0 0.35  0 0 0 0 0.67  0 0 0 0 1  0 0 0 0.66 0"
+        values="0 0 0 0 0.88  0 0 0 0 0.75  0 0 0 0 0.56  0 0 0 0.52 0"
         result="colorBlur"
       />
       <feMerge>

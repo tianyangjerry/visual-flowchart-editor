@@ -199,7 +199,7 @@ function addNode(type) {
 .sidebar__collapse-btn {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--color-border);
   background: var(--color-panel-muted);
   color: var(--color-text);
@@ -244,12 +244,12 @@ function addNode(type) {
 }
 
 .sidebar__btn:hover {
-  background: #243247;
+  background: rgb(241 240 232 / 8%);
 }
 
 .sidebar__btn.is-active {
-  border-color: var(--neon-blue);
-  box-shadow: 0 0 0 1px rgb(96 165 250 / 40%);
+  border-color: var(--color-accent-muted);
+  box-shadow: 0 0 0 1px rgb(239 236 224 / 18%);
 }
 
 .sidebar__btn--full {
@@ -268,7 +268,7 @@ function addNode(type) {
 .sidebar__icon-btn {
   width: 40px;
   height: 40px;
-  border-radius: 11px;
+  border-radius: 8px;
   border: 1px solid var(--color-border);
   background: var(--color-panel-muted);
   color: var(--color-text);
@@ -278,7 +278,7 @@ function addNode(type) {
 }
 
 .sidebar__icon-btn:hover {
-  background: #243247;
+  background: rgb(241 240 232 / 8%);
 }
 
 .sidebar__divider {

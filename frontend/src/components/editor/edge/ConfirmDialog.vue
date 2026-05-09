@@ -83,12 +83,12 @@ function handleConfirm() {
 .confirm-dialog__title {
   font-size: 15px;
   font-weight: 700;
-  color: #e2e8f0;
+  color: var(--color-text);
 }
 
 .confirm-dialog__message {
   margin: 0;
-  color: #c7d2e5;
+  color: var(--color-text-muted);
   font-size: 13px;
   line-height: 1.5;
 }

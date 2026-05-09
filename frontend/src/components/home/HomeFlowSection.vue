@@ -210,8 +210,8 @@ const bottomFlowCards = [
   padding: 22px;
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgb(36 34 31 / 92%), rgb(22 20 18 / 94%)),
-    linear-gradient(135deg, rgb(114 74 55 / 10%), transparent 52%);
+    linear-gradient(180deg, rgb(42 27 25 / 92%), rgb(24 14 13 / 94%)),
+    linear-gradient(135deg, rgb(146 58 46 / 12%), transparent 52%);
 }
 
 .flow-row--top .flow-card:nth-child(odd) {
@@ -231,7 +231,7 @@ const bottomFlowCards = [
   padding: 22px;
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgb(26 25 23 / 92%), rgb(17 16 15 / 96%)),
+    linear-gradient(180deg, rgb(32 20 18 / 92%), rgb(20 12 11 / 96%)),
     linear-gradient(315deg, rgb(159 179 154 / 8%), transparent 44%);
 }
 

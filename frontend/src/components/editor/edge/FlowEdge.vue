@@ -175,16 +175,16 @@ function handleClick() {
 }
 
 .flow-edge__label-bg {
-  fill: rgb(15 23 42 / 88%);
-  stroke: rgb(255 255 255 / 18%);
+  fill: rgb(20 12 11 / 88%);
+  stroke: rgb(241 240 232 / 18%);
   stroke-width: 1;
 }
 
 .flow-edge__label-text {
-  fill: #fde68a;
+  fill: var(--color-accent);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 
 @keyframes edge-flow {

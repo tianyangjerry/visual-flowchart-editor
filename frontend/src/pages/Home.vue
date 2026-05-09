@@ -72,8 +72,8 @@ defineOptions({
   min-height: 100vh;
   padding: 32px clamp(16px, 4vw, 56px) 72px;
   background:
-    linear-gradient(122deg, #111110 0%, #141312 52%, #2b1814 100%),
-    linear-gradient(180deg, #12110f 0%, #0f0f0e 100%);
+    linear-gradient(122deg, #140f0e 0%, #1a1110 52%, #3a1712 100%),
+    linear-gradient(180deg, #15100f 0%, #100c0b 100%);
   color: var(--color-text);
 }
 

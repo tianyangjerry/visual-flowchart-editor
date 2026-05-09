@@ -208,9 +208,9 @@ async function importDiagram(event) {
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
-  background: linear-gradient(180deg, #2a2d3a, #252838);
-  border-bottom: 1px solid rgb(255 255 255 / 7%);
-  color: #e9edf7;
+  background: linear-gradient(180deg, #241917, #17100f);
+  border-bottom: 1px solid rgb(241 240 232 / 10%);
+  color: var(--color-text);
 }
 .toolbar__left,
 .toolbar__right {
@@ -226,19 +226,19 @@ async function importDiagram(event) {
   min-width: 252px;
   height: 38px;
   border-radius: 8px;
-  background: rgb(255 255 255 / 3%);
+  background: rgb(241 240 232 / 4%);
   color: inherit;
   text-decoration: none;
 }
 .toolbar__brand:hover {
-  background: rgb(255 255 255 / 8%);
+  background: rgb(241 240 232 / 8%);
 }
 .toolbar__brand-icon {
-  color: #3fd18f;
+  color: var(--color-accent);
 }
 .toolbar__brand-text {
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 .toolbar__actions-group {
   display: flex;
@@ -246,13 +246,13 @@ async function importDiagram(event) {
   gap: 2px;
   padding: 2px;
   border-radius: 8px;
-  background: rgb(255 255 255 / 4%);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 5%);
+  background: rgb(241 240 232 / 4%);
+  box-shadow: inset 0 0 0 1px rgb(241 240 232 / 6%);
 }
 .toolbar__item {
   border: 0;
   background: transparent;
-  color: #dfe6f7;
+  color: var(--color-text);
   padding: 0 14px;
   height: 34px;
   border-radius: 6px;
@@ -263,12 +263,12 @@ async function importDiagram(event) {
   font-size: 14px;
 }
 .toolbar__item:hover {
-  background: rgb(255 255 255 / 8%);
+  background: rgb(241 240 232 / 8%);
 }
 .toolbar__about {
   border: 0;
-  background: rgb(255 255 255 / 4%);
-  color: #dfe6f7;
+  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
   height: 34px;
   border-radius: 8px;
   padding: 0 14px;
@@ -279,7 +279,7 @@ async function importDiagram(event) {
   text-decoration: none;
 }
 .toolbar__about:hover {
-  background: rgb(255 255 255 / 9%);
+  background: rgb(241 240 232 / 8%);
 }
 .toolbar__hidden-input {
   display: none;
@@ -288,13 +288,13 @@ async function importDiagram(event) {
 .toolbar__status {
   padding: 8px 14px;
   font-size: 12px;
-  border-top: 1px solid rgb(255 255 255 / 7%);
+  border-top: 1px solid rgb(241 240 232 / 8%);
   background: rgba(0, 0, 0, 0.18);
-  color: #dfe6f7;
+  color: var(--color-text);
 }
 
 .toolbar__status--success {
-  color: #76f2b6;
+  color: #9fb39a;
 }
 
 .toolbar__status--error {
@@ -302,6 +302,6 @@ async function importDiagram(event) {
 }
 
 .toolbar__status--info {
-  color: #9ec7ff;
+  color: var(--color-accent-muted);
 }
 </style>

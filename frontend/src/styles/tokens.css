@@ -12,34 +12,34 @@ body,
 }
 
 :root {
-  --color-bg: #111110;
-  --color-bg-elevated: #1a1917;
+  --color-bg: #140f0e;
+  --color-bg-elevated: #211615;
 
-  --color-panel: #20201d;
-  --color-panel-muted: #2b2925;
-  --color-border: #3c3833;
+  --color-panel: #241917;
+  --color-panel-muted: #30211e;
+  --color-border: #4a322d;
   --color-text: #f1f0e8;
-  --color-text-muted: #a8a39a;
-  --color-accent: #efece0;
-  --color-accent-muted: #c8bdab;
-  --color-warm: #4a241d;
-  --color-warm-muted: #2a1915;
+  --color-text-muted: #ada09a;
+  --color-accent: #f1e7dc;
+  --color-accent-muted: #d2b5aa;
+  --color-warm: #5a211b;
+  --color-warm-muted: #351512;
 
-  --color-canvas-surface: #151514;
+  --color-canvas-surface: #1a1312;
   --color-canvas-grid: rgb(241 240 232 / 10%);
   --color-canvas-grid-strong: rgb(241 240 232 / 16%);
 
-  --color-node-fill: #24231f;
-  --color-node-stroke: #c7b9a1;
+  --color-node-fill: #2a1d1a;
+  --color-node-stroke: #d0b3a6;
   --color-node-label: #f5f2e8;
-  --color-node-subtitle: #b5afa4;
+  --color-node-subtitle: #baaaa2;
 
-  --color-edge: #b9aa90;
+  --color-edge: #c0a292;
   --color-edge-selected: #f5f2e8;
 
-  --neon-cyan: #d8cfbd;
-  --neon-blue: #c8bdab;
-  --neon-purple: #9b7c6b;
+  --neon-cyan: #dbc8bd;
+  --neon-blue: #d2b5aa;
+  --neon-purple: #b17465;
   --neon-green: #9fb39a;
 
   --glow-strength: 0.12;

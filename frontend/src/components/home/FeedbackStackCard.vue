@@ -131,7 +131,7 @@ function submitForm() {
   overflow: visible;
   border: 1px solid rgb(241 240 232 / 12%);
   background:
-    linear-gradient(118deg, rgb(32 31 28 / 98%), rgb(17 16 15 / 99%) 62%, rgb(43 24 20 / 98%));
+    linear-gradient(118deg, rgb(36 25 23 / 98%), rgb(20 12 11 / 99%) 62%, rgb(58 23 18 / 98%));
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgb(241 240 232 / 3%);
@@ -288,7 +288,7 @@ function submitForm() {
   border: 0;
   padding: 0;
   border-radius: 8px 0 0 8px;
-  background: linear-gradient(90deg, rgb(17 16 15 / 2%), rgb(74 36 29 / 12%) 58%, rgb(74 36 29 / 18%));
+  background: linear-gradient(90deg, rgb(20 12 11 / 2%), rgb(90 33 27 / 12%) 58%, rgb(90 33 27 / 18%));
   opacity: 0;
   transition: opacity 180ms ease;
   pointer-events: auto;
@@ -305,7 +305,7 @@ function submitForm() {
   padding: 26px 24px 24px;
   border-left: 1px solid rgb(239 236 224 / 12%);
   border-radius: 8px 0 0 8px;
-  background: linear-gradient(180deg, rgb(30 29 26 / 98%), rgb(17 16 15 / 100%));
+  background: linear-gradient(180deg, rgb(38 25 23 / 98%), rgb(20 12 11 / 100%));
   box-shadow:
     -34px 0 70px rgba(0, 0, 0, 0.36),
     -1px 0 0 rgba(255, 255, 255, 0.03);

@@ -152,7 +152,7 @@ const renderableEdges = computed(() =>
   border: 1px solid rgb(241 240 232 / 10%);
   background:
     radial-gradient(circle, rgb(241 240 232 / 10%) 1px, transparent 1.5px),
-    linear-gradient(180deg, rgb(22 21 19 / 94%), rgb(17 16 15 / 96%));
+    linear-gradient(180deg, rgb(24 14 13 / 94%), rgb(20 12 11 / 96%));
   background-size:
     18px 18px,
     100% 100%;
