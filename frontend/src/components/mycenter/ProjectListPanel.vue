@@ -20,13 +20,16 @@
     </div>
 
     <div v-if="projects.length" class="project-list">
-      <RouterLink
+      <article
         v-for="project in projects"
         :key="project.id"
         class="project-card project-card--link"
         :class="{ active: project.id === selectedProjectId }"
-        :to="{ path: '/editor', query: { flowchartId: project.id } }"
+        role="button"
+        tabindex="0"
         @click="$emit('selectProject', project.id)"
+        @keydown.enter.prevent="$emit('selectProject', project.id)"
+        @keydown.space.prevent="$emit('selectProject', project.id)"
       >
         <button
           class="delete-btn"
@@ -48,7 +51,7 @@
           <span>Progress {{ project.progress }}%</span>
           <span>{{ project.updatedAt }}</span>
         </div>
-      </RouterLink>
+      </article>
     </div>
 
     <div v-else class="empty-state">

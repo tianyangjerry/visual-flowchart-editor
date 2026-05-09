@@ -1,6 +1,6 @@
 <template>
   <div class="snapshot-shell">
-    <svg class="snapshot-svg" viewBox="0 0 1600 900">
+    <svg class="snapshot-svg" :viewBox="viewBox">
       <GlowDefs />
 
       <FlowEdge
@@ -58,6 +58,38 @@ const linkedNodeIds = computed(() => {
   )
 })
 
+const getNodeLayout = (node, index) => ({
+  x: node.layout?.x ?? node.x ?? 120 + index * 280,
+  y: node.layout?.y ?? node.y ?? 120 + index * 50,
+  width: node.layout?.width ?? node.width ?? 220,
+  height: node.layout?.height ?? node.height ?? 120,
+})
+
+const viewBox = computed(() => {
+  const nodes = props.project?.diagram?.nodes ?? []
+  if (nodes.length === 0) return '0 0 1600 900'
+
+  const padding = 220
+  const bounds = nodes.reduce(
+    (result, node, index) => {
+      const layout = getNodeLayout(node, index)
+      return {
+        minX: Math.min(result.minX, layout.x),
+        minY: Math.min(result.minY, layout.y),
+        maxX: Math.max(result.maxX, layout.x + layout.width),
+        maxY: Math.max(result.maxY, layout.y + layout.height),
+      }
+    },
+    { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity },
+  )
+
+  const minX = bounds.minX - padding
+  const minY = bounds.minY - padding
+  const width = Math.max(bounds.maxX - bounds.minX + padding * 2, 900)
+  const height = Math.max(bounds.maxY - bounds.minY + padding * 2, 520)
+  return `${minX} ${minY} ${width} ${height}`
+})
+
 const renderableNodes = computed(() =>
   (props.project?.diagram?.nodes ?? []).map((node, index) => {
     const step = props.project?.steps?.[index]
@@ -74,12 +106,7 @@ const renderableNodes = computed(() =>
 
     return {
       ...node,
-      layout: {
-        x: node.layout?.x ?? node.x ?? 120 + index * 280,
-        y: node.layout?.y ?? node.y ?? 120 + index * 50,
-        width: node.layout?.width ?? node.width ?? 220,
-        height: node.layout?.height ?? node.height ?? 120,
-      },
+      layout: getNodeLayout(node, index),
       title: node.title ?? step?.label ?? `Node ${index + 1}`,
       subtitle: isActive
         ? 'Current target step'
@@ -130,5 +157,6 @@ const renderableEdges = computed(() =>
   width: 100%;
   height: 520px;
   display: block;
+  overflow: visible;
 }
 </style>

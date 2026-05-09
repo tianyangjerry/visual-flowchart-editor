@@ -23,6 +23,29 @@
         @copy-api-url="copyApiUrl"
       />
     </section>
+
+    <Teleport to="body">
+      <div v-if="projectPendingDelete" class="delete-modal-backdrop" @click.self="cancelDeleteProject">
+        <section class="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+          <div class="delete-modal__icon">!</div>
+          <div class="delete-modal__content">
+            <p class="eyebrow eyebrow--danger">Delete project</p>
+            <h2 id="delete-modal-title">Remove this working flow?</h2>
+            <p>
+              You are about to delete <strong>{{ projectPendingDelete.name }}</strong>. This action cannot be undone.
+            </p>
+          </div>
+          <div class="delete-modal__actions">
+            <button class="delete-modal__btn delete-modal__btn--ghost" type="button" @click="cancelDeleteProject">
+              Cancel
+            </button>
+            <button class="delete-modal__btn delete-modal__btn--danger" type="button" @click="confirmDeleteProject">
+              Delete flow
+            </button>
+          </div>
+        </section>
+      </div>
+    </Teleport>
   </main>
 </template>
 
@@ -40,6 +63,7 @@ import { getActiveNodeIds, orderWorkflowNodes } from '../tools/workflowOrder'
 const progressStore = useProjectProgressStore()
 const { projects } = storeToRefs(progressStore)
 const selectedProjectId = ref(null)
+const projectPendingDelete = ref(null)
 
 const selectedProject = computed(
   () =>
@@ -148,13 +172,22 @@ const activeStep = computed(
 )
 
 function handleDeleteProject(project) {
-  const ok = window.confirm(`Delete "${project.name}"? This cannot be undone.`)
-  if (!ok) return
+  projectPendingDelete.value = project
+}
 
-  const deleted = progressStore.deleteProject(project.id)
+function cancelDeleteProject() {
+  projectPendingDelete.value = null
+}
+
+async function confirmDeleteProject() {
+  const project = projectPendingDelete.value
+  if (!project) return
+
+  const deleted = await progressStore.deleteProject(project.id)
   if (deleted && selectedProjectId.value === project.id) {
     selectedProjectId.value = projects.value[0]?.id ?? null
   }
+  projectPendingDelete.value = null
 }
 
 watch(

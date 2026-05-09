@@ -74,13 +74,13 @@ function buildWorkflowGraph(definition: Record<string, unknown>) {
 
 function getInitialNodeIds(definition: Record<string, unknown>) {
   const graph = buildWorkflowGraph(definition)
-  const startNodes = graph.nodes.filter(isStartNode).sort(compareNodesByPosition)
-  if (startNodes.length > 0) return startNodes.map(getNodeId).filter(Boolean)
+  const startNode = graph.nodes.filter(isStartNode).sort(compareNodesByPosition)[0]
+  if (startNode) return [getNodeId(startNode)].filter(Boolean)
 
-  const rootNodes = graph.nodes
+  const rootNode = graph.nodes
     .filter((node) => (graph.incomingMap.get(getNodeId(node)) ?? []).length === 0)
-    .sort(compareNodesByPosition)
-  if (rootNodes.length > 0) return rootNodes.map(getNodeId).filter(Boolean)
+    .sort(compareNodesByPosition)[0]
+  if (rootNode) return [getNodeId(rootNode)].filter(Boolean)
 
   const firstNodeId = graph.nodes[0] ? getNodeId(graph.nodes[0]) : ''
   return firstNodeId ? [firstNodeId] : []

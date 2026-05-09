@@ -16,13 +16,6 @@
             <p class="api-card__label">Module name</p>
             <strong>{{ module.label }}</strong>
           </div>
-          <button
-            class="api-copy-btn"
-            type="button"
-            @click="$emit('copyApiUrl', module.triggerUrl)"
-          >
-            {{ copiedApiUrl === module.triggerUrl ? 'Copied' : 'Copy' }}
-          </button>
         </div>
         <div class="api-card__row">
           <span class="api-card__label">Module code</span>
@@ -35,7 +28,16 @@
           </span>
         </div>
         <div class="api-card__row api-card__row--stacked">
-          <span class="api-card__label">Trigger URL</span>
+          <div class="api-card__url-head">
+            <span class="api-card__label">Trigger URL</span>
+            <button
+              class="api-copy-btn api-copy-btn--inline"
+              type="button"
+              @click="$emit('copyApiUrl', module.triggerUrl)"
+            >
+              {{ copiedApiUrl === module.triggerUrl ? 'Copied' : 'Copy' }}
+            </button>
+          </div>
           <code class="api-card__url">{{ module.triggerUrl }}</code>
           <div class="api-card__example">
             <span>Example API</span>
