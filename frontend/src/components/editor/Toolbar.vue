@@ -88,8 +88,6 @@ import { useProjectProgressStore } from '../../stores/projectProgress.js'
 defineOptions({
   name: 'EditorToolbar',
 })
-
-const STORAGE_KEY = 'visual-flowchart-editor-diagram'
 const diagramStore = useDiagramStore()
 const progressStore = useProjectProgressStore()
 const message = useMessage()
@@ -293,15 +291,4 @@ async function importDiagram(event) {
   color: var(--color-text);
 }
 
-.toolbar__status--success {
-  color: var(--color-action);
-}
-
-.toolbar__status--error {
-  color: #8a5a4c;
-}
-
-.toolbar__status--info {
-  color: var(--color-text-muted);
-}
 </style>

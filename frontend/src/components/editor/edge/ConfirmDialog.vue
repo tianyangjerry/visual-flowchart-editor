@@ -32,8 +32,7 @@ import { NButton, NModal, NSpace } from 'naive-ui'
 defineOptions({
   name: 'ConfirmDialog',
 })
-
-const props = defineProps({
+defineProps( {
   show: {
     type: Boolean,
     default: false,
@@ -58,8 +57,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
-
+} )
 const emit = defineEmits(['update:show', 'confirm', 'cancel'])
 
 function handleShowChange(nextValue) {

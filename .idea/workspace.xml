@@ -4,31 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.7: update project theme">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/CompletedShow.vue" afterDir="false" />
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/myCenter.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/myCenter.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/tokens.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/tokens.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/tools/diagramDefaults.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tools/diagramDefaults.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/tools/workflowOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tools/workflowOrder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="82" />
+    <option name="cachedIndexableFilesCount" value="84" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -156,7 +135,8 @@
       <workItem from="1778307454331" duration="7997000" />
       <workItem from="1778322984459" duration="486000" />
       <workItem from="1778323491169" duration="213000" />
-      <workItem from="1778479932721" duration="2295000" />
+      <workItem from="1778479932721" duration="2977000" />
+      <workItem from="1778483190593" duration="375000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -254,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778310745834</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="version 4.0: final version">
+      <option name="closed" value="true" />
+      <created>1778482434755</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778482434755</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +274,7 @@
     <MESSAGE value="version 3.5: update project and api module components and fix bugs" />
     <MESSAGE value="version 3.6: update project theme" />
     <MESSAGE value="version 3.7: update project theme" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.7: update project theme" />
+    <MESSAGE value="version 4.0: final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 4.0: final version" />
   </component>
 </project>
