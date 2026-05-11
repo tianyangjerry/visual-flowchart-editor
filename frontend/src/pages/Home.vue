@@ -71,9 +71,7 @@ defineOptions({
 .home-page {
   min-height: 100vh;
   padding: 32px clamp(16px, 4vw, 56px) 72px;
-  background:
-    linear-gradient(122deg, #140f0e 0%, #1a1110 52%, #3a1712 100%),
-    linear-gradient(180deg, #15100f 0%, #100c0b 100%);
+  background: var(--color-bg);
   color: var(--color-text);
 }
 
@@ -101,9 +99,9 @@ defineOptions({
 .feedback-form input,
 .feedback-form textarea {
   width: 100%;
-  border: 1px solid rgb(241 240 232 / 12%);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: rgb(241 240 232 / 4%);
+  background: var(--color-panel);
   color: var(--color-text);
   padding: 14px 16px;
   font: inherit;
@@ -113,8 +111,8 @@ defineOptions({
 
 .feedback-form input:focus,
 .feedback-form textarea:focus {
-  border-color: rgb(239 236 224 / 30%);
-  box-shadow: 0 0 0 3px rgb(239 236 224 / 8%);
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 3px rgb(95 111 82 / 12%);
 }
 
 @media (max-width: 640px) {

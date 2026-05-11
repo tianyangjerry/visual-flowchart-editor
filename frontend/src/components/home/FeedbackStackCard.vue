@@ -129,23 +129,17 @@ function submitForm() {
   min-height: 320px;
   border-radius: 8px;
   overflow: visible;
-  border: 1px solid rgb(241 240 232 / 12%);
-  background:
-    linear-gradient(118deg, rgb(36 25 23 / 98%), rgb(20 12 11 / 99%) 62%, rgb(58 23 18 / 98%));
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgb(241 240 232 / 3%);
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
+  box-shadow: 0 12px 32px rgb(30 30 30 / 6%);
   transition:
     border-color 240ms ease,
     box-shadow 240ms ease;
 }
 
 .feedback-panel.is-expanded {
-  border-color: rgb(239 236 224 / 18%);
-  box-shadow:
-    0 28px 72px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgb(239 236 224 / 5%),
-    inset 0 1px 0 rgb(241 240 232 / 3%);
+  border-color: var(--color-soft-accent);
+  box-shadow: 0 14px 36px rgb(30 30 30 / 8%);
 }
 
 .feedback-panel__content,
@@ -164,7 +158,7 @@ function submitForm() {
 .feedback-panel__eyebrow,
 .form-eyebrow {
   margin: 0 0 12px;
-  color: var(--color-accent-muted);
+  color: var(--color-action);
   font-size: 13px;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -173,8 +167,8 @@ function submitForm() {
 .feedback-panel h2 {
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(38px, 5vw, 60px);
-  line-height: 1.04;
+  font-size: clamp(34px, 4.4vw, 54px);
+  line-height: 1.08;
   letter-spacing: 0;
   max-width: 12ch;
 }
@@ -200,16 +194,16 @@ function submitForm() {
   height: 34px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid rgb(241 240 232 / 10%);
-  background: rgb(241 240 232 / 4%);
-  color: rgb(241 240 232 / 82%);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-muted);
   font-size: 13px;
   font-weight: 600;
 }
 
 .feedback-panel__side {
-  border-left: 1px solid rgb(241 240 232 / 8%);
-  background: linear-gradient(180deg, rgb(241 240 232 / 2%), rgb(241 240 232 / 1%));
+  border-left: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
   transition:
     background 240ms ease,
     border-color 240ms ease;
@@ -218,8 +212,8 @@ function submitForm() {
 }
 
 .feedback-panel__side.is-expanded {
-  border-left-color: rgb(239 236 224 / 12%);
-  background: linear-gradient(180deg, rgb(241 240 232 / 3%), rgb(241 240 232 / 1%));
+  border-left-color: var(--color-soft-accent);
+  background: var(--color-bg-elevated);
 }
 
 .feedback-panel__cta {
@@ -246,7 +240,7 @@ function submitForm() {
 
 .feedback-panel__hint {
   margin: 16px 0 0;
-  color: rgb(168 163 154 / 72%);
+  color: var(--color-text-muted);
   font-size: 13px;
   line-height: 1.6;
   max-width: 220px;
@@ -288,7 +282,7 @@ function submitForm() {
   border: 0;
   padding: 0;
   border-radius: 8px 0 0 8px;
-  background: linear-gradient(90deg, rgb(20 12 11 / 2%), rgb(90 33 27 / 12%) 58%, rgb(90 33 27 / 18%));
+  background: rgb(247 244 237 / 52%);
   opacity: 0;
   transition: opacity 180ms ease;
   pointer-events: auto;
@@ -303,12 +297,10 @@ function submitForm() {
   height: 100%;
   margin-left: auto;
   padding: 26px 24px 24px;
-  border-left: 1px solid rgb(239 236 224 / 12%);
+  border-left: 1px solid var(--color-border);
   border-radius: 8px 0 0 8px;
-  background: linear-gradient(180deg, rgb(38 25 23 / 98%), rgb(20 12 11 / 100%));
-  box-shadow:
-    -34px 0 70px rgba(0, 0, 0, 0.36),
-    -1px 0 0 rgba(255, 255, 255, 0.03);
+  background: var(--color-panel);
+  box-shadow: -24px 0 46px rgb(30 30 30 / 9%);
   overflow: hidden;
 }
 
@@ -341,7 +333,7 @@ function submitForm() {
 }
 
 .form-field span {
-  color: rgb(241 240 232 / 84%);
+  color: var(--color-text);
   font-size: 14px;
   font-weight: 600;
 }
@@ -349,9 +341,9 @@ function submitForm() {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  border: 1px solid rgb(241 240 232 / 14%);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: rgb(241 240 232 / 4%);
+  background: var(--color-panel);
   color: var(--color-text);
   padding: 14px 16px;
   font: inherit;
@@ -364,14 +356,14 @@ function submitForm() {
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: rgb(168 163 154 / 56%);
+  color: rgb(107 107 107 / 58%);
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
-  border-color: rgb(239 236 224 / 34%);
-  box-shadow: 0 0 0 4px rgb(239 236 224 / 8%);
-  background: rgb(241 240 232 / 6%);
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 4px rgb(95 111 82 / 12%);
+  background: #fffefb;
 }
 
 .form-field textarea {
@@ -387,7 +379,7 @@ function submitForm() {
 
 .success-text {
   margin: 2px 0 0;
-  color: #9fb39a;
+  color: var(--color-action);
   font-size: 14px;
 }
 
@@ -414,18 +406,16 @@ function submitForm() {
   height: 56px;
   padding: 0 22px;
   border-radius: 999px;
-  background: var(--color-accent);
-  color: #151410;
+  background: var(--color-action);
+  color: var(--color-panel);
   font-size: 16px;
   font-weight: 700;
-  box-shadow:
-    0 14px 32px rgb(0 0 0 / 26%);
+  box-shadow: none;
 }
 
 .primary-btn:hover {
   transform: translateY(-1px);
-  box-shadow:
-    0 18px 36px rgb(0 0 0 / 30%);
+  background: var(--color-action-hover);
 }
 
 .secondary-btn {
@@ -433,27 +423,27 @@ function submitForm() {
   height: 48px;
   padding: 0 18px;
   border-radius: 8px;
-  background: rgb(241 240 232 / 4%);
-  color: rgb(241 240 232 / 92%);
-  border: 1px solid rgb(241 240 232 / 10%);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
 .secondary-btn:hover {
   transform: translateY(-1px);
-  background: rgb(241 240 232 / 7%);
+  background: #ede7dd;
 }
 
 .ghost-btn {
   padding: 10px 14px;
   border-radius: 8px;
   background: transparent;
-  color: rgb(241 240 232 / 68%);
-  border: 1px solid rgb(241 240 232 / 8%);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
 }
 
 .ghost-btn:hover {
-  color: rgb(241 240 232 / 94%);
-  background: rgb(241 240 232 / 4%);
+  color: var(--color-text);
+  background: var(--color-bg-elevated);
 }
 
 /* 背景光 */
@@ -506,7 +496,7 @@ function submitForm() {
 
   .feedback-panel__side {
     border-left: 0;
-    border-top: 1px solid rgb(241 240 232 / 8%);
+    border-top: 1px solid var(--color-border);
   }
 
   .feedback-panel__cta {
@@ -532,7 +522,7 @@ function submitForm() {
   .feedback-panel__overlay-surface {
     margin-left: 0;
     border-left: 0;
-    border-top: 1px solid rgb(239 236 224 / 12%);
+    border-top: 1px solid var(--color-border);
     border-radius: 8px 8px 0 0;
     height: auto;
     min-height: 260px;

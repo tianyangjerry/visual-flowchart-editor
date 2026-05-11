@@ -344,15 +344,13 @@ function handleCanvasClick() {
   width: 100%;
   height: 100%;
   display: block;
-  border: 1px solid rgb(241 240 232 / 16%);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 0 0 1px rgb(241 240 232 / 5%),
-    0 8px 28px rgb(0 0 0 / 30%);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgb(255 253 248 / 60%);
   background:
-    radial-gradient(circle, rgb(241 240 232 / 20%) 1px, transparent 1.7px),
-    radial-gradient(circle, rgb(241 240 232 / 28%) 1.25px, transparent 2.2px),
-    linear-gradient(180deg, rgb(39 26 24 / 96%), rgb(24 14 13 / 98%));
+    radial-gradient(circle, var(--color-canvas-grid) 1px, transparent 1.7px),
+    radial-gradient(circle, var(--color-canvas-grid-strong) 1.25px, transparent 2.2px),
+    var(--color-canvas-surface);
   background-size:
     18px 18px,
     96px 96px,
@@ -364,7 +362,7 @@ function handleCanvasClick() {
 }
 
 .diagram-canvas__snap-guide {
-  stroke: rgb(239 236 224 / 72%);
+  stroke: rgb(95 111 82 / 42%);
   stroke-width: 1.5;
   stroke-dasharray: 8 6;
   pointer-events: none;
@@ -379,13 +377,13 @@ function handleCanvasClick() {
   padding: 10px 12px;
   font-size: 12px;
   line-height: 1.45;
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
   border: 1px solid;
 }
 
 .diagram-canvas__connect-hint.is-invalid {
-  color: #fecdd3;
-  border-color: rgb(251 113 133 / 50%);
-  background: rgb(63 19 30 / 68%);
+  color: var(--color-text);
+  border-color: var(--color-soft-accent);
+  background: var(--color-panel);
 }
 </style>

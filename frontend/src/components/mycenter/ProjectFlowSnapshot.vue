@@ -97,10 +97,10 @@ const renderableNodes = computed(() =>
     const isActive = node.id === activeNodeId.value
     const locked = step?.locked ?? index > 0
     const palette = {
-      done: { fill: 'rgb(159 179 154 / 24%)', stroke: '#9fb39a' },
-      doing: { fill: 'rgb(239 236 224 / 18%)', stroke: '#efece0' },
-      pending: { fill: 'rgb(168 163 154 / 8%)', stroke: '#6f685e' },
-      blocked: { fill: 'rgb(255 116 116 / 18%)', stroke: '#ff9d9d' },
+      done: { fill: 'rgb(95 111 82 / 14%)', stroke: '#5F6F52' },
+      doing: { fill: 'rgb(95 111 82 / 12%)', stroke: '#5F6F52' },
+      pending: { fill: 'rgb(242 238 230 / 72%)', stroke: '#D6C7A1' },
+      blocked: { fill: 'rgb(214 199 161 / 18%)', stroke: '#D6C7A1' },
     }
     const theme = palette[status] ?? palette.pending
 
@@ -115,8 +115,8 @@ const renderableNodes = computed(() =>
           : step?.description ?? node.subtitle ?? '',
       style: {
         ...(node.style ?? {}),
-        fill: locked && status === 'pending' && !isActive ? 'rgb(241 240 232 / 4%)' : theme.fill,
-        stroke: isActive ? '#efece0' : theme.stroke,
+        fill: locked && status === 'pending' && !isActive ? '#FFFDF8' : theme.fill,
+        stroke: isActive ? '#5F6F52' : theme.stroke,
       },
       ui: {
         ...(node.ui ?? {}),
@@ -136,7 +136,7 @@ const renderableEdges = computed(() =>
       ...edge,
       style: {
         ...(edge.style ?? {}),
-        color: isUnlocked ? 'rgb(239 236 224)' : 'rgb(111 104 94)',
+        color: isUnlocked ? '#5F6F52' : '#9A9184',
         animated: isUnlocked,
       },
     }
@@ -149,10 +149,10 @@ const renderableEdges = computed(() =>
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgb(241 240 232 / 10%);
+  border: 1px solid var(--color-border);
   background:
-    radial-gradient(circle, rgb(241 240 232 / 10%) 1px, transparent 1.5px),
-    linear-gradient(180deg, rgb(24 14 13 / 94%), rgb(20 12 11 / 96%));
+    radial-gradient(circle, var(--color-canvas-grid) 1px, transparent 1.5px),
+    var(--color-canvas-surface);
   background-size:
     18px 18px,
     100% 100%;

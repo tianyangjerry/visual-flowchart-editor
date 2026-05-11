@@ -201,7 +201,7 @@ function addNode(type) {
   height: 36px;
   border-radius: 8px;
   border: 1px solid var(--color-border);
-  background: var(--color-panel-muted);
+  background: var(--color-panel);
   color: var(--color-text);
   cursor: pointer;
   display: grid;
@@ -233,7 +233,7 @@ function addNode(type) {
 
 .sidebar__btn {
   border: 1px solid var(--color-border);
-  background: var(--color-panel-muted);
+  background: var(--color-panel);
   color: var(--color-text);
   border-radius: 8px;
   padding: 8px 10px;
@@ -244,12 +244,15 @@ function addNode(type) {
 }
 
 .sidebar__btn:hover {
-  background: rgb(241 240 232 / 8%);
+  border-color: var(--color-soft-accent);
+  background: var(--color-bg-elevated);
 }
 
 .sidebar__btn.is-active {
-  border-color: var(--color-accent-muted);
-  box-shadow: 0 0 0 1px rgb(239 236 224 / 18%);
+  border-color: var(--color-action);
+  background: var(--color-action-soft);
+  color: var(--color-action);
+  box-shadow: none;
 }
 
 .sidebar__btn--full {
@@ -270,15 +273,17 @@ function addNode(type) {
   height: 40px;
   border-radius: 8px;
   border: 1px solid var(--color-border);
-  background: var(--color-panel-muted);
-  color: var(--color-text);
+  background: var(--color-panel);
+  color: var(--color-text-muted);
   cursor: pointer;
   display: grid;
   place-items: center;
 }
 
 .sidebar__icon-btn:hover {
-  background: rgb(241 240 232 / 8%);
+  border-color: var(--color-soft-accent);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
 }
 
 .sidebar__divider {

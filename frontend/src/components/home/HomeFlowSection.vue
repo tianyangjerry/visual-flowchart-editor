@@ -147,7 +147,7 @@ const bottomFlowCards = [
 
 .section-eyebrow {
   margin: 0;
-  color: var(--color-accent-muted);
+  color: var(--color-action);
   letter-spacing: 0;
   font-size: 15px;
   text-transform: uppercase;
@@ -208,10 +208,8 @@ const bottomFlowCards = [
 .flow-row--top .flow-card {
   width: clamp(280px, 36vw, 420px);
   padding: 22px;
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgb(42 27 25 / 92%), rgb(24 14 13 / 94%)),
-    linear-gradient(135deg, rgb(146 58 46 / 12%), transparent 52%);
+  border-radius: 10px;
+  background: var(--color-panel);
 }
 
 .flow-row--top .flow-card:nth-child(odd) {
@@ -229,10 +227,8 @@ const bottomFlowCards = [
 .flow-row--bottom .flow-card {
   width: clamp(300px, 38vw, 460px);
   padding: 22px;
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgb(32 20 18 / 92%), rgb(20 12 11 / 96%)),
-    linear-gradient(315deg, rgb(159 179 154 / 8%), transparent 44%);
+  border-radius: 10px;
+  background: var(--color-panel);
 }
 
 .flow-row--bottom .flow-card:nth-child(odd) {
@@ -245,8 +241,8 @@ const bottomFlowCards = [
 
 .flow-card {
   flex: 0 0 auto;
-  border: 1px solid rgb(241 240 232 / 10%);
-  box-shadow: inset 0 1px 0 rgb(241 240 232 / 3%);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgb(30 30 30 / 4%);
   transition:
     transform 220ms ease,
     box-shadow 220ms ease,
@@ -258,13 +254,14 @@ const bottomFlowCards = [
 }
 
 .flow-card:hover {
-  border-color: rgb(239 236 224 / 18%);
-  box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
+  border-color: var(--color-soft-accent);
+  box-shadow: 0 10px 28px rgb(30 30 30 / 7%);
 }
 
 .flow-card h3 {
   margin: 14px 0 8px;
   font-size: 20px;
+  color: var(--color-text);
 }
 
 .flow-card p {
@@ -276,12 +273,13 @@ const bottomFlowCards = [
 .flow-card--quote .quote-mark {
   margin-bottom: 14px;
   font-size: 34px;
+  color: var(--color-soft-accent);
 }
 
 .flow-card--quote span {
   display: inline-block;
   margin-top: 12px;
-  color: var(--color-accent-muted);
+  color: var(--color-action);
   font-size: 13px;
 }
 

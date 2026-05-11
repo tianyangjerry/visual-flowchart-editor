@@ -16,7 +16,7 @@
       :stroke-width="isSelected ? edgeWidth + 1.5 : edgeWidth"
       :marker-start="markerStart"
       :marker-end="markerEnd"
-      :filter="isSelected ? 'url(#edge-glow)' : null"
+      :filter="null"
     />
 
     <path
@@ -25,7 +25,7 @@
       :d="pathValue"
       fill="none"
       stroke="url(#edge-gradient)"
-      :stroke-width="Math.max(1, (edge.style?.width ?? 7) - 0.4)"
+      :stroke-width="Math.max(1, edgeWidth - 0.4)"
       stroke-linecap="round"
     />
 
@@ -66,7 +66,7 @@ const props = defineProps({
 
 const emit = defineEmits(['edge-clicked'])
 
-const edgeWidth = computed(() => Number(props.edge.style?.width ?? 7))
+const edgeWidth = computed(() => Number(props.edge.style?.width ?? 2.4))
 const edgeColor = computed(() => props.edge.style?.color ?? 'var(--color-edge)')
 const edgeDirection = computed(() => props.edge.style?.direction ?? 'forward')
 const labelText = computed(() => props.edge.label || 'next')
@@ -139,7 +139,7 @@ function handleClick() {
 }
 
 .flow-edge__halo {
-  opacity: 0.16;
+  opacity: 0.08;
   pointer-events: none;
 }
 
@@ -147,13 +147,13 @@ function handleClick() {
   transition:
     stroke-width 0.14s ease,
     opacity 0.14s ease;
-  opacity: 0.95;
+  opacity: 0.82;
 }
 
 .flow-edge__flow {
-  opacity: 0.9;
-  stroke-dasharray: 1 14;
-  animation: edge-flow 1.9s linear infinite;
+  opacity: 0.34;
+  stroke-dasharray: 2 18;
+  animation: edge-flow 2.6s linear infinite;
   pointer-events: none;
 }
 
@@ -162,12 +162,11 @@ function handleClick() {
 }
 
 .is-selected .flow-edge__halo {
-  opacity: 0.32;
-  animation: edge-breathing 1.6s ease-in-out infinite;
+  opacity: 0.16;
 }
 
 .is-selected .flow-edge__line {
-  animation: edge-breathing 1.6s ease-in-out infinite;
+  opacity: 1;
 }
 
 .flow-edge__label {
@@ -175,13 +174,13 @@ function handleClick() {
 }
 
 .flow-edge__label-bg {
-  fill: rgb(20 12 11 / 88%);
-  stroke: rgb(241 240 232 / 18%);
+  fill: var(--color-panel);
+  stroke: var(--color-border);
   stroke-width: 1;
 }
 
 .flow-edge__label-text {
-  fill: var(--color-accent);
+  fill: var(--color-text-muted);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0;
@@ -196,13 +195,4 @@ function handleClick() {
   }
 }
 
-@keyframes edge-breathing {
-  0%,
-  100% {
-    opacity: 0.78;
-  }
-  50% {
-    opacity: 1;
-  }
-}
 </style>

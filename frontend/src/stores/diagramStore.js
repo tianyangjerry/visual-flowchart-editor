@@ -11,6 +11,16 @@ import { getConnectivityIssues, getEdgeValidationError } from '@/tools/diagramVa
 
 const HISTORY_LIMIT = 100
 
+function normalizeNodeForExport(node) {
+  const normalizedNode = clonePlain(node)
+  if (normalizedNode.type === 'start' || normalizedNode.type === 'end') {
+    normalizedNode.terminalKind = normalizedNode.type
+  } else {
+    delete normalizedNode.terminalKind
+  }
+  return normalizedNode
+}
+
 export const useDiagramStore = defineStore('diagram', {
   state: () => ({
     schemaVersion: 2,
@@ -123,7 +133,10 @@ export const useDiagramStore = defineStore('diagram', {
     exportDiagram() {
       return {
         schemaVersion: this.schemaVersion,
-        ...cloneDiagramData(this),
+        ...cloneDiagramData({
+          ...this,
+          nodes: this.nodes.map(normalizeNodeForExport),
+        }),
       }
     },
 

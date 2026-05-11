@@ -11,19 +11,18 @@
           <FolderKanban :size="18" />
           <span>Saved flows</span>
         </a>
-        <a class="sidebar-nav__item" href="#settings">
-          <Settings :size="18" />
-          <span>Settings</span>
-        </a>
+        <RouterLink class="sidebar-nav__item" to="/completed">
+          <CheckCircle2 :size="18" />
+          <span>Completed</span>
+        </RouterLink>
       </nav>
 
-      <div class="sidebar-user">
-        <span class="sidebar-user__avatar">U</span>
+      <div class="sidebar-weather">
+        <MapPin :size="20" />
         <div>
-          <strong>Username</strong>
-          <span>user@example.com</span>
+          <strong>Nanjing</strong>
+          <span>Weather location</span>
         </div>
-        <ChevronDown :size="16" />
       </div>
     </aside>
 
@@ -82,7 +81,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { Boxes, ChevronDown, FolderKanban, Settings } from 'lucide-vue-next'
+import { Boxes, CheckCircle2, FolderKanban, MapPin } from 'lucide-vue-next'
 
 import MyCenterHero from '../components/mycenter/MyCenterHero.vue'
 import ProjectDetailPanel from '../components/mycenter/ProjectDetailPanel.vue'

@@ -109,7 +109,7 @@
           <span>Width</span>
           <div class="property-panel__stepper">
             <button class="property-panel__stepper-btn" type="button" @click="stepEdgeWidth(-1)">−</button>
-            <input :value="selectedEdge?.style?.width ?? 7" class="property-panel__number-input" type="number" min="1" max="16" @input="updateEdgeStyleField('width', Number($event.target.value))" />
+            <input :value="selectedEdge?.style?.width ?? 2.4" class="property-panel__number-input" type="number" min="1" max="16" step="0.2" @input="updateEdgeStyleField('width', Number($event.target.value))" />
             <button class="property-panel__stepper-btn" type="button" @click="stepEdgeWidth(1)">+</button>
           </div>
         </label>
@@ -395,9 +395,9 @@ function cancelConfirmAction() {
 }
 
 .property-panel__about-pill {
-  color: #bae6fd;
-  background: rgb(56 189 248 / 16%);
-  border: 1px solid rgb(56 189 248 / 30%);
+  color: #cde2d2;
+  background: var(--color-action-soft);
+  border: 1px solid rgb(77 107 87 / 30%);
 }
 
 .property-panel__guide-line {
@@ -432,15 +432,15 @@ function cancelConfirmAction() {
 }
 
 .property-panel__guide-icon.is-auto {
-  background: linear-gradient(135deg, #22c55e, #14b8a6);
+  background: linear-gradient(135deg, var(--color-action), var(--color-action-hover));
 }
 
 .property-panel__guide-icon.is-manual-api {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #c9c2b6, #eee9df);
 }
 
 .property-panel__guide-icon.is-decision {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
+  background: linear-gradient(135deg, #b8b8b8, #eeeeee);
 }
 
 .property-panel__guide-label {
@@ -457,18 +457,18 @@ function cancelConfirmAction() {
 }
 
 .property-panel__guide-tag.is-auto {
-  background: rgb(34 197 94 / 14%);
-  border-color: rgb(34 197 94 / 28%);
+  background: var(--color-action-soft);
+  border-color: rgb(77 107 87 / 28%);
 }
 
 .property-panel__guide-tag.is-manual-api {
-  background: rgb(59 130 246 / 14%);
-  border-color: rgb(59 130 246 / 28%);
+  background: rgb(238 238 238 / 10%);
+  border-color: rgb(238 238 238 / 18%);
 }
 
 .property-panel__guide-tag.is-decision {
-  background: rgb(245 158 11 / 14%);
-  border-color: rgb(245 158 11 / 28%);
+  background: rgb(238 238 238 / 10%);
+  border-color: rgb(238 238 238 / 18%);
 }
 
 .property-panel__guide-arrow {
@@ -538,9 +538,9 @@ function cancelConfirmAction() {
 }
 
 .property-panel__locked-note.is-auto {
-  background: rgb(34 197 94 / 10%);
-  border: 1px solid rgb(34 197 94 / 26%);
-  color: #bbf7d0;
+  background: var(--color-action-soft);
+  border: 1px solid rgb(77 107 87 / 28%);
+  color: #cde2d2;
 }
 
 .property-panel__mode-badge {
@@ -549,9 +549,9 @@ function cancelConfirmAction() {
 }
 
 .property-panel__mode-badge.is-auto {
-  background: rgb(34 197 94 / 14%);
-  border: 1px solid rgb(34 197 94 / 30%);
-  color: #bbf7d0;
+  background: var(--color-action-soft);
+  border: 1px solid rgb(77 107 87 / 30%);
+  color: #cde2d2;
 }
 
 .property-panel__stepper {
@@ -675,7 +675,7 @@ function cancelConfirmAction() {
 .property-panel__section {
   border-color: rgb(241 240 232 / 12%);
   border-radius: 8px;
-  background: linear-gradient(180deg, rgb(36 25 23 / 92%), rgb(20 12 11 / 96%));
+  background: linear-gradient(180deg, rgb(32 27 24 / 92%), rgb(17 16 15 / 96%));
 }
 
 .property-panel__about-subtitle,
@@ -693,7 +693,7 @@ function cancelConfirmAction() {
 .property-panel__guide-step {
   border-color: rgb(241 240 232 / 12%);
   border-radius: 8px;
-  background: rgb(20 12 11 / 70%);
+  background: rgb(17 16 15 / 70%);
 }
 
 .property-panel__guide-icon.is-auto,
@@ -703,15 +703,15 @@ function cancelConfirmAction() {
 }
 
 .property-panel__guide-icon.is-auto {
-  background: linear-gradient(135deg, #9fb39a, #b8c8b3);
+  background: linear-gradient(135deg, #d8d8d8, #ffffff);
 }
 
 .property-panel__guide-icon.is-manual-api {
-  background: linear-gradient(135deg, #c8bdab, #efece0);
+  background: linear-gradient(135deg, #cfcfcf, #eeeeee);
 }
 
 .property-panel__guide-icon.is-decision {
-  background: linear-gradient(135deg, #c36855, #da8a73);
+  background: linear-gradient(135deg, #b8b8b8, #eeeeee);
 }
 
 .property-panel__guide-tag {
@@ -723,9 +723,9 @@ function cancelConfirmAction() {
 .property-panel__guide-tag.is-auto,
 .property-panel__locked-note.is-auto,
 .property-panel__mode-badge.is-auto {
-  color: #c7d9c1;
-  background: rgb(159 179 154 / 12%);
-  border-color: rgb(159 179 154 / 20%);
+  color: #cde2d2;
+  background: var(--color-action-soft);
+  border-color: rgb(77 107 87 / 28%);
 }
 
 .property-panel__guide-tag.is-manual-api {
@@ -734,8 +734,8 @@ function cancelConfirmAction() {
 }
 
 .property-panel__guide-tag.is-decision {
-  background: rgb(195 104 85 / 12%);
-  border-color: rgb(195 104 85 / 22%);
+  background: rgb(238 238 238 / 10%);
+  border-color: rgb(238 238 238 / 18%);
 }
 
 .property-panel__guide-arrow {
@@ -751,7 +751,7 @@ function cancelConfirmAction() {
 .property-panel__field textarea,
 .property-panel__stepper {
   border-color: rgb(241 240 232 / 14%);
-  background: rgb(20 12 11 / 86%);
+  background: rgb(17 16 15 / 86%);
   color: var(--color-text);
 }
 
@@ -775,5 +775,130 @@ function cancelConfirmAction() {
 
 .property-panel__connection-name {
   color: var(--color-text);
+}
+
+/* Final cream/olive property panel treatment */
+.property-panel {
+  color: var(--color-text);
+}
+
+.property-panel__about,
+.property-panel__section {
+  border-color: var(--color-border);
+  border-radius: 10px;
+  background: var(--color-panel);
+}
+
+.property-panel__about-subtitle,
+.property-panel__connections-title,
+.property-panel__empty,
+.property-panel__guide-notes {
+  color: var(--color-text-muted);
+}
+
+.property-panel__about-pill {
+  color: var(--color-action);
+  background: var(--color-action-soft);
+  border-color: rgb(95 111 82 / 24%);
+}
+
+.property-panel__guide-step {
+  border-color: var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg-elevated);
+}
+
+.property-panel__guide-icon {
+  color: var(--color-panel);
+}
+
+.property-panel__guide-icon.is-auto {
+  background: var(--color-action);
+}
+
+.property-panel__guide-icon.is-manual-api {
+  background: #9a9184;
+}
+
+.property-panel__guide-icon.is-decision {
+  background: var(--color-soft-accent);
+  color: var(--color-text);
+}
+
+.property-panel__guide-tag,
+.property-panel__guide-tag.is-manual-api,
+.property-panel__guide-tag.is-decision {
+  color: var(--color-text-muted);
+  background: var(--color-panel);
+  border-color: var(--color-border);
+}
+
+.property-panel__guide-tag.is-auto,
+.property-panel__locked-note.is-auto,
+.property-panel__mode-badge.is-auto {
+  color: var(--color-action);
+  background: var(--color-action-soft);
+  border-color: rgb(95 111 82 / 24%);
+}
+
+.property-panel__guide-arrow {
+  color: var(--color-soft-accent);
+}
+
+.property-panel__field input,
+.property-panel__field select,
+.property-panel__field textarea,
+.property-panel__stepper {
+  border-color: var(--color-border);
+  background: #fffefb;
+  color: var(--color-text);
+}
+
+.property-panel__field input:focus,
+.property-panel__field select:focus,
+.property-panel__field textarea:focus {
+  outline: none;
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 3px rgb(95 111 82 / 12%);
+}
+
+.property-panel__stepper-btn {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+.property-panel__stepper-btn:hover {
+  background: #ede7dd;
+}
+
+.property-panel__connections {
+  border-top-color: var(--color-border);
+}
+
+.property-panel__connection-item {
+  border-color: var(--color-border);
+  background: var(--color-bg-elevated);
+}
+
+.property-panel__danger-btn {
+  border-color: var(--color-border);
+  background: var(--color-panel);
+  color: var(--color-text-muted);
+}
+
+.property-panel__danger-btn:hover {
+  border-color: var(--color-soft-accent);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+.property-panel__danger-btn--block {
+  border-color: rgb(95 111 82 / 28%);
+  background: var(--color-action-soft);
+  color: var(--color-action);
+}
+
+.property-panel__module-actions {
+  border-top-color: var(--color-border);
 }
 </style>

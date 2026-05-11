@@ -16,8 +16,37 @@ function getNodeId(node: Record<string, unknown>) {
   return String(node.id ?? '')
 }
 
+function normalizeText(value: unknown) {
+  return String(value ?? '').trim().toLowerCase()
+}
+
 function isStartNode(node: Record<string, unknown>) {
-  return node.type === 'start' || node.terminalKind === 'start'
+  const style = (node.style as Record<string, unknown> | undefined) ?? {}
+  return (
+    node.type === 'start' ||
+    normalizeText(node.title) === 'start' ||
+    normalizeText(node.label) === 'start' ||
+    normalizeText(node.code) === 'start' ||
+    (node.terminalKind === 'start' && ['start', 'startEnd'].includes(String(style.variant ?? '')))
+  )
+}
+
+function normalizeWorkflowNode(node: Record<string, unknown>) {
+  const normalizedNode = { ...node }
+  if (normalizedNode.type === 'start' || normalizedNode.type === 'end') {
+    normalizedNode.terminalKind = normalizedNode.type
+  } else {
+    delete normalizedNode.terminalKind
+  }
+  return normalizedNode
+}
+
+function normalizeWorkflowDefinition(definition: Record<string, unknown>): Record<string, unknown> {
+  return {
+    ...definition,
+    nodes: asArray<Record<string, unknown>>(definition.nodes).map(normalizeWorkflowNode),
+    edges: asArray<Record<string, unknown>>(definition.edges),
+  }
 }
 
 function getNodePosition(node: Record<string, unknown>, field: 'x' | 'y') {
@@ -175,22 +204,24 @@ export class WorkflowService {
 
   async upsertDefinition(dto: UpsertWorkflowDefinitionDto) {
     const incomingId = dto.id?.trim()
-    const baseDefinition = {
+    const baseDefinition = normalizeWorkflowDefinition({
       id: incomingId ?? undefined,
       name: dto.name?.trim() || 'Untitled Workflow',
       description: dto.description?.trim() || '',
       nodes: dto.nodes ?? [],
       edges: dto.edges ?? [],
       ...(dto.definition ?? {}),
-    }
+    })
+    const definitionName = String(baseDefinition.name ?? 'Untitled Workflow')
+    const definitionDescription = String(baseDefinition.description ?? '')
 
     let saved
 
     if (!incomingId) {
       saved = await this.db.workflowDefinition.create({
         data: {
-          name: baseDefinition.name,
-          description: baseDefinition.description,
+          name: definitionName,
+          description: definitionDescription,
           definition: asJson(baseDefinition),
           triggerMap: asJson({}),
         },
@@ -200,14 +231,14 @@ export class WorkflowService {
         where: { id: incomingId },
         create: {
           id: incomingId,
-          name: baseDefinition.name,
-          description: baseDefinition.description,
+          name: definitionName,
+          description: definitionDescription,
           definition: asJson(baseDefinition),
           triggerMap: asJson({}),
         },
         update: {
-          name: baseDefinition.name,
-          description: baseDefinition.description,
+          name: definitionName,
+          description: definitionDescription,
           definition: asJson(baseDefinition),
         },
       })

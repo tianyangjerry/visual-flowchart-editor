@@ -4,7 +4,7 @@
       <div>
         <h2>Projects</h2>
       </div>
-      <span class="count-chip">{{ projects.length }} projects</span>
+      <span class="count-chip">{{ filteredProjects.length }} projects</span>
     </div>
 
     <div class="project-list-actions">
@@ -16,7 +16,7 @@
 
     <label class="project-search">
       <Search :size="17" />
-      <input type="search" placeholder="Search projects" />
+      <input v-model="searchQuery" type="search" placeholder="Search projects" />
     </label>
 
     <div v-if="isWorkflowComplete" class="completion-banner">
@@ -30,9 +30,9 @@
       </div>
     </div>
 
-    <div v-if="projects.length" class="project-list">
+    <div v-if="filteredProjects.length" class="project-list">
       <article
-        v-for="project in projects"
+        v-for="project in filteredProjects"
         :key="project.id"
         class="project-card project-card--link"
         :class="{ active: project.id === selectedProjectId }"
@@ -66,17 +66,24 @@
     </div>
 
     <div v-else class="empty-state">
-      <h3>No projects yet</h3>
-      <p>Save a flowchart from the editor and it will appear here.</p>
+      <h3>{{ projects.length ? 'No matching projects' : 'No projects yet' }}</h3>
+      <p>
+        {{
+          projects.length
+            ? 'Try another project name, status, or description.'
+            : 'Save a flowchart from the editor and it will appear here.'
+        }}
+      </p>
     </div>
   </article>
 </template>
 
 <script setup>
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Plus, Search, Trash2 } from 'lucide-vue-next'
 
-defineProps({
+const props = defineProps({
   approvedStepCount: {
     type: Number,
     required: true,
@@ -97,6 +104,25 @@ defineProps({
     type: String,
     required: true,
   },
+})
+
+const searchQuery = ref('')
+
+const filteredProjects = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+  if (!query) return props.projects
+
+  return props.projects.filter((project) =>
+    [
+      project.name,
+      project.description,
+      project.status,
+      `${project.progress}%`,
+      project.updatedAt,
+    ]
+      .filter(Boolean)
+      .some((value) => String(value).toLowerCase().includes(query)),
+  )
 })
 
 defineEmits(['deleteProject', 'selectProject'])

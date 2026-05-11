@@ -208,8 +208,8 @@ async function importDiagram(event) {
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
-  background: linear-gradient(180deg, #241917, #17100f);
-  border-bottom: 1px solid rgb(241 240 232 / 10%);
+  background: var(--color-panel);
+  border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
 }
 .toolbar__left,
@@ -226,15 +226,15 @@ async function importDiagram(event) {
   min-width: 252px;
   height: 38px;
   border-radius: 8px;
-  background: rgb(241 240 232 / 4%);
+  background: var(--color-bg-elevated);
   color: inherit;
   text-decoration: none;
 }
 .toolbar__brand:hover {
-  background: rgb(241 240 232 / 8%);
+  background: #ede7dd;
 }
 .toolbar__brand-icon {
-  color: var(--color-accent);
+  color: var(--color-action);
 }
 .toolbar__brand-text {
   font-weight: 600;
@@ -246,8 +246,8 @@ async function importDiagram(event) {
   gap: 2px;
   padding: 2px;
   border-radius: 8px;
-  background: rgb(241 240 232 / 4%);
-  box-shadow: inset 0 0 0 1px rgb(241 240 232 / 6%);
+  background: var(--color-bg-elevated);
+  box-shadow: inset 0 0 0 1px var(--color-border);
 }
 .toolbar__item {
   border: 0;
@@ -263,11 +263,11 @@ async function importDiagram(event) {
   font-size: 14px;
 }
 .toolbar__item:hover {
-  background: rgb(241 240 232 / 8%);
+  background: var(--color-panel);
 }
 .toolbar__about {
-  border: 0;
-  background: rgb(241 240 232 / 4%);
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
   color: var(--color-text);
   height: 34px;
   border-radius: 8px;
@@ -279,7 +279,7 @@ async function importDiagram(event) {
   text-decoration: none;
 }
 .toolbar__about:hover {
-  background: rgb(241 240 232 / 8%);
+  background: var(--color-bg-elevated);
 }
 .toolbar__hidden-input {
   display: none;
@@ -288,20 +288,20 @@ async function importDiagram(event) {
 .toolbar__status {
   padding: 8px 14px;
   font-size: 12px;
-  border-top: 1px solid rgb(241 240 232 / 8%);
-  background: rgba(0, 0, 0, 0.18);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
   color: var(--color-text);
 }
 
 .toolbar__status--success {
-  color: #9fb39a;
+  color: var(--color-action);
 }
 
 .toolbar__status--error {
-  color: #ff8d8d;
+  color: #8a5a4c;
 }
 
 .toolbar__status--info {
-  color: var(--color-accent-muted);
+  color: var(--color-text-muted);
 }
 </style>

@@ -30,6 +30,9 @@ export function createDefaultWorkflowConfig(partialNode = {}) {
 
 export function createDefaultNode(partialNode = {}) {
   const nodeType = partialNode.type ?? 'task'
+  const terminalKind =
+    partialNode.terminalKind ??
+    (nodeType === 'start' || nodeType === 'end' ? nodeType : undefined)
 
   return {
     id: `node_${crypto.randomUUID()}`,
@@ -40,7 +43,7 @@ export function createDefaultNode(partialNode = {}) {
     requiredFields: Array.isArray(partialNode.requiredFields) ? partialNode.requiredFields : [],
     tags: Array.isArray(partialNode.tags) ? partialNode.tags : [],
     status: partialNode.status ?? 'active',
-    terminalKind: partialNode.terminalKind ?? (nodeType === 'end' ? 'end' : 'start'),
+    terminalKind,
     style: {
       variant: partialNode.style?.variant ?? nodeType,
       fill: partialNode.style?.fill ?? '',
@@ -67,8 +70,8 @@ export function createDefaultEdge(sourceNodeId, targetNodeId, partialEdge = {}) 
     label: partialEdge.label ?? 'next',
     kind: partialEdge.kind ?? 'workflow',
     style: {
-      width: partialEdge.style?.width ?? 7,
-      color: partialEdge.style?.color ?? '#88f5ff',
+      width: partialEdge.style?.width ?? 2.4,
+      color: partialEdge.style?.color ?? '#9A9184',
       animated: partialEdge.style?.animated ?? true,
       direction: partialEdge.style?.direction ?? 'forward',
     },

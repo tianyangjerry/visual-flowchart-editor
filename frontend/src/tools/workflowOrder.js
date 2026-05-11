@@ -16,8 +16,30 @@ function compareNodePosition(aNode, bNode) {
   return getNodeId(aNode).localeCompare(getNodeId(bNode))
 }
 
+function normalizeText(value) {
+  return String(value ?? '').trim().toLowerCase()
+}
+
 function isStartNode(node) {
-  return node?.type === 'start' || node?.terminalKind === 'start'
+  return (
+    node?.type === 'start' ||
+    normalizeText(node?.title) === 'start' ||
+    normalizeText(node?.label) === 'start' ||
+    normalizeText(node?.code) === 'start' ||
+    (node?.terminalKind === 'start' &&
+      ['start', 'startEnd'].includes(node?.style?.variant))
+  )
+}
+
+function isEndNode(node) {
+  return (
+    node?.type === 'end' ||
+    normalizeText(node?.title) === 'end' ||
+    normalizeText(node?.label) === 'end' ||
+    normalizeText(node?.code) === 'end' ||
+    (node?.terminalKind === 'end' &&
+      ['end', 'startEnd'].includes(node?.style?.variant))
+  )
 }
 
 function buildGraph(nodes, edges) {
@@ -87,7 +109,17 @@ export function orderWorkflowNodes(definition = {}) {
     .filter((node) => !visited.has(getNodeId(node)))
     .sort(compareNodePosition)
 
-  return [...ordered, ...remaining]
+  return [...ordered, ...remaining].sort((aNode, bNode) => {
+    const aIsStart = isStartNode(aNode)
+    const bIsStart = isStartNode(bNode)
+    if (aIsStart !== bIsStart) return aIsStart ? -1 : 1
+
+    const aIsEnd = isEndNode(aNode)
+    const bIsEnd = isEndNode(bNode)
+    if (aIsEnd !== bIsEnd) return aIsEnd ? 1 : -1
+
+    return 0
+  })
 }
 
 export function getActiveNodeIds(runtime = {}) {

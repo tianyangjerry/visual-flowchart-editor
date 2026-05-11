@@ -23,7 +23,7 @@
         isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'
       "
       :stroke-width="isSelected ? 2.8 : 1.8"
-      :filter="isSelected ? 'url(#node-glow)' : null"
+      :filter="null"
     />
     <rect
       v-else
@@ -37,7 +37,7 @@
         isSelected ? 'var(--node-theme-glow)' : styleData.stroke || 'var(--node-theme-border)'
       "
       :stroke-width="isSelected ? 2.8 : 1.8"
-      :filter="isSelected ? 'url(#node-glow)' : null"
+      :filter="null"
     />
 
     <path
@@ -163,34 +163,34 @@ const emit = defineEmits(['node-clicked', 'node-drag-start', 'node-hover'])
 
 const NODE_THEME_MAP = {
   process: {
-    border: '#c8bdab',
-    glow: '#efece0',
-    headerStart: 'rgb(239 236 224 / 16%)',
+    border: '#D6C7A1',
+    glow: '#5F6F52',
+    headerStart: 'rgb(214 199 161 / 18%)',
   },
   task: {
-    border: '#c8bdab',
-    glow: '#efece0',
-    headerStart: 'rgb(239 236 224 / 16%)',
+    border: '#D6C7A1',
+    glow: '#5F6F52',
+    headerStart: 'rgb(214 199 161 / 18%)',
   },
   startEnd: {
-    border: '#9fb39a',
-    glow: '#b8c8b3',
-    headerStart: 'rgb(159 179 154 / 18%)',
+    border: '#5F6F52',
+    glow: '#5F6F52',
+    headerStart: 'rgb(95 111 82 / 12%)',
   },
   terminal: {
-    border: '#9fb39a',
-    glow: '#b8c8b3',
-    headerStart: 'rgb(159 179 154 / 18%)',
+    border: '#5F6F52',
+    glow: '#5F6F52',
+    headerStart: 'rgb(95 111 82 / 12%)',
   },
   data: {
-    border: '#b9aa90',
-    glow: '#d8cfbd',
-    headerStart: 'rgb(185 170 144 / 18%)',
+    border: '#CFC7BA',
+    glow: '#5F6F52',
+    headerStart: 'rgb(242 238 230 / 72%)',
   },
   decision: {
-    border: '#c36855',
-    glow: '#da8a73',
-    headerStart: 'rgb(195 104 85 / 18%)',
+    border: '#D6C7A1',
+    glow: '#5F6F52',
+    headerStart: 'rgb(214 199 161 / 16%)',
   },
 }
 
@@ -292,17 +292,17 @@ function handlePointerLeave() {
 }
 
 .flow-node__badge {
-  fill: rgb(20 12 11 / 78%);
-  stroke: rgb(241 240 232 / 16%);
+  fill: var(--color-bg-elevated);
+  stroke: var(--color-border);
   stroke-width: 1;
 }
 
 .flow-node__badge--status {
-  fill: rgb(159 179 154 / 18%);
+  fill: var(--color-action-soft);
 }
 
 .flow-node__badge-text {
-  fill: rgb(241 240 232 / 96%);
+  fill: var(--color-text-muted);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0;
@@ -344,34 +344,22 @@ function handlePointerLeave() {
 }
 
 .is-selected .flow-node__body {
-  animation: node-breathing-glow 1.8s ease-in-out infinite;
+  stroke: var(--color-action);
+  stroke-width: 2.6;
 }
 
 .is-linked .flow-node__body {
-  stroke: color-mix(in srgb, var(--node-theme-glow) 62%, white);
-  stroke-width: 2.4;
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--node-theme-glow) 58%, transparent));
+  stroke: var(--color-action);
+  stroke-width: 2.2;
 }
 
 .is-connect-valid .flow-node__body {
-  stroke: #9fb39a;
+  stroke: var(--color-action);
   stroke-width: 2.8;
-  filter: drop-shadow(0 0 10px rgb(159 179 154 / 42%));
 }
 
 .is-connect-invalid .flow-node__body {
-  stroke: #fb7185;
+  stroke: var(--color-soft-accent);
   stroke-width: 2.8;
-  filter: drop-shadow(0 0 10px rgb(251 113 133 / 45%));
-}
-
-@keyframes node-breathing-glow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--node-theme-glow) 52%, transparent));
-  }
-  50% {
-    filter: drop-shadow(0 0 14px color-mix(in srgb, var(--node-theme-glow) 75%, transparent));
-  }
 }
 </style>

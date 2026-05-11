@@ -192,7 +192,7 @@ onBeforeUnmount(() => {
 
 .showcase-carousel__eyebrow {
   margin: 0 0 8px;
-  color: var(--color-accent-muted);
+  color: var(--color-action);
   font-size: 12px;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -226,9 +226,9 @@ onBeforeUnmount(() => {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgb(241 240 232 / 12%);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: rgb(241 240 232 / 4%);
+  background: var(--color-panel);
   color: var(--color-text);
   font-size: 18px;
   cursor: pointer;
@@ -241,9 +241,8 @@ onBeforeUnmount(() => {
 
 .carousel-button:hover {
   transform: translateY(-1px);
-  border-color: rgb(239 236 224 / 24%);
-  background: rgb(241 240 232 / 7%);
-  box-shadow: 0 10px 24px rgb(0 0 0 / 22%);
+  border-color: var(--color-soft-accent);
+  background: var(--color-bg-elevated);
 }
 
 .showcase-carousel__stage {
@@ -270,8 +269,8 @@ onBeforeUnmount(() => {
   top: 30px;
   border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgb(36 25 23 / 96%), rgb(20 12 11 / 98%));
-  border: 1px solid rgb(241 240 232 / 12%);
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
   transition:
     transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 520ms ease,
@@ -287,27 +286,11 @@ onBeforeUnmount(() => {
   transform: translateX(-50%) translateY(0) scale(1);
   z-index: 3;
   opacity: 1;
-  box-shadow:
-    0 36px 72px rgb(0 0 0 / 36%),
-    0 0 0 1px rgb(239 236 224 / 8%);
+  box-shadow: 0 18px 42px rgb(30 30 30 / 8%);
 }
 
 .showcase-card--center::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(180deg, rgb(241 231 220 / 22%), rgb(146 58 46 / 18%));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
+  content: none;
 }
 
 .showcase-card--left,
@@ -315,9 +298,9 @@ onBeforeUnmount(() => {
   top: 106px;
   width: 250px;
   z-index: 1;
-  opacity: 0.5;
-  filter: brightness(0.68);
-  box-shadow: 0 18px 34px rgb(0 0 0 / 18%);
+  opacity: 0.74;
+  filter: saturate(0.88);
+  box-shadow: 0 12px 28px rgb(30 30 30 / 7%);
   cursor: pointer;
 }
 
@@ -352,9 +335,9 @@ onBeforeUnmount(() => {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgb(20 12 11 / 8%),
-    rgb(20 12 11 / 0%) 35%,
-    rgb(20 12 11 / 78%) 100%
+    rgb(255 253 248 / 0%),
+    rgb(255 253 248 / 0%) 45%,
+    rgb(30 30 30 / 34%) 100%
   );
 }
 
@@ -363,7 +346,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: auto 0 0;
   height: 34%;
-  background: linear-gradient(180deg, rgb(20 12 11 / 0%), rgb(20 12 11 / 84%));
+  background: linear-gradient(180deg, rgb(30 30 30 / 0%), rgb(30 30 30 / 24%));
 }
 
 .showcase-card__tag {
@@ -376,20 +359,18 @@ onBeforeUnmount(() => {
   gap: 8px;
   padding: 9px 14px;
   border-radius: 999px;
-  background: rgb(24 23 21 / 86%);
+  background: rgb(255 253 248 / 88%);
   color: var(--color-text);
   font-size: 12px;
   font-weight: 600;
-  border: 1px solid rgb(241 240 232 / 10%);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgb(229 222 211 / 76%);
 }
 
 .showcase-card__tag-dot {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--color-accent), #b17465);
-  box-shadow: 0 0 10px rgb(239 236 224 / 18%);
+  background: var(--color-action);
 }
 
 .showcase-card__content {
@@ -457,8 +438,8 @@ onBeforeUnmount(() => {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  border: 1px solid rgb(241 240 232 / 14%);
-  background: rgb(241 240 232 / 4%);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
 }
 
 .showcase-card__content--preview {
@@ -472,7 +453,7 @@ onBeforeUnmount(() => {
 .showcase-card__content--preview h3 {
   margin: 0;
   max-width: 12ch;
-  color: rgb(241 240 232 / 82%);
+  color: var(--color-text);
   font-size: 18px;
   line-height: 1.3;
   font-weight: 700;
@@ -491,7 +472,7 @@ onBeforeUnmount(() => {
   height: 8px;
   border: 0;
   border-radius: 999px;
-  background: rgb(241 240 232 / 18%);
+  background: var(--color-border);
   cursor: pointer;
   transition:
     width 220ms ease,
@@ -506,8 +487,7 @@ onBeforeUnmount(() => {
 
 .carousel-dot.is-active {
   width: 28px;
-  background: var(--color-accent);
-  box-shadow: 0 0 16px rgb(239 236 224 / 14%);
+  background: var(--color-action);
 }
 
 @media (max-width: 1100px) {

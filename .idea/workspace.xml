@@ -4,23 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.6: update project theme">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 3.7: update project theme">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/CompletedShow.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/workflow/workflow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/DiagramCanvas.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowEdge.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/FlowNode.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/GlowDefs.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectFlowSnapshot.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MyCenterHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/diagramStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/myCenter.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/myCenter.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/tokens.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/tokens.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/tools/diagramDefaults.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tools/diagramDefaults.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/tools/workflowOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tools/workflowOrder.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,42 +74,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-mcp.client.wrong.port.detected": "检测到端口与当前 IDE 不匹配的 MCP 客户端",
-    "Notification.DoNotAsk-mcp.client.wrong.port.detected": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "javascript.preferred.runtime.type.id": "node",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/yang/Desktop/p4/final-project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\yang\\Desktop\\p4\\final-project\\frontend\\node_modules\\prettier",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Users\\yang\\Desktop\\p4\\final-project\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-mcp.client.wrong.port.detected&quot;: &quot;检测到端口与当前 IDE 不匹配的 MCP 客户端&quot;,
+    &quot;Notification.DoNotAsk-mcp.client.wrong.port.detected&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yang/Desktop/p4/final-project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\yang\\Desktop\\p4\\final-project\\frontend\\node_modules\\prettier&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMThirdPartyAiProvidersConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\yang\\Desktop\\p4\\final-project\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\styles" />
@@ -145,7 +153,10 @@
       <workItem from="1778224003430" duration="2056000" />
       <workItem from="1778301851842" duration="246000" />
       <workItem from="1778305336944" duration="1238000" />
-      <workItem from="1778307454331" duration="3069000" />
+      <workItem from="1778307454331" duration="7997000" />
+      <workItem from="1778322984459" duration="486000" />
+      <workItem from="1778323491169" duration="213000" />
+      <workItem from="1778479932721" duration="2295000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -235,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778308420103</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="version 3.7: update project theme">
+      <option name="closed" value="true" />
+      <created>1778310745834</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778310745834</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +285,7 @@
     <MESSAGE value="version 3.4.1: update project structure" />
     <MESSAGE value="version 3.5: update project and api module components and fix bugs" />
     <MESSAGE value="version 3.6: update project theme" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 3.6: update project theme" />
+    <MESSAGE value="version 3.7: update project theme" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3.7: update project theme" />
   </component>
 </project>
