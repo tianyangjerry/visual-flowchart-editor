@@ -65,7 +65,7 @@
               <button class="primary-btn" type="submit">Submit feedback</button>
             </div>
 
-            <p v-if="submitted" class="success-text">Thanks — your suggestion has been captured.</p>
+            <p v-show="submitted" class="success-text">Thanks — your suggestion has been captured.</p>
           </form>
         </div>
       </div>

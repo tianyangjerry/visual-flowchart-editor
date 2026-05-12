@@ -137,7 +137,7 @@ function toggleItem(id) {
 }
 
 .faq-accordion__button::after {
-  content: '+';
+  content: '';
   flex: 0 0 auto;
   width: 28px;
   height: 28px;
@@ -149,10 +149,32 @@ function toggleItem(id) {
   background: var(--color-bg-elevated);
   font-size: 18px;
   line-height: 1;
+  transform: rotate(45deg);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.faq-accordion__button::before {
+  content: '';
+  order: 2;
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-left: -40px;
+  border-right: 2px solid var(--color-action);
+  border-bottom: 2px solid var(--color-action);
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
 }
 
 .faq-accordion__button:not(.collapsed)::after {
-  content: '-';
+  transform: rotate(0deg);
+}
+
+.faq-accordion__button:not(.collapsed)::before {
+  transform: rotate(225deg);
 }
 
 .faq-accordion__button:hover,

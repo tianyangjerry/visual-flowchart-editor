@@ -19,7 +19,7 @@
         </div>
       </button>
 
-      <div v-if="isAboutGuideOpen" id="property-panel-about-body" class="property-panel__about-body">
+      <div v-show="isAboutGuideOpen" id="property-panel-about-body" class="property-panel__about-body">
         <div class="property-panel__guide-line">
           <div class="property-panel__guide-step">
             <div class="property-panel__guide-icon is-auto">S</div>
@@ -620,7 +620,7 @@ function cancelConfirmAction() {
 }
 
 .property-panel__accordion-button::after {
-  content: '+';
+  content: '';
   flex: 0 0 auto;
   width: 22px;
   height: 22px;
@@ -632,10 +632,31 @@ function cancelConfirmAction() {
   background: rgb(148 163 184 / 14%);
   font-size: 15px;
   line-height: 1;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.property-panel__accordion-button::before {
+  content: '';
+  order: 2;
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-left: -31px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
 }
 
 .property-panel__accordion-button:not(.collapsed)::after {
-  content: '-';
+  transform: rotate(0deg);
+}
+
+.property-panel__accordion-button:not(.collapsed)::before {
+  transform: rotate(225deg);
 }
 
 .property-panel__accordion-button:hover,
