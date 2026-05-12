@@ -3,45 +3,84 @@
     <h2 class="property-panel__title">Properties</h2>
 
     <section class="property-panel__about" aria-label="Workflow guide">
-      <div class="property-panel__about-head">
-        <div>
-          <h3 class="property-panel__about-title">About</h3>
-          <p class="property-panel__about-subtitle">Quick workflow rules at a glance.</p>
+      <button
+        class="property-panel__about-toggle"
+        type="button"
+        :aria-expanded="isAboutGuideOpen"
+        aria-controls="property-panel-about-body"
+        @click="isAboutGuideOpen = !isAboutGuideOpen"
+      >
+        <div class="property-panel__about-head">
+          <div>
+            <span class="property-panel__about-title">About</span>
+            <span class="property-panel__about-subtitle">Quick workflow rules at a glance.</span>
+          </div>
+          <span class="property-panel__about-pill">Guide</span>
         </div>
-        <span class="property-panel__about-pill">Guide</span>
-      </div>
+      </button>
 
-      <div class="property-panel__guide-line">
-        <div class="property-panel__guide-step">
-          <div class="property-panel__guide-icon is-auto">S</div>
-          <div class="property-panel__guide-label">Start</div>
-          <div class="property-panel__guide-tag is-auto">auto</div>
+      <div v-if="isAboutGuideOpen" id="property-panel-about-body" class="property-panel__about-body">
+        <div class="property-panel__guide-line">
+          <div class="property-panel__guide-step">
+            <div class="property-panel__guide-icon is-auto">S</div>
+            <div class="property-panel__guide-label">Start</div>
+            <div class="property-panel__guide-tag is-auto">auto</div>
+          </div>
+          <div class="property-panel__guide-arrow">→</div>
+          <div class="property-panel__guide-step">
+            <div class="property-panel__guide-icon is-manual-api">T</div>
+            <div class="property-panel__guide-label">Task / Data</div>
+            <div class="property-panel__guide-tag is-manual-api">manual / api</div>
+          </div>
+          <div class="property-panel__guide-arrow">→</div>
+          <div class="property-panel__guide-step">
+            <div class="property-panel__guide-icon is-decision">D</div>
+            <div class="property-panel__guide-label">Decision</div>
+            <div class="property-panel__guide-tag is-decision">true / false</div>
+          </div>
+          <div class="property-panel__guide-arrow">→</div>
+          <div class="property-panel__guide-step">
+            <div class="property-panel__guide-icon is-auto">E</div>
+            <div class="property-panel__guide-label">End</div>
+            <div class="property-panel__guide-tag is-auto">auto</div>
+          </div>
         </div>
-        <div class="property-panel__guide-arrow">→</div>
-        <div class="property-panel__guide-step">
-          <div class="property-panel__guide-icon is-manual-api">T</div>
-          <div class="property-panel__guide-label">Task / Data</div>
-          <div class="property-panel__guide-tag is-manual-api">manual / api</div>
-        </div>
-        <div class="property-panel__guide-arrow">→</div>
-        <div class="property-panel__guide-step">
-          <div class="property-panel__guide-icon is-decision">D</div>
-          <div class="property-panel__guide-label">Decision</div>
-          <div class="property-panel__guide-tag is-decision">true / false</div>
-        </div>
-        <div class="property-panel__guide-arrow">→</div>
-        <div class="property-panel__guide-step">
-          <div class="property-panel__guide-icon is-auto">E</div>
-          <div class="property-panel__guide-label">End</div>
-          <div class="property-panel__guide-tag is-auto">auto</div>
+
+        <ul class="property-panel__guide-notes">
+          <li>Start can only connect forward, End only receives flow.</li>
+          <li>Normal nodes use manual / api, and can move forward to the next step.</li>
+          <li>Decision nodes split to two outputs, labeled true and false.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="property-panel__help" aria-label="Editor help accordion">
+      <div id="propertyGuideAccordion" class="accordion property-panel__accordion">
+        <div v-for="item in guideItems" :key="item.id" class="accordion-item property-panel__accordion-item">
+          <h3 class="accordion-header property-panel__accordion-title">
+            <button
+              class="accordion-button property-panel__accordion-button"
+              :class="{ collapsed: openGuideItem !== item.id }"
+              type="button"
+              :aria-expanded="openGuideItem === item.id"
+              :aria-controls="`${item.id}-panel`"
+              @click="toggleGuideItem(item.id)"
+            >
+              {{ item.title }}
+            </button>
+          </h3>
+
+          <div
+            :id="`${item.id}-panel`"
+            class="accordion-collapse collapse property-panel__accordion-collapse"
+            :class="{ show: openGuideItem === item.id }"
+          >
+            <div class="accordion-body property-panel__accordion-body">
+              {{ item.copy }}
+            </div>
+          </div>
         </div>
       </div>
-
-      <ul class="property-panel__guide-notes">
-        <li>Start can only connect forward, End only receives flow.</li>
-        <li>Normal nodes use manual / api, and can move forward to the next step.</li>
-        <li>Decision nodes split to two outputs, labeled true and false.</li>
-      </ul>
     </section>
 
     <div v-if="selectedNode" class="property-panel__content">
@@ -180,6 +219,25 @@ const { selectedNode, selectedEdge } = storeToRefs(diagramStore)
 const isRemoveConfirmVisible = ref(false)
 const pendingRemoveConnection = ref(null)
 const pendingRemoveModule = ref(null)
+const isAboutGuideOpen = ref(false)
+const guideItems = [
+  {
+    id: 'guide-basic',
+    title: 'Basic settings',
+    copy: 'Use the title and status fields to keep each module readable before connecting it to the workflow.',
+  },
+  {
+    id: 'guide-workflow',
+    title: 'Workflow trigger',
+    copy: 'Task and data nodes use API mode. Start and End nodes are locked to automatic behavior.',
+  },
+  {
+    id: 'guide-routing',
+    title: 'Routing rules',
+    copy: 'Decision nodes should define a condition and route outcomes through true and false connections.',
+  },
+]
+const openGuideItem = ref(guideItems[0].id)
 
 const requiredFieldsText = computed(() => {
   if (!selectedNode.value) return ''
@@ -244,6 +302,10 @@ const confirmMessage = computed(() => {
 function updateNodeField(field, value) {
   if (!selectedNode.value) return
   diagramStore.updateNode(selectedNode.value.id, { [field]: value })
+}
+
+function toggleGuideItem(id) {
+  openGuideItem.value = openGuideItem.value === id ? null : id
 }
 
 function updateWorkflowField(field, value) {
@@ -358,7 +420,35 @@ function cancelConfirmAction() {
   border: 1px solid #31405c;
   border-radius: 14px;
   background: linear-gradient(180deg, rgb(19 27 45 / 95%), rgb(14 20 34 / 95%));
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.property-panel__about-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
   padding: 14px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.property-panel__about-toggle:hover {
+  background: rgb(148 163 184 / 8%);
+}
+
+.property-panel__about-toggle:focus-visible {
+  outline: 3px solid rgb(95 111 82 / 18%);
+  outline-offset: -3px;
+}
+
+.property-panel__about-body {
+  padding: 0 14px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -372,12 +462,14 @@ function cancelConfirmAction() {
 }
 
 .property-panel__about-title {
-  margin: 0;
+  display: block;
   font-size: 14px;
+  font-weight: 800;
 }
 
 .property-panel__about-subtitle {
-  margin: 4px 0 0;
+  display: block;
+  margin-top: 4px;
   font-size: 12px;
   color: #9fb0cb;
 }
@@ -487,6 +579,88 @@ function cancelConfirmAction() {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.property-panel__help {
+  border: 1px solid #31405c;
+  border-radius: 14px;
+  background: rgb(15 23 42 / 58%);
+  overflow: hidden;
+}
+
+.property-panel__accordion-item {
+  border-bottom: 1px solid #2a3955;
+  background: transparent;
+}
+
+.property-panel__accordion-item:last-child {
+  border-bottom: 0;
+}
+
+.property-panel__accordion-title {
+  margin: 0;
+}
+
+.property-panel__accordion-button {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.property-panel__accordion-button::after {
+  content: '+';
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  color: #cde2d2;
+  background: rgb(148 163 184 / 14%);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.property-panel__accordion-button:not(.collapsed)::after {
+  content: '-';
+}
+
+.property-panel__accordion-button:hover,
+.property-panel__accordion-button:not(.collapsed) {
+  background: rgb(148 163 184 / 10%);
+}
+
+.property-panel__accordion-button:focus-visible {
+  outline: 3px solid rgb(95 111 82 / 18%);
+  outline-offset: -3px;
+}
+
+.property-panel__accordion-collapse {
+  display: none;
+}
+
+.property-panel__accordion-collapse.show {
+  display: block;
+}
+
+.property-panel__accordion-body {
+  padding: 0 14px 14px;
+  color: #c8d3e6;
+  font-size: 12px;
+  line-height: 1.55;
 }
 
 .property-panel__content {
@@ -672,6 +846,7 @@ function cancelConfirmAction() {
 }
 
 .property-panel__about,
+.property-panel__help,
 .property-panel__section {
   border-color: rgb(241 240 232 / 12%);
   border-radius: 8px;
@@ -682,6 +857,10 @@ function cancelConfirmAction() {
 .property-panel__connections-title,
 .property-panel__empty {
   color: var(--color-text-muted);
+}
+
+.property-panel__about-toggle:hover {
+  background: rgb(241 240 232 / 6%);
 }
 
 .property-panel__about-pill {
@@ -746,6 +925,29 @@ function cancelConfirmAction() {
   color: var(--color-text-muted);
 }
 
+.property-panel__accordion-item {
+  border-bottom-color: rgb(241 240 232 / 12%);
+}
+
+.property-panel__accordion-button {
+  color: var(--color-text);
+}
+
+.property-panel__accordion-button::after {
+  border-color: rgb(241 240 232 / 14%);
+  color: var(--color-action);
+  background: rgb(239 236 224 / 9%);
+}
+
+.property-panel__accordion-button:hover,
+.property-panel__accordion-button:not(.collapsed) {
+  background: rgb(241 240 232 / 6%);
+}
+
+.property-panel__accordion-body {
+  color: var(--color-text-muted);
+}
+
 .property-panel__field input,
 .property-panel__field select,
 .property-panel__field textarea,
@@ -783,6 +985,7 @@ function cancelConfirmAction() {
 }
 
 .property-panel__about,
+.property-panel__help,
 .property-panel__section {
   border-color: var(--color-border);
   border-radius: 10px;
@@ -794,6 +997,10 @@ function cancelConfirmAction() {
 .property-panel__empty,
 .property-panel__guide-notes {
   color: var(--color-text-muted);
+}
+
+.property-panel__about-toggle:hover {
+  background: var(--color-bg-elevated);
 }
 
 .property-panel__about-pill {
@@ -843,6 +1050,29 @@ function cancelConfirmAction() {
 
 .property-panel__guide-arrow {
   color: var(--color-soft-accent);
+}
+
+.property-panel__accordion-item {
+  border-bottom-color: var(--color-border);
+}
+
+.property-panel__accordion-button {
+  color: var(--color-text);
+}
+
+.property-panel__accordion-button::after {
+  border-color: var(--color-border);
+  color: var(--color-action);
+  background: var(--color-bg-elevated);
+}
+
+.property-panel__accordion-button:hover,
+.property-panel__accordion-button:not(.collapsed) {
+  background: var(--color-bg-elevated);
+}
+
+.property-panel__accordion-body {
+  color: var(--color-text-muted);
 }
 
 .property-panel__field input,

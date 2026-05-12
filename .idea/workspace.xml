@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="version 4.0.1: just fix small problem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/edge/ConfirmDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +139,8 @@
       <workItem from="1778323491169" duration="213000" />
       <workItem from="1778479932721" duration="2977000" />
       <workItem from="1778483190593" duration="375000" />
+      <workItem from="1778485986546" duration="2679000" />
+      <workItem from="1778564667999" duration="3861000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -242,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778482434755</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="version 4.0.1: just fix small problem">
+      <option name="closed" value="true" />
+      <created>1778486103838</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778486103838</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +287,7 @@
     <MESSAGE value="version 3.6: update project theme" />
     <MESSAGE value="version 3.7: update project theme" />
     <MESSAGE value="version 4.0: final version" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 4.0: final version" />
+    <MESSAGE value="version 4.0.1: just fix small problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 4.0.1: just fix small problem" />
   </component>
 </project>

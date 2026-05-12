@@ -9,20 +9,6 @@
           cards stay as elegant previews.
         </p>
       </div>
-
-      <div class="showcase-carousel__controls">
-        <button
-          class="carousel-button"
-          type="button"
-          aria-label="Previous showcase"
-          @click="previous"
-        >
-          <span aria-hidden="true">←</span>
-        </button>
-        <button class="carousel-button" type="button" aria-label="Next showcase" @click="next">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
     </div>
 
     <div class="showcase-carousel__stage" aria-live="polite">
@@ -53,11 +39,6 @@
 
           <h3>{{ slide.title }}</h3>
           <p class="showcase-card__description">{{ slide.copy }}</p>
-
-          <button class="showcase-card__cta" type="button">
-            <span class="showcase-card__cta-icon">→</span>
-            Explore this flow
-          </button>
         </div>
 
         <div v-else class="showcase-card__content showcase-card__content--preview">
@@ -144,10 +125,6 @@ function next() {
   activeIndex.value = (activeIndex.value + 1) % slides.length
 }
 
-function previous() {
-  activeIndex.value = (activeIndex.value - 1 + slides.length) % slides.length
-}
-
 function goTo(id) {
   const index = slides.findIndex((slide) => slide.id === id)
   if (index >= 0) activeIndex.value = index
@@ -212,37 +189,6 @@ onBeforeUnmount(() => {
   color: var(--color-text-muted);
   font-size: 16px;
   line-height: 1.7;
-}
-
-.showcase-carousel__controls {
-  display: flex;
-  gap: 12px;
-  padding-top: 8px;
-}
-
-.carousel-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background: var(--color-panel);
-  color: var(--color-text);
-  font-size: 18px;
-  cursor: pointer;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.carousel-button:hover {
-  transform: translateY(-1px);
-  border-color: var(--color-soft-accent);
-  background: var(--color-bg-elevated);
 }
 
 .showcase-carousel__stage {
@@ -415,31 +361,6 @@ onBeforeUnmount(() => {
   color: var(--color-text-muted);
   font-size: 16px;
   line-height: 1.75;
-}
-
-.showcase-card__cta {
-  margin-top: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--color-text);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.showcase-card__cta-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
 }
 
 .showcase-card__content--preview {

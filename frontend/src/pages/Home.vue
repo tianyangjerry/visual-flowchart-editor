@@ -8,6 +8,8 @@
 
     <HomeFlowSection ref="flowRef" :visible="visible.flow" />
 
+    <HomeFaqAccordion />
+
     <FeedbackStackCard />
 
     <HomeFooter />
@@ -19,6 +21,7 @@ import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import HomeHero from '../components/home/HomeHero.vue'
 import HomeFlowSection from '../components/home/HomeFlowSection.vue'
 import HomeShowcaseCarousel from '../components/home/HomeShowcaseCarousel.vue'
+import HomeFaqAccordion from '../components/home/HomeFaqAccordion.vue'
 import FeedbackStackCard from '../components/home/FeedbackStackCard.vue'
 import HomeFooter from '../components/home/HomeFooter.vue'
 

@@ -3,12 +3,18 @@
     <p class="hero-kicker">Visual Flowchart Editor</p>
     <h1 class="hero-title" aria-label="Build polished workflow diagrams and approvals in one place.">
       <span
-        v-for="(char, index) in heroTitleChars"
-        :key="`${char}-${index}`"
-        class="hero-title__char"
-        :style="{ '--i': index }"
+        v-for="(word, wordIndex) in heroTitleWords"
+        :key="`${word.text}-${wordIndex}`"
+        class="hero-title__word"
       >
-        {{ char === ' ' ? '\u00A0' : char }}
+        <span
+          v-for="char in word.chars"
+          :key="char.key"
+          class="hero-title__char"
+          :style="{ '--i': char.index }"
+        >
+          {{ char.value }}
+        </span>
       </span>
     </h1>
     <p class="hero-description">
@@ -23,8 +29,10 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-defineProps({
+
+const props = defineProps({
   visible: {
     type: Boolean,
     default: false,
@@ -33,6 +41,32 @@ defineProps({
     type: Array,
     default: () => [],
   },
+})
+
+const heroTitleWords = computed(() => {
+  const words = []
+  let currentWord = null
+
+  props.heroTitleChars.forEach((char, index) => {
+    if (char === ' ') {
+      currentWord = null
+      return
+    }
+
+    if (!currentWord) {
+      currentWord = { text: '', chars: [] }
+      words.push(currentWord)
+    }
+
+    currentWord.text += char
+    currentWord.chars.push({
+      value: char,
+      index,
+      key: `${char}-${index}`,
+    })
+  })
+
+  return words
 })
 </script>
 
@@ -74,6 +108,18 @@ defineProps({
   line-height: 1.06;
   letter-spacing: 0;
   animation: fade-rise 700ms ease both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.28em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.hero-title__word {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .hero-title__char {
