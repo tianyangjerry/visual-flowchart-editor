@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar" :class="{ 'is-collapsed': isCollapsed }">
-    <div class="sidebar__header">
+    <header class="sidebar__header">
       <h2 v-if="!isCollapsed" class="sidebar__title">Tools</h2>
       <button
         class="sidebar__collapse-btn"
@@ -11,7 +11,7 @@
         <ChevronRight v-if="isCollapsed" :size="20" />
         <ChevronLeft v-else :size="20" />
       </button>
-    </div>
+    </header>
 
     <div v-if="!isCollapsed" class="sidebar__content">
       <section class="sidebar__section">

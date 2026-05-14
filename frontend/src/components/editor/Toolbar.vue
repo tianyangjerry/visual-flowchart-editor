@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar">
+  <header class="toolbar">
     <div class="toolbar__left">
       <RouterLink class="toolbar__brand" to="/">
         <Sparkles class="toolbar__brand-icon" :size="14" />
@@ -49,7 +49,7 @@
         <span>About</span>
       </button>
     </div>
-  </div>
+  </header>
 
   <div v-if="saveStatus" class="toolbar__status" :class="`toolbar__status--${saveStatusType}`">
     {{ saveStatus }}

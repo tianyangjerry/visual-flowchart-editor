@@ -2,10 +2,10 @@
   <section class="detail-stack">
     <article class="detail-shell">
       <div class="detail-overview">
-        <div class="detail-overview__title">
+        <header class="detail-overview__title">
           <h2>{{ selectedProject.name }}</h2>
           <span class="status-pill status-active">{{ selectedProject.status }}</span>
-        </div>
+        </header>
 
         <div class="detail-grid">
           <div class="detail-card">
@@ -35,11 +35,11 @@
     </article>
 
     <article class="flow-overview-shell">
-      <div class="section-head compact">
+      <header class="section-head compact">
         <div>
           <h3>Flow overview</h3>
         </div>
-      </div>
+      </header>
       <ProjectFlowSnapshot :project="selectedProject" />
     </article>
 

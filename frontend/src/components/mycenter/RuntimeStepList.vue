@@ -1,10 +1,10 @@
 <template>
   <div class="step-list-shell">
-    <div class="section-head compact">
+    <header class="section-head compact">
       <div>
         <h3>Recent runs</h3>
       </div>
-    </div>
+    </header>
 
     <div class="runtime-table" role="table" aria-label="Recent runtime steps">
       <div class="runtime-table__row runtime-table__row--head" role="row">

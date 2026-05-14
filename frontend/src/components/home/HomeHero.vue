@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" :class="{ 'is-visible': visible }">
+  <header class="hero" :class="{ 'is-visible': visible }">
     <p class="hero-kicker">Visual Flowchart Editor</p>
     <h1 class="hero-title" aria-label="Build polished workflow diagrams and approvals in one place.">
       <span
@@ -25,7 +25,7 @@
       <RouterLink class="btn btn-primary" to="/editor">Start creating</RouterLink>
       <RouterLink class="btn btn-secondary" to="/my-center">View my center</RouterLink>
     </div>
-  </section>
+  </header>
 </template>
 
 <script setup>

@@ -1,9 +1,9 @@
 <template>
   <section ref="sectionRef" class="section-shell flow-section" :class="{ 'is-visible': visible }">
-    <div class="section-header flow-header">
+    <header class="section-header flow-header">
       <p class="section-eyebrow">Content flow</p>
       <h2>Everything you need to move from idea to approval</h2>
-    </div>
+    </header>
 
     <div
       class="flow-row flow-row--right flow-row--top"

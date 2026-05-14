@@ -1,6 +1,6 @@
 <template>
   <section class="showcase-carousel" aria-label="Homepage showcase carousel">
-    <div class="showcase-carousel__header">
+    <header class="showcase-carousel__header">
       <div class="showcase-carousel__intro">
         <p class="showcase-carousel__eyebrow">Homepage showcase</p>
         <h2>Premium flow storytelling in motion</h2>
@@ -9,9 +9,14 @@
           cards stay as elegant previews.
         </p>
       </div>
-    </div>
+    </header>
 
-    <div class="showcase-carousel__stage" aria-live="polite">
+    <div
+      class="showcase-carousel__stage"
+      aria-live="polite"
+      @mouseenter="pauseAutoSlide"
+      @mouseleave="resumeAutoSlide"
+    >
       <div class="showcase-carousel__ambient"></div>
 
       <article
@@ -34,7 +39,6 @@
         >
           <div class="showcase-card__meta">
             <span class="showcase-card__kicker">{{ slide.kicker }}</span>
-            <span class="showcase-card__index">0{{ slide.number }}</span>
           </div>
 
           <h3>{{ slide.title }}</h3>
@@ -102,6 +106,30 @@ const slides = [
     image:
       'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
   },
+  {
+    id: 'approval',
+    number: 4,
+    tag: 'Approval lane',
+    kicker: 'Review flow',
+    previewLabel: 'Review flow',
+    shortTitle: 'Route approvals without confusion',
+    title: 'Route approvals without confusion',
+    copy: 'Use clear stages and captions to show who reviews each step, what is waiting, and what is ready to move forward.',
+    image:
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    id: 'analytics',
+    number: 5,
+    tag: 'Progress view',
+    kicker: 'Project insight',
+    previewLabel: 'Project insight',
+    shortTitle: 'Track progress at a glance',
+    title: 'Track progress at a glance',
+    copy: 'Pair each workflow with visible progress, status, and next actions so teams can quickly understand project health.',
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+  },
 ]
 
 const activeIndex = ref(1)
@@ -130,12 +158,27 @@ function goTo(id) {
   if (index >= 0) activeIndex.value = index
 }
 
-onMounted(() => {
+function startAutoSlide() {
+  if (timer) return
   timer = window.setInterval(next, 5200)
+}
+
+function pauseAutoSlide() {
+  if (!timer) return
+  window.clearInterval(timer)
+  timer = null
+}
+
+function resumeAutoSlide() {
+  startAutoSlide()
+}
+
+onMounted(() => {
+  startAutoSlide()
 })
 
 onBeforeUnmount(() => {
-  if (timer) window.clearInterval(timer)
+  pauseAutoSlide()
 })
 </script>
 

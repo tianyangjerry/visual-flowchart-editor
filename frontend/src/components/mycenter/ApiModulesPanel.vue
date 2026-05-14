@@ -1,10 +1,10 @@
 <template>
   <section class="api-shell">
-    <div class="section-head compact">
+    <header class="section-head compact">
       <div>
         <h3>Modules</h3>
       </div>
-    </div>
+    </header>
 
     <div v-if="modules.length" class="api-table" role="table" aria-label="Workflow modules">
       <div class="api-table__row api-table__row--head" role="row">

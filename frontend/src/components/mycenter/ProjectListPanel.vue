@@ -1,11 +1,11 @@
 <template>
   <article class="project-list-shell">
-    <div class="section-head">
+    <header class="section-head">
       <div>
         <h2>Projects</h2>
       </div>
       <span class="count-chip">{{ filteredProjects.length }} projects</span>
-    </div>
+    </header>
 
     <div class="project-list-actions">
       <RouterLink class="new-project-btn" to="/editor">
@@ -51,9 +51,9 @@
           <Trash2 :size="14" />
         </button>
 
-        <div class="project-card__header">
+        <header class="project-card__header">
           <strong>{{ project.name }}</strong>
-        </div>
+        </header>
         <div class="project-card__subheader">
           <span class="status-pill" :class="`status-${project.status}`">{{ project.status }}</span>
         </div>

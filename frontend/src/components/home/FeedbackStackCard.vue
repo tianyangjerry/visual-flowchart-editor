@@ -40,7 +40,7 @@
           </div>
 
           <form class="feedback-form" @submit.prevent="submitForm">
-            <label class="form-field">
+            <label class="form-field" :class="{ 'is-invalid': errors.email }">
               <span>Email address</span>
               <input
                 ref="emailInputRef"
@@ -48,16 +48,24 @@
                 type="email"
                 placeholder="name@example.com"
                 autocomplete="email"
+                :aria-invalid="Boolean(errors.email)"
+                aria-describedby="feedback-email-error"
+                @input="clearError('email')"
               />
+              <small v-if="errors.email" id="feedback-email-error" class="form-error">{{ errors.email }}</small>
             </label>
 
-            <label class="form-field">
+            <label class="form-field" :class="{ 'is-invalid': errors.message }">
               <span>Your suggestion</span>
               <textarea
                 v-model="message"
                 rows="4"
                 placeholder="Tell us what workflow, review experience, or editor feature you want to see next."
+                :aria-invalid="Boolean(errors.message)"
+                aria-describedby="feedback-message-error"
+                @input="clearError('message')"
               />
+              <small v-if="errors.message" id="feedback-message-error" class="form-error">{{ errors.message }}</small>
             </label>
 
             <div class="form-actions">
@@ -80,6 +88,7 @@ import { nextTick, ref } from 'vue'
 
 const isExpanded = ref(false)
 const submitted = ref(false)
+const errors = ref({})
 
 const email = ref('')
 const message = ref('')
@@ -90,6 +99,7 @@ async function expandPanel() {
 
   isExpanded.value = true
   submitted.value = false
+  errors.value = {}
   await nextTick()
   emailInputRef.value?.focus({ preventScroll: true })
 }
@@ -101,6 +111,12 @@ function collapsePanel() {
 }
 
 function submitForm() {
+  errors.value = validateForm()
+  if (Object.keys(errors.value).length) {
+    submitted.value = false
+    return
+  }
+
   submitted.value = true
 
 
@@ -108,6 +124,32 @@ function submitForm() {
     email: email.value,
     message: message.value,
   })
+}
+
+function validateForm() {
+  const nextErrors = {}
+  const emailValue = email.value.trim()
+  const messageValue = message.value.trim()
+
+  if (!emailValue) {
+    nextErrors.email = 'Please enter your email address.'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+    nextErrors.email = 'Please enter a valid email address.'
+  }
+
+  if (!messageValue) {
+    nextErrors.message = 'Please enter your suggestion.'
+  } else if (messageValue.length < 10) {
+    nextErrors.message = 'Please write at least 10 characters.'
+  }
+
+  return nextErrors
+}
+
+function clearError(field) {
+  if (!errors.value[field]) return
+  const { [field]: _removed, ...remainingErrors } = errors.value
+  errors.value = remainingErrors
 }
 </script>
 
@@ -364,6 +406,19 @@ function submitForm() {
   border-color: var(--color-action);
   box-shadow: 0 0 0 4px rgb(95 111 82 / 12%);
   background: #fffefb;
+}
+
+.form-field.is-invalid input,
+.form-field.is-invalid textarea {
+  border-color: #dc2626;
+  background: #fff7f7;
+  box-shadow: 0 0 0 4px rgb(220 38 38 / 12%);
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .form-field textarea {

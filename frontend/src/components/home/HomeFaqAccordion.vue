@@ -1,9 +1,9 @@
 <template>
   <section class="faq-accordion" aria-labelledby="faq-accordion-title">
-    <div class="faq-accordion__header">
+    <header class="faq-accordion__header">
       <p class="faq-accordion__eyebrow">Workflow guide</p>
       <h2 id="faq-accordion-title">Frequently asked questions</h2>
-    </div>
+    </header>
 
     <div id="homepageFaqAccordion" class="accordion faq-accordion__list">
       <div v-for="item in faqItems" :key="item.id" class="accordion-item faq-accordion__item">
@@ -55,6 +55,24 @@ const faqItems = [
     question: 'Where do approvals fit in?',
     answer:
       'Approval steps can be represented as workflow nodes with required fields, status, and routing rules for the next step.',
+  },
+  {
+    id: 'faq-api',
+    question: 'Can a workflow step be triggered by an API?',
+    answer:
+      'Yes. API modules expose trigger information after saving, so external systems can update workflow progress from outside the editor.',
+  },
+  {
+    id: 'faq-edit',
+    question: 'Can I update a workflow after saving it?',
+    answer:
+      'You can return to the editor, adjust nodes, labels, and connections, then save the updated workflow for later tracking.',
+  },
+  {
+    id: 'faq-responsive',
+    question: 'Does the interface work on smaller screens?',
+    answer:
+      'The homepage, carousel, accordion, and project pages adapt their layout so the main content remains readable on tablets and phones.',
   },
 ]
 
@@ -139,41 +157,16 @@ function toggleItem(id) {
 .faq-accordion__button::after {
   content: '';
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  color: var(--color-action);
-  background: var(--color-bg-elevated);
-  font-size: 18px;
-  line-height: 1;
-  transform: rotate(45deg);
-  transition:
-    transform 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease;
-}
-
-.faq-accordion__button::before {
-  content: '';
-  order: 2;
-  flex: 0 0 auto;
-  width: 8px;
-  height: 8px;
-  margin-left: -40px;
+  width: 10px;
+  height: 10px;
   border-right: 2px solid var(--color-action);
   border-bottom: 2px solid var(--color-action);
+  color: var(--color-action);
   transform: rotate(45deg);
   transition: transform 180ms ease;
 }
 
 .faq-accordion__button:not(.collapsed)::after {
-  transform: rotate(0deg);
-}
-
-.faq-accordion__button:not(.collapsed)::before {
   transform: rotate(225deg);
 }
 
