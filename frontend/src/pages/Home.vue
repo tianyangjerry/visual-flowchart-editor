@@ -115,9 +115,9 @@ defineOptions({
 .home-navbar {
   top: 0;
   z-index: 20;
-  width: min(1180px, 100%);
-  margin: 0 auto 32px;
-  padding: 14px 0;
+  width: auto;
+  margin: 0 calc(-1 * clamp(16px, 4vw, 56px)) 32px;
+  padding: 14px clamp(16px, 4vw, 56px);
   background: rgb(255 253 248 / 92%);
   backdrop-filter: blur(14px);
 }
@@ -232,6 +232,13 @@ defineOptions({
 @media (max-width: 640px) {
   .home-page {
     padding: 16px 14px 56px;
+  }
+
+  .home-navbar {
+    margin-right: -14px;
+    margin-left: -14px;
+    padding-right: 14px;
+    padding-left: 14px;
   }
 
   .section-shell {

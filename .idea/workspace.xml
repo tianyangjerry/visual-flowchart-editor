@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="final version 4.1.1: complete phase 4">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="final version 4.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/PROJECT_REQUIREMENTS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/PropertyPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/FeedbackStackCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeFaqAccordion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeFaqAccordion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeFlowSection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/home/HomeShowcaseCarousel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/ApiModulesPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ApiModulesPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectDetailPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectDetailPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectListPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/ProjectListPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mycenter/RuntimeStepList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mycenter/RuntimeStepList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +139,11 @@
       <workItem from="1778483190593" duration="375000" />
       <workItem from="1778485986546" duration="2679000" />
       <workItem from="1778564667999" duration="6424000" />
-      <workItem from="1778731837020" duration="1527000" />
+      <workItem from="1778731837020" duration="3589000" />
+      <workItem from="1778737905140" duration="4509000" />
+      <workItem from="1778760375946" duration="708000" />
+      <workItem from="1778762396620" duration="311000" />
+      <workItem from="1778763792133" duration="2108000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.0">
       <option name="closed" value="true" />
@@ -280,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778569454272</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="final version 4.2">
+      <option name="closed" value="true" />
+      <created>1778733596812</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778733596812</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +317,7 @@
     <MESSAGE value="version 4.0.1: just fix small problem" />
     <MESSAGE value="final version 4.1: add bootstrap support and update" />
     <MESSAGE value="final version 4.1.1: complete phase 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="final version 4.1.1: complete phase 4" />
+    <MESSAGE value="final version 4.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="final version 4.2" />
   </component>
 </project>

@@ -40,6 +40,9 @@
     </div>
 
     <div class="toolbar__right">
+      <RouterLink class="toolbar__home" to="/" title="Back to home page" aria-label="Back to home page">
+        <House :size="18" />
+      </RouterLink>
       <RouterLink class="toolbar__about" to="/my-center">
         <Info :size="15" />
         <span>My Center</span>
@@ -78,7 +81,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 
-import { FileInput, FileOutput, FilePlus2, Info, Save, Sparkles, Trash2 } from 'lucide-vue-next'
+import { FileInput, FileOutput, FilePlus2, House, Info, Save, Sparkles, Trash2 } from 'lucide-vue-next'
 
 import { NButton, NInput, NModal, NSpace, useMessage } from 'naive-ui'
 
@@ -237,6 +240,25 @@ async function importDiagram(event) {
 .toolbar__brand-text {
   font-weight: 600;
   letter-spacing: 0;
+}
+.toolbar__home {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #111111;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.toolbar__home:hover {
+  background: #2b2b2b;
+  color: #ffffff;
+}
+.toolbar__home:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
 }
 .toolbar__actions-group {
   display: flex;
