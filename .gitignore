@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+.idea
+.vscode
+frontend/node_modules
+frontend/dist
+backend/node_modules
+backend/dist
+backend/.env!/.idea/
+!/frontend/node_modules/
+/frontend/node_modules/
+!/frontend/PROJECT_REQUIREMENTS.md

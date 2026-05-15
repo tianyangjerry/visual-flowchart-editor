@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="final version 4.2.2:final">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="88" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tianyangjerry&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tianyangjerry/visual-flowchart-editor.git&quot;,
+    &quot;accountId&quot;: &quot;b2914cec-934b-4ed0-b153-57cefa6a3b5a&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3Cn7rdpTrtXtHpPsVlWLsygqpWG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-mcp.client.wrong.port.detected": "检测到端口与当前 IDE 不匹配的 MCP 客户端",
+    "Notification.DoNotAsk-mcp.client.wrong.port.detected": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/yang/Desktop/p4/final-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/yang/AppData/Roaming/JetBrains/WebStorm2026.1/node/versions/24.15.0/node",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\yang\\Desktop\\p4\\final-project\\frontend\\node_modules\\prettier",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Users\\yang\\Desktop\\p4\\final-project\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\styles" />
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\mycenter" />
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\editor\edge" />
+      <recent name="C:\Users\yang\Desktop\p4\final-project\frontend\src\components\editor" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-WS-261.23567.141" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="0929890b-1fe6-4d9c-9b78-0b0de9692b97" name="更改" comment="" />
+      <created>1777009679717</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777009679717</updated>
+      <workItem from="1777009680831" duration="52000" />
+      <workItem from="1777009753090" duration="3433000" />
+      <workItem from="1777112959244" duration="219000" />
+      <workItem from="1777113203009" duration="4996000" />
+      <workItem from="1777175829390" duration="6386000" />
+      <workItem from="1777262724623" duration="878000" />
+      <workItem from="1777358162858" duration="2808000" />
+      <workItem from="1777361114834" duration="921000" />
+      <workItem from="1777367270742" duration="22000" />
+      <workItem from="1777443304802" duration="1497000" />
+      <workItem from="1777453575499" duration="7000" />
+      <workItem from="1777460471005" duration="92000" />
+      <workItem from="1778130938024" duration="371000" />
+      <workItem from="1778132770939" duration="1042000" />
+      <workItem from="1778134019475" duration="204000" />
+      <workItem from="1778134253382" duration="5504000" />
+      <workItem from="1778218506737" duration="3419000" />
+      <workItem from="1778223825474" duration="129000" />
+      <workItem from="1778224003430" duration="2056000" />
+      <workItem from="1778301851842" duration="246000" />
+      <workItem from="1778305336944" duration="1238000" />
+      <workItem from="1778307454331" duration="7997000" />
+      <workItem from="1778322984459" duration="486000" />
+      <workItem from="1778323491169" duration="213000" />
+      <workItem from="1778479932721" duration="2977000" />
+      <workItem from="1778483190593" duration="375000" />
+      <workItem from="1778485986546" duration="2679000" />
+      <workItem from="1778564667999" duration="6424000" />
+      <workItem from="1778731837020" duration="3589000" />
+      <workItem from="1778737905140" duration="4509000" />
+      <workItem from="1778760375946" duration="708000" />
+      <workItem from="1778762396620" duration="311000" />
+      <workItem from="1778763792133" duration="2108000" />
+      <workItem from="1778777449036" duration="37000" />
+      <workItem from="1778816353671" duration="1212000" />
+      <workItem from="1778817590040" duration="922000" />
+      <workItem from="1778818538587" duration="889000" />
+      <workItem from="1778820673942" duration="2236000" />
+      <workItem from="1778827910132" duration="280000" />
+      <workItem from="1778828212337" duration="997000" />
+    </task>
+    <task id="LOCAL-00001" summary="version 2.0">
+      <option name="closed" value="true" />
+      <created>1777184559298</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777184559298</updated>
+    </task>
+    <task id="LOCAL-00002" summary="version 3.0">
+      <option name="closed" value="true" />
+      <created>1777359619000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777359619000</updated>
+    </task>
+    <task id="LOCAL-00003" summary="version 3.0">
+      <option name="closed" value="true" />
+      <created>1777363310610</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777363310610</updated>
+    </task>
+    <task id="LOCAL-00004" summary="version 3.1">
+      <option name="closed" value="true" />
+      <created>1777363331227</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777363331227</updated>
+    </task>
+    <task id="LOCAL-00005" summary="version 3.1.1: update .env.example with new">
+      <option name="closed" value="true" />
+      <created>1777443344623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777443344623</updated>
+    </task>
+    <task id="LOCAL-00006" summary="version 3.2: update project structure">
+      <option name="closed" value="true" />
+      <created>1778138153610</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778138153610</updated>
+    </task>
+    <task id="LOCAL-00007" summary="version 3.3: update project structure">
+      <option name="closed" value="true" />
+      <created>1778222097618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778222097619</updated>
+    </task>
+    <task id="LOCAL-00008" summary="version 3.4: update project structure">
+      <option name="closed" value="true" />
+      <created>1778225223133</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778225223133</updated>
+    </task>
+    <task id="LOCAL-00009" summary="version 3.4.1: update project structure">
+      <option name="closed" value="true" />
+      <created>1778225286361</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778225286361</updated>
+    </task>
+    <task id="LOCAL-00010" summary="version 3.5: update project and api module components and fix bugs">
+      <option name="closed" value="true" />
+      <created>1778306104064</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778306104064</updated>
+    </task>
+    <task id="LOCAL-00011" summary="version 3.6: update project theme">
+      <option name="closed" value="true" />
+      <created>1778308420103</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778308420103</updated>
+    </task>
+    <task id="LOCAL-00012" summary="version 3.7: update project theme">
+      <option name="closed" value="true" />
+      <created>1778310745834</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778310745834</updated>
+    </task>
+    <task id="LOCAL-00013" summary="version 4.0: final version">
+      <option name="closed" value="true" />
+      <created>1778482434755</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778482434755</updated>
+    </task>
+    <task id="LOCAL-00014" summary="version 4.0.1: just fix small problem">
+      <option name="closed" value="true" />
+      <created>1778486103838</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778486103838</updated>
+    </task>
+    <task id="LOCAL-00015" summary="final version 4.1: add bootstrap support and update">
+      <option name="closed" value="true" />
+      <created>1778568891936</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778568891937</updated>
+    </task>
+    <task id="LOCAL-00016" summary="final version 4.1.1: complete phase 4">
+      <option name="closed" value="true" />
+      <created>1778569454272</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778569454272</updated>
+    </task>
+    <task id="LOCAL-00017" summary="final version 4.2">
+      <option name="closed" value="true" />
+      <created>1778733596812</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778733596812</updated>
+    </task>
+    <task id="LOCAL-00018" summary="final version 4.2.1">
+      <option name="closed" value="true" />
+      <created>1778777476769</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778777476769</updated>
+    </task>
+    <task id="LOCAL-00019" summary="final version 4.2.2:final">
+      <option name="closed" value="true" />
+      <created>1778828880419</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1778828880419</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/frontend" />
+    </ignored-roots>
+    <MESSAGE value="version 2.0" />
+    <MESSAGE value="version 3.0" />
+    <MESSAGE value="version 3.1" />
+    <MESSAGE value="version 3.1.1: update .env.example with new" />
+    <MESSAGE value="version 3.2: update project structure" />
+    <MESSAGE value="version 3.3: update project structure" />
+    <MESSAGE value="version 3.4: update project structure" />
+    <MESSAGE value="version 3.4.1: update project structure" />
+    <MESSAGE value="version 3.5: update project and api module components and fix bugs" />
+    <MESSAGE value="version 3.6: update project theme" />
+    <MESSAGE value="version 3.7: update project theme" />
+    <MESSAGE value="version 4.0: final version" />
+    <MESSAGE value="version 4.0.1: just fix small problem" />
+    <MESSAGE value="final version 4.1: add bootstrap support and update" />
+    <MESSAGE value="final version 4.1.1: complete phase 4" />
+    <MESSAGE value="final version 4.2" />
+    <MESSAGE value="final version 4.2.1" />
+    <MESSAGE value="final version 4.2.2:final" />
+    <option name="LAST_COMMIT_MESSAGE" value="final version 4.2.2:final" />
+  </component>
+</project>
